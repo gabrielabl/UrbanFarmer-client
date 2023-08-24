@@ -10,10 +10,6 @@ function App() {
   //Variables
   const baseURL = process.env.REACT_APP_BASE_URL;
 
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-
 //FORM VARIABLE STATES
 const [signUpVar, setSignUpVar] = useState({
   user_name:"",
@@ -27,7 +23,6 @@ const [signUpVar, setSignUpVar] = useState({
   passwordLogin:"",
   });
   
-
 
   return (
     <BrowserRouter>

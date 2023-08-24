@@ -7,7 +7,7 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
   let navigate = useNavigate();
   const { emailLogin, passwordLogin } = loginVar;
 
-  //   ON CHANGE HANDLES
+//HANDLES ON HANDLE
   const handleOnChangeLogin = (event) => {
     const value = event.target.value;
     const nameForm = event.target.name;
@@ -27,6 +27,7 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
       .post(`${baseURL}/login`, loginVar)
       .then((res) => {
         console.log(res);
+        sessionStorage.setItem('JWTtoken', res.data.token);
         navigate("/profile");
       })
       .catch((err) => {
