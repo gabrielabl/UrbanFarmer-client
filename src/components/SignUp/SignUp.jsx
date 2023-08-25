@@ -31,35 +31,15 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     axios
       .post(`${baseURL}/emailcheck`, { email: email })
       .then((res) => {
-        // console.log(res);
         setIsEmailDB(res.status);
       })
       .catch((err) => {
-        // console.log(err);
+
+        setIsEmailDB("");
       });
   }, [email]);
 
   //FORM VALIDATION
-  const isEmailValid = () => {
-    if (!email.includes("@")) {
-      setPlaceholder({
-        ...placeholder,
-        emailPlaceholder: "This email is not valid",
-      });
-      setSignUpVar({ ...signUpVar, email: "" });
-      return false;
-    }
-    if (isEmailDB.length === 0) {
-      setPlaceholder({
-        ...placeholder,
-        emailPlaceholder: "This email is already used",
-      });
-      setSignUpVar({ ...signUpVar, email: "" });
-      return false;
-    }
-    return true;
-  };
-
   const isFieldEmpty = () => {
     if (!user_name) {
       setPlaceholder({
@@ -93,11 +73,41 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     return true;
   };
 
+  const isEmailValid = () => {
+    if (!email.includes("@")) {
+      setSignUpVar({ ...signUpVar, email: "" });
+      setPlaceholder({
+        ...placeholder,
+        emailPlaceholder: "This email is not valid",
+      });
+      return false;
+    }
+    if (isEmailDB.length === 0) {
+      setSignUpVar({ ...signUpVar, email: "" });
+      setPlaceholder({
+        ...placeholder,
+        emailPlaceholder: "This email is already used",
+      });
+      return false;
+    }
+    return true;
+  };
+
   const passwordConfirm = () => {
     if (password !== confirmPassword) {
+      setPlaceholder({
+        ...placeholder,
+        confirmPasswordPlaceholder: "Passwords don't match",
+      });
+      setConfirmPassword("");
       return false;
     }
     if (password.length < 8) {
+      setPlaceholder({
+        ...placeholder,
+        passwordPlaceholder: "Passwords should have at least 8 characters",
+      });
+      setSignUpVar({ ...SignUp, password: "" });
       return false;
     }
     return true;
@@ -105,19 +115,17 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
 
   const isFormValid = () => {
     if (!isFieldEmpty()) {
-      console.log("field empy");
       return false;
     }
     if (!isEmailValid()) {
-      console.log("email empy");
       return false;
     }
     if (!passwordConfirm()) {
-      console.log("password empy");
       return false;
     }
     return true;
   };
+
   //HANDLE CHANGE
   const handleOnChangeSignUp = (event) => {
     const { value, name } = event.target;
@@ -135,8 +143,6 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   //SIGN UP SUBMIT HANDLE
   const signUpHandleSubmit = (event) => {
     event.preventDefault();
-
-    console.log(email);
 
     if (isFormValid()) {
       console.log("yay");
@@ -187,6 +193,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
             type="text"
             onChange={handleOnChangeSignUp}
             placeholder={passwordPlaceholder}
+            value={password}
           ></input>
         </label>
 
@@ -197,6 +204,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
             type="text"
             onChange={handleOnChangeSignUp}
             placeholder={confirmPasswordPlaceholder}
+            value={confirmPassword}
           ></input>
         </label>
 
