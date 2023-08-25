@@ -13,15 +13,15 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   const [isEmailDB, setIsEmailDB] = useState("");
 
   useEffect(() => {
-    //Check DB for email
+    //Check DB for email, to keep DB clean
     axios
       .post(`${baseURL}/emailcheck`, { email: email })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setIsEmailDB(res.status);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [email]);
 
@@ -29,13 +29,39 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   const isEmailValid = () => {
     if (!email.includes("@")) {
       return false;
-    }
+    };
     if (isEmailDB.length === 0) {
       return false;
-    }
+    };
     return true;
   };
 
+  const isFieldEmpty = ()=>{
+    if(!user_name || !email || !password || !confirmPassword){
+      return false
+    };
+    return true;
+  };
+
+  const passwordConfirm = ()=>{
+    if(password !== confirmPassword){
+      return false
+    };
+    return true;
+  }
+
+  const isFormValid = ()=>{
+    if(!isEmailValid()){
+      return false;
+    };
+    if(!isFieldEmpty()){
+      return false;
+    };
+    if(!passwordConfirm()){
+      return false;
+    };
+    return true;
+  }
   //HANDLE CHANGE
   const handleOnChangeSignUp = (event) => {
     const { value, name } = event.target;
@@ -50,13 +76,13 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     }
   };
 
-  //SIGN UP HANDLE
+  //SIGN UP SUBMIT HANDLE
   const signUpHandleSubmit = (event) => {
     event.preventDefault();
 
     console.log(email);
 
-    if (isEmailValid()) {
+    if (isFormValid()) {
       console.log("yay");
       axios
         .post(`${baseURL}/signup`, signUpVar)
@@ -78,26 +104,41 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
 
       <form onSubmit={signUpHandleSubmit}>
         <h2>SIGN UP</h2>
-        <label name="user_name">NAME</label>
-        <input
-          name="user_name"
-          type="text"
-          onChange={handleOnChangeSignUp}
-        ></input>
-        <label name="email">EMAIL</label>
-        <input name="email" type="text" onChange={handleOnChangeSignUp}></input>
-        <label name="password">PASSWORD</label>
-        <input
-          name="password"
-          type="text"
-          onChange={handleOnChangeSignUp}
-        ></input>
-        <label name="confirmPassword">CONFIRM PASSWORD</label>
-        <input
-          name="confirmPassword"
-          type="text"
-          onChange={handleOnChangeSignUp}
-        ></input>
+        <label name="user_name">
+          NAME{" "}
+          <input
+            name="user_name"
+            type="text"
+            onChange={handleOnChangeSignUp}
+          ></input>
+        </label>
+
+        <label name="email">
+          EMAIL{" "}
+          <input
+            name="email"
+            type="text"
+            onChange={handleOnChangeSignUp}
+          ></input>
+        </label>
+        <label name="password">
+          PASSWORD
+          <input
+            name="password"
+            type="text"
+            onChange={handleOnChangeSignUp}
+          ></input>
+        </label>
+
+        <label name="confirmPassword">
+          CONFIRM PASSWORD{" "}
+          <input
+            name="confirmPassword"
+            type="text"
+            onChange={handleOnChangeSignUp}
+          ></input>
+        </label>
+
         <button type="submit">START</button>
       </form>
     </>
