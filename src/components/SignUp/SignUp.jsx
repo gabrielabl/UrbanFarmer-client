@@ -12,6 +12,20 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
 
   const [isEmailDB, setIsEmailDB] = useState("");
 
+  const [placeholder, setPlaceholder] = useState({
+    namePlaceholder: "Include your name here",
+    emailPlaceholder: "Include your email here",
+    passwordPlaceholder: "Add a password with at least 8 characters",
+    confirmPasswordPlaceholder: "Make sure it matches your password",
+  });
+
+  const {
+    namePlaceholder,
+    emailPlaceholder,
+    passwordPlaceholder,
+    confirmPasswordPlaceholder,
+  } = placeholder;
+
   useEffect(() => {
     //Check DB for email, to keep DB clean
     axios
@@ -28,40 +42,82 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   //FORM VALIDATION
   const isEmailValid = () => {
     if (!email.includes("@")) {
+      setPlaceholder({
+        ...placeholder,
+        emailPlaceholder: "This email is not valid",
+      });
+      setSignUpVar({ ...signUpVar, email: "" });
       return false;
-    };
+    }
     if (isEmailDB.length === 0) {
+      setPlaceholder({
+        ...placeholder,
+        emailPlaceholder: "This email is already used",
+      });
+      setSignUpVar({ ...signUpVar, email: "" });
       return false;
-    };
+    }
     return true;
   };
 
-  const isFieldEmpty = ()=>{
-    if(!user_name || !email || !password || !confirmPassword){
-      return false
-    };
+  const isFieldEmpty = () => {
+    if (!user_name) {
+      setPlaceholder({
+        ...placeholder,
+        namePlaceholder: "Make sure to add your name in this field",
+      });
+      return false;
+    }
+    if (!email) {
+      setPlaceholder({
+        ...placeholder,
+        emailPlaceholder: "Make sure to add your email in this field",
+      });
+      return false;
+    }
+    if (!password) {
+      setPlaceholder({
+        ...placeholder,
+        passwordPlaceholder: "Make sure to add your password in this field",
+      });
+      return false;
+    }
+    if (!confirmPassword) {
+      setPlaceholder({
+        ...placeholder,
+        confirmPasswordPlaceholder:
+          "Make sure to add your password in this field",
+      });
+      return false;
+    }
     return true;
   };
 
-  const passwordConfirm = ()=>{
-    if(password !== confirmPassword){
-      return false
-    };
+  const passwordConfirm = () => {
+    if (password !== confirmPassword) {
+      return false;
+    }
+    if (password.length < 8) {
+      return false;
+    }
     return true;
-  }
+  };
 
-  const isFormValid = ()=>{
-    if(!isEmailValid()){
+  const isFormValid = () => {
+    if (!isFieldEmpty()) {
+      console.log("field empy");
       return false;
-    };
-    if(!isFieldEmpty()){
+    }
+    if (!isEmailValid()) {
+      console.log("email empy");
       return false;
-    };
-    if(!passwordConfirm()){
+    }
+    if (!passwordConfirm()) {
+      console.log("password empy");
       return false;
-    };
+    }
     return true;
-  }
+  };
   //HANDLE CHANGE
   const handleOnChangeSignUp = (event) => {
     const { value, name } = event.target;
@@ -110,6 +166,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
             name="user_name"
             type="text"
             onChange={handleOnChangeSignUp}
+            placeholder={namePlaceholder}
           ></input>
         </label>
 
@@ -119,6 +176,8 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
             name="email"
             type="text"
             onChange={handleOnChangeSignUp}
+            placeholder={emailPlaceholder}
+            value={email}
           ></input>
         </label>
         <label name="password">
@@ -127,6 +186,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
             name="password"
             type="text"
             onChange={handleOnChangeSignUp}
+            placeholder={passwordPlaceholder}
           ></input>
         </label>
 
@@ -136,6 +196,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
             name="confirmPassword"
             type="text"
             onChange={handleOnChangeSignUp}
+            placeholder={confirmPasswordPlaceholder}
           ></input>
         </label>
 
