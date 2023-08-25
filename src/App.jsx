@@ -29,7 +29,7 @@ const [signUpVar, setSignUpVar] = useState({
       <div className="App">
         <Routes>
           <Route path="/" element={<StartPage baseURL={baseURL}/>}></Route>
-          <Route path="/profile" element={<ProfilePage />}></Route>
+          <Route path="/profile" element={<ProfilePage baseURL={baseURL} />}></Route>
           <Route path="/signup" element={<SignUp signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
         </Routes>

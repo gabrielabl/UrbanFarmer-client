@@ -41,7 +41,7 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
       .post(`${baseURL}/login`, loginVar)
       .then((res) => {
         console.log(res);
-        sessionStorage.setItem("JWTtoken", res.data.token);
+        sessionStorage.setItem("token", res.data.token);
         navigate("/profile");
       })
       .catch((err) => {
