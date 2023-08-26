@@ -1,6 +1,5 @@
 import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import "./StartPage.scss";
-
 import { Link } from "react-router-dom";
 
 const StartPage = ({}) => {

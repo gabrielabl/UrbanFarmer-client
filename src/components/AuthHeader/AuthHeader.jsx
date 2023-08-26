@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./AuthHeader.scss";
 
 const AuthHeader = ({ navHeader, navUrl }) => {
   return (
