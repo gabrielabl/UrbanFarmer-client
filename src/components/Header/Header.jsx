@@ -1,6 +1,7 @@
 import "./Header.scss";
 import logo from '../../Assets/urban-farmer-logo.png';
 import SearchIcon from '@mui/icons-material/Search';
+import { NavLink } from "react-router-dom";
 
 
 const Header = ()=>{
@@ -11,9 +12,9 @@ const Header = ()=>{
         <img className='header__logo' src={logo} alt="urban-farmer-logo"></img>
         <ul>
             {/* ADD LINK TO PAGES LATER */}
-            <li>PROFILE</li>
-            <li>MY COLLECTION</li>
-            <li>MESSAGES</li>
+          <NavLink to='/profile'><li>PROFILE</li></NavLink> 
+          <NavLink><li>MY COLLECTION</li></NavLink> 
+          <NavLink><li>MESSAGES</li></NavLink> 
         </ul>
        </div>
 
