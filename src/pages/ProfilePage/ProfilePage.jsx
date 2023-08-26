@@ -2,6 +2,8 @@ import "./ProfilePage.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const ProfilePage = ({baseURL})=>{
 
@@ -27,7 +29,11 @@ const ProfilePage = ({baseURL})=>{
         })}, []);
 
     return (
-        <><p>{profileData.user_name}</p></>
+        <>
+              <Header />
+              <p>{profileData.user_name}</p>
+              <Footer />
+              </>
     )
 }
 export default ProfilePage;

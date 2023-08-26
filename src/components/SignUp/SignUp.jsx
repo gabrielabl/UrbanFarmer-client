@@ -1,3 +1,4 @@
+import "./SignUp.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthHeader from "../AuthHeader/AuthHeader";
