@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 const StartPage = ({}) => {
 
   return (
-    <div>
+    <>
 <AuthHeader navHeader={'ABOUT'}    />
-      <div>
+      <main>
 <section>
 <Link to={'/login'}><h2 >ENTER</h2></Link>
 <p>NEW TO THE COMMUNITY?</p><Link to={'/signup'} >JOIN HERE.</Link> 
 </section>
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 export default StartPage;
