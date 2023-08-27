@@ -64,6 +64,7 @@ const ProfilePage = ({ baseURL }) => {
           hide={hide}
           about={about}
           editModeHandle={editModeHandle}
+          baseURL={baseURL}
         />
 
         <EditProfile
@@ -77,6 +78,10 @@ const ProfilePage = ({ baseURL }) => {
           views={views}
           trades={trades}
           about={about}
+          profileData={profileData}
+          setProfileData={setProfileData}
+          baseURL={baseURL}
+          token={token}
         />
       </main>
 

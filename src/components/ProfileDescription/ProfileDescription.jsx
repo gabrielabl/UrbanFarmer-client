@@ -12,14 +12,15 @@ const ProfileDescription =({
   show,
   hide,
   about,
-  editModeHandle
+  editModeHandle,
+  baseURL
 }) => {
   return <div style={!editMode? show : hide}>
         {
       /* MAIN PROFILE DATA */
     }
         <section>
-          <img src={avatar_photo} alt="avatar-photo"></img>
+          <img src={`${baseURL}/${avatar_photo}`} alt="avatar-photo"></img>
           <h1>{user_name}</h1>
           <p>{province}</p>
           <ul>
