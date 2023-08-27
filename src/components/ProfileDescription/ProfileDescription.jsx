@@ -1,5 +1,6 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 const ProfileDescription =({
   avatar_photo,
@@ -20,15 +21,15 @@ const ProfileDescription =({
       /* MAIN PROFILE DATA */
     }
         <section>
-          <img src={`${baseURL}/${avatar_photo}`} alt="avatar-photo"></img>
+          <img src={ `${baseURL}/${avatar_photo}`} alt="avatar-photo"></img>
           <h1>{user_name}</h1>
           <p>{province}</p>
           <ul>
             <ul>
-              <li>{likes}</li>
-              <li>{views}</li>
+              <li><FavoriteOutlinedIcon /> {likes}</li>
+              <li><RemoveRedEyeOutlinedIcon />{views}</li>
             </ul>
-            <li>{trades}</li>
+            <li>TRADES {trades}</li>
           </ul>
         </section>
         
@@ -36,7 +37,8 @@ const ProfileDescription =({
       /* ABOUT PROFILE SECTION */
     }
         <section>
-          <h2 style={!editMode ? show : hide}>{about}</h2>
+          <h2>ABOUT</h2>
+          <p>{about}</p>
             
           {
         /* BUTTON WILL HIDDEN WHEN EDIT MODE IS TRUE */

@@ -31,6 +31,11 @@ const ProfilePage = ({ baseURL }) => {
 
   //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
   useEffect(() => {
+
+
+    if(!token){
+      navigate('/');
+    }
     // Remember to include the token in Authorization header
     axios
       .get(`${baseURL}/profile`, {
@@ -45,6 +50,7 @@ const ProfilePage = ({ baseURL }) => {
       .catch(() => {
         navigate("/login");
       });
+
   }, []);
 
   return (

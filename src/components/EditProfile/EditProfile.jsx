@@ -2,6 +2,8 @@ import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { useRef, useState } from "react";
 import axios from "axios";
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 const EditProfile = ({
   editMode,
@@ -77,11 +79,11 @@ const editProfileHandleSubmit = (event) => {
         formData.append(key, editProfile[key]);
     };
 
-    formData.append('avatar_photo', editProfileAvatar.avatar_photo)
-    console.log(formData.get('about'))
+    if(editProfileAvatar.avatar_photo !== undefined){
+      formData.append('avatar_photo', editProfileAvatar.avatar_photo)
+      console.log(formData.get('about'))
+    }
 
-    console.log(editProfileAvatar)
-    
     axios
     .patch(`${baseURL}/profile/${profileData.id}`,formData, {
         headers: {
@@ -102,7 +104,7 @@ const editProfileHandleSubmit = (event) => {
     <form style={editMode ? show : hide} onSubmit={editProfileHandleSubmit}>
       {/* MAIN PROFILE DATA */}
       <div>
-        <img src={previewAvatar? previewAvatar : `${baseURL}/${avatar_photo}`} alt="avatar-photo-edit"></img>
+        <img src={!previewAvatar? `${baseURL}/${avatar_photo}` : previewAvatar  } alt="avatar-photo-edit"></img>
         <button onClick={avatarPhotoHandle}>
     <AddAPhotoOutlinedIcon  />
     UPLOAD PICTURE
@@ -123,8 +125,9 @@ const editProfileHandleSubmit = (event) => {
           <input
             name="user_name"
             type="text"
-            value={editProfile.user_name? editProfile.user_name:user_name}
+            value={editProfile.user_name?.user_name}
             onChange={handleOnChangeEditProfile}
+            placeholder={user_name}
           ></input>
         </label>
 
@@ -132,16 +135,18 @@ const editProfileHandleSubmit = (event) => {
           <input
             name="province"
             type="text"
-            value={editProfile.province? editProfile.province : province}
+            value={editProfile.province?.province}
             onChange={handleOnChangeEditProfile}
+            placeholder={province}
           ></input>
         </label>
         <ul>
           <ul>
-            <li>{likes}</li>
-            <li>{views}</li>
+            <li><FavoriteOutlinedIcon /> {likes}</li>
+            <li><RemoveRedEyeOutlinedIcon/> {views}</li>
           </ul>
-          <li>{trades}</li>
+          <li>ABOUT {user_name}</li>
+          <li>TRADES {trades}</li>
         </ul>
       </div>
 
@@ -151,8 +156,9 @@ const editProfileHandleSubmit = (event) => {
           <input
             name="about"
             type="text"
-            value={editProfile.about? editProfile.about : about}
+            value={editProfile.about?.about}
             onChange={handleOnChangeEditProfile}
+            placeholder={about}
           ></input>
         </label>
       </div>
