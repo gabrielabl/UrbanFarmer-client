@@ -7,11 +7,14 @@ import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
 import EditProfile from "./../../components/EditProfile/EditProfile";
 
+
 const ProfilePage = ({ baseURL }) => {
+  
+
   //VARIABLES
   let navigate = useNavigate();
   const [profileData, setProfileData] = useState("");
-  const { avatar_photo, user_name, province, likes, views, trades, about } =
+  const { avatar_photo, user_name, province, city, likes, views, trades, about } =
     profileData;
 
   //SHOW/HIDE
@@ -33,9 +36,11 @@ const ProfilePage = ({ baseURL }) => {
   useEffect(() => {
 
 
+    //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
     if(!token){
       navigate('/');
-    }
+    };
+
     // Remember to include the token in Authorization header
     axios
       .get(`${baseURL}/profile`, {
@@ -62,6 +67,7 @@ const ProfilePage = ({ baseURL }) => {
           avatar_photo={avatar_photo}
           user_name={user_name}
           province={province}
+          city={city}
           likes={likes}
           views={views}
           trades={trades}
@@ -75,11 +81,13 @@ const ProfilePage = ({ baseURL }) => {
 
         <EditProfile
           editMode={editMode}
+          setEditMode={setEditMode}
           show={show}
           hide={hide}
           avatar_photo={avatar_photo}
           user_name={user_name}
           province={province}
+          city={city}
           likes={likes}
           views={views}
           trades={trades}

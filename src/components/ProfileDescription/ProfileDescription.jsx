@@ -6,6 +6,7 @@ const ProfileDescription =({
   avatar_photo,
   user_name,
   province,
+  city,
   likes,
   views,
   trades,
@@ -23,7 +24,7 @@ const ProfileDescription =({
         <section>
           <img src={ `${baseURL}/${avatar_photo}`} alt="avatar-photo"></img>
           <h1>{user_name}</h1>
-          <p>{province}</p>
+          <p>{city}/{province}</p>
           <ul>
             <ul>
               <li><FavoriteOutlinedIcon /> {likes}</li>
