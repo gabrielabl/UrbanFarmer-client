@@ -4,36 +4,103 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
+import EditProfile from "./../../components/EditProfile/EditProfile";
 
-const ProfilePage = ({baseURL})=>{
 
+const ProfilePage = ({ baseURL }) => {
+  
 
-    // variables
+  //VARIABLES
   let navigate = useNavigate();
-   const [ profileData ,setProfileData] = useState('');
+  const [profileData, setProfileData] = useState("");
+  const { avatar_photo, user_name, province, city, likes, views, trades, about } =
+    profileData;
 
-    useEffect(() => {
-        const token = sessionStorage.getItem('token');
-        // Here grab the token from sessionStorage and then make an axios request to profileUrl endpoint.
-        // Remember to include the token in Authorization header
-        axios
-        .get(`${baseURL}/profile`,{
-          headers:{
-            Authorization : `Bearer ${token}`
-          }
-        }).then((res)=>{
-            setProfileData(res.data)
-          console.log(res)
-        }).catch(()=>{
-         navigate('/login')
-        })}, []);
+  //SHOW/HIDE
+  const show = { display: "flex" };
+  const hide = { display: "none" };
 
-    return (
-        <>
-              <Header />
-              <p>{profileData.user_name}</p>
-              <Footer />
-              </>
-    )
-}
+  //RETRIEVING TOKEN FROM SESSION STORE FOR AUTHORIZATION
+  const token = sessionStorage.getItem("token");
+
+  //CHANGE UI TO EDIT PROFILE MODE
+  const [editMode, setEditMode] = useState(false);
+
+  //EDIT MODE HANDLE
+  const editModeHandle = () => {
+    setEditMode(true);
+  };
+
+  //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
+  useEffect(() => {
+
+
+    //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
+    if(!token){
+      navigate('/');
+    };
+
+    // Remember to include the token in Authorization header
+    axios
+      .get(`${baseURL}/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setProfileData(res.data);
+        console.log(res);
+      })
+      .catch(() => {
+        navigate("/login");
+      });
+
+  }, []);
+
+  return (
+    <>
+      <Header />
+
+      <main>
+        <ProfileDescription
+          avatar_photo={avatar_photo}
+          user_name={user_name}
+          province={province}
+          city={city}
+          likes={likes}
+          views={views}
+          trades={trades}
+          editMode={editMode}
+          show={show}
+          hide={hide}
+          about={about}
+          editModeHandle={editModeHandle}
+          baseURL={baseURL}
+        />
+
+        <EditProfile
+          editMode={editMode}
+          setEditMode={setEditMode}
+          show={show}
+          hide={hide}
+          avatar_photo={avatar_photo}
+          user_name={user_name}
+          province={province}
+          city={city}
+          likes={likes}
+          views={views}
+          trades={trades}
+          about={about}
+          profileData={profileData}
+          setProfileData={setProfileData}
+          baseURL={baseURL}
+          token={token}
+        />
+      </main>
+
+      <Footer />
+    </>
+  );
+};
 export default ProfilePage;
