@@ -8,12 +8,12 @@ import ProfileDescription from "../../components/ProfileDescription/ProfileDescr
 import EditProfile from "./../../components/EditProfile/EditProfile";
 
 
-const ProfilePage = ({ baseURL }) => {
+const ProfilePage = ({ baseURL, profileData,setProfileData }) => {
   
 
   //VARIABLES
   let navigate = useNavigate();
-  const [profileData, setProfileData] = useState("");
+  // const [profileData, setProfileData] = useState("");
   const { avatar_photo, user_name, province, city, likes, views, trades, about } =
     profileData;
 

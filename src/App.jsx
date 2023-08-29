@@ -5,10 +5,14 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import StartPage from "./pages/StartPage/StartPage";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
+import MyCollection from "./pages/MyCollection/MyCollection";
 
 function App() {
   //Variables
   const baseURL = process.env.REACT_APP_BASE_URL;
+
+  const [profileData, setProfileData] = useState([]);
+  
 
 //FORM VARIABLE STATES
 const [signUpVar, setSignUpVar] = useState({
@@ -29,9 +33,11 @@ const [signUpVar, setSignUpVar] = useState({
       <div className="App">
         <Routes>
           <Route path="/" element={<StartPage baseURL={baseURL}/>}></Route>
-          <Route path="/profile" element={<ProfilePage baseURL={baseURL} />}></Route>
+          <Route path="/profile" element={<ProfilePage profileData={profileData} setProfileData={setProfileData} baseURL={baseURL} />}></Route>
           <Route path="/signup" element={<SignUp signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
+          <Route path="/mycollection" element={<MyCollection profileData={profileData} baseURL={baseURL}/>}></Route>
+
         </Routes>
       </div>
     </BrowserRouter>
