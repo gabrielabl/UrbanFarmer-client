@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import DeleteOutlineTwoToneIcon from '@mui/icons-material/DeleteOutlineTwoTone';
 
 const MyCollection = ({ baseURL}) => {
   // VARIABLES
@@ -14,13 +15,14 @@ const MyCollection = ({ baseURL}) => {
 const {id, users_id, item_name, description, item_photo}= collectionData
 
 
-  //RETRIEVING TOKEN FROM SESSION STORE FOR AUTHORIZATION
+  //RETRIEVING TOKEN AND DATA FROM SESSION STORE FOR AUTHORIZATION
   const token = sessionStorage.getItem("token");
-
   const idUser = sessionStorage.getItem("id");
+  const user_name = sessionStorage.getItem("user_name");
 
 
-  //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE
+
+  //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE IN THE FUTURE
   if(collectionData.message){
     navigate('/profile')
   }
@@ -44,20 +46,28 @@ const {id, users_id, item_name, description, item_photo}= collectionData
       })
       .catch((err) => {
         console.log(err)
-        // navigate("/login");
+        navigate("/login");
       });
   
   },[]);
 
   if(isLoading){
-   return <div >Loading...</div>;
+   return <div >LOADING..</div>;
   };
 
   return (<>
   <Header />
     <section>
-      <h1>{collectionData[3].id}</h1>
-      <p>{collectionData[2].users_id}</p>
+ <h1>{user_name}'S COLLECTION</h1>
+ <ul>
+{collectionData.map((item)=>( <li> 
+  <img src={item_photo} alt={item_name}></img>
+  <h2>{item.item_name}</h2>
+  <p>{item.description}</p>
+  <button><DeleteOutlineTwoToneIcon /></button>
+</li>))}
+
+ </ul>
     </section>
     <Footer />
     </>
