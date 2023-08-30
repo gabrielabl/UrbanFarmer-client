@@ -74,7 +74,6 @@ const EditProfile = ({
 
     if (editProfileAvatar.avatar_photo !== undefined) {
       formData.append("avatar_photo", editProfileAvatar.avatar_photo);
-      console.log(formData.get("about"));
     }
 
     //PATCH REQUEST

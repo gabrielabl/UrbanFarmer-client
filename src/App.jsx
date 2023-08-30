@@ -6,6 +6,7 @@ import StartPage from "./pages/StartPage/StartPage";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import MyCollection from "./pages/MyCollection/MyCollection";
+import AddItem from "./components/AddItem/AddItem";
 
 function App() {
   //Variables
@@ -34,6 +35,8 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/signup" element={<SignUp signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
           <Route path="/mycollection" element={<MyCollection  baseURL={baseURL}/>}></Route>
+          <Route path="/additem" element={<AddItem baseURL={baseURL}/>}></Route>
+
 
         </Routes>
       </div>

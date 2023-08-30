@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
+import { Link } from "react-router-dom";
 
 const MyCollection = ({ baseURL }) => {
   // VARIABLES
@@ -78,7 +79,8 @@ const MyCollection = ({ baseURL }) => {
 
   return (
     <>
-      <Header />
+    <Header />
+    <main>
       <section>
         <h1>{user_name}'S COLLECTION</h1>
         <ul>
@@ -97,9 +99,11 @@ const MyCollection = ({ baseURL }) => {
             </li>
           ))}
         </ul>
+<Link to='/additem'><button>ADD MORE</button></Link>
       </section>
-      <Footer />
-    </>
+    </main>
+          <Footer />
+          </>
   );
 };
 
