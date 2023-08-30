@@ -1,6 +1,7 @@
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import "./ProfileDescription.scss";
 
 const ProfileDescription =({
   avatar_photo,

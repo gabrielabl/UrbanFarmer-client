@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import "./MyCollection.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
-const MyCollection = ({ baseURL,profileData }) => {
+const MyCollection = ({ baseURL}) => {
   // VARIABLES
   let navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
@@ -14,6 +16,9 @@ const {id, users_id, item_name, description, item_photo}= collectionData
 
   //RETRIEVING TOKEN FROM SESSION STORE FOR AUTHORIZATION
   const token = sessionStorage.getItem("token");
+
+  const idUser = sessionStorage.getItem("id");
+
 
   //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE
   if(collectionData.message){
@@ -27,9 +32,8 @@ const {id, users_id, item_name, description, item_photo}= collectionData
       navigate("/login");
     }
 
-    // Remember to include the token in Authorization header
-    axios
-      .get(`${baseURL}/profile/${profileData.id}/collection`, {
+      axios
+      .get(`${baseURL}/profile/${idUser}/collection`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,24 +41,26 @@ const {id, users_id, item_name, description, item_photo}= collectionData
       .then((res) => {
         setCollectionData(res.data);
         setLoading(false);
-        console.log(res);
       })
-      .catch(() => {
-        navigate("/login");
+      .catch((err) => {
+        console.log(err)
+        // navigate("/login");
       });
-
-  }, []);
+  
+  },[]);
 
   if(isLoading){
    return <div >Loading...</div>;
   };
 
-  console.log(collectionData[0].id)
-
-  return (
+  return (<>
+  <Header />
     <section>
       <h1>{collectionData[3].id}</h1>
+      <p>{collectionData[2].users_id}</p>
     </section>
+    <Footer />
+    </>
   );
 };
 

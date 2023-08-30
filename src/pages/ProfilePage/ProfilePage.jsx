@@ -8,11 +8,14 @@ import ProfileDescription from "../../components/ProfileDescription/ProfileDescr
 import EditProfile from "./../../components/EditProfile/EditProfile";
 
 
-const ProfilePage = ({ baseURL, profileData,setProfileData }) => {
+const ProfilePage = ({ baseURL }) => {
   
-
   //VARIABLES
   let navigate = useNavigate();
+  const [profileData, setProfileData] = useState({});
+
+  const [isLoading, setLoading] = useState(true);
+
   // const [profileData, setProfileData] = useState("");
   const { avatar_photo, user_name, province, city, likes, views, trades, about } =
     profileData;
@@ -41,22 +44,28 @@ const ProfilePage = ({ baseURL, profileData,setProfileData }) => {
       navigate('/');
     };
 
-    // Remember to include the token in Authorization header
-    axios
-      .get(`${baseURL}/profile`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setProfileData(res.data);
-        console.log(res);
-      })
-      .catch(() => {
-        navigate("/login");
-      });
 
-  }, []);
+  axios
+  .get(`${baseURL}/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((res) => {
+    setProfileData(res.data);
+    setLoading(false);
+    sessionStorage.setItem("id", res.data.id);
+    console.log(res);
+  })
+  .catch(() => {
+    navigate("/login");
+  });
+
+  }, [setProfileData]);
+
+  if(isLoading){
+    return <div >Loading...</div>;
+   };
 
   return (
     <>
