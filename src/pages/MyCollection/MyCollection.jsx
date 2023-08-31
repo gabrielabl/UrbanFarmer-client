@@ -79,31 +79,36 @@ const MyCollection = ({ baseURL }) => {
 
   return (
     <>
-    <Header />
-    <main>
-      <section>
-        <h1>{user_name}'S COLLECTION</h1>
-        <ul>
-          {collectionData.map((item) => (
-            <li key={item.id}>
-              <img src={item.item_photo} alt={item.item_name}></img>
-              <h2>{item.item_name}</h2>
-              <p>{item.description}</p>
-              <button
-                onClick={() => {
-                  deleteHandle(item.id);
-                }}
-              >
-                <DeleteOutlineTwoToneIcon />
-              </button>
-            </li>
-          ))}
-        </ul>
-<Link to='/additem'><button>ADD MORE</button></Link>
-      </section>
-    </main>
-          <Footer />
-          </>
+      <Header />
+      <main>
+        <section>
+          <h1>{user_name}'S COLLECTION</h1>
+          <ul>
+            {collectionData.map((item) => (
+              <li key={item.id}>
+                <img
+                  src={`${baseURL}/${item.item_photo}`}
+                  alt={item.item_name}
+                ></img>
+                <h2>{item.item_name}</h2>
+                <p>{item.description}</p>
+                <button
+                  onClick={() => {
+                    deleteHandle(item.id);
+                  }}
+                >
+                  <DeleteOutlineTwoToneIcon />
+                </button>
+              </li>
+            ))}
+          </ul>
+          <Link to="/additem">
+            <button>ADD MORE</button>
+          </Link>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 };
 
