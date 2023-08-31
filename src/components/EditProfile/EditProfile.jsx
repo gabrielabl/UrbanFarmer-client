@@ -26,6 +26,8 @@ const EditProfile = ({
   setEditMode,
 }) => {
 
+  console.log(about)
+
   //VARIABLES
   const hiddenUserPhotoInput = useRef(null);
   let navigate = useNavigate();
@@ -72,7 +74,6 @@ const EditProfile = ({
 
     if (editProfileAvatar.avatar_photo !== undefined) {
       formData.append("avatar_photo", editProfileAvatar.avatar_photo);
-      console.log(formData.get("about"));
     }
 
     //PATCH REQUEST
@@ -185,7 +186,7 @@ const EditProfile = ({
             type="text"
             value={editProfile.about?.about}
             onChange={handleOnChangeEditProfile}
-            placeholder={about? 'Describe yourself': about}
+            placeholder={about}
           ></input>
         </label>
       </div>

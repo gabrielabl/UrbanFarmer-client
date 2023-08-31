@@ -13,7 +13,7 @@ const Header = ()=>{
         <ul>
             {/* ADD LINK TO PAGES LATER */}
           <NavLink to='/profile'><li>PROFILE</li></NavLink> 
-          <NavLink><li>MY COLLECTION</li></NavLink> 
+          <NavLink to='/mycollection'><li>MY COLLECTION</li></NavLink> 
           <NavLink><li>MESSAGES</li></NavLink> 
         </ul>
        </div>
