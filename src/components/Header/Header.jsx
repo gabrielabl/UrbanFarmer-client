@@ -17,13 +17,16 @@ const [search,setSearch]= useState();
 //HANDLE ON CHANGE
 const handleOnChangeSearch = (event)=>{
 setSearch(event.target.value)
-
 };
 
 //HANDLE KEY TO CONFIRM ENTER WAS PRESSED
 const handleKeyDown = (event)=>{
 if(event.key === "Enter"){
-  sessionStorage.setItem("search", search);
+  if(search === undefined){
+    sessionStorage.setItem("search", '');
+  }else{
+    sessionStorage.setItem("search", search);
+  }
   navigate('/search')
 }
 }

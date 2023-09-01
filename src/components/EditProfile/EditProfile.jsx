@@ -1,4 +1,5 @@
 import "./EditProfile.scss";
+import Avatar from "../Avatar/Avatar";
 import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { useRef, useState } from "react";
@@ -6,6 +7,7 @@ import axios from "axios";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useNavigate } from "react-router-dom";
+
 
 const EditProfile = ({
   editMode,
@@ -116,10 +118,8 @@ const EditProfile = ({
     <form style={editMode ? show : hide} onSubmit={editProfileHandleSubmit}>
       {/* MAIN PROFILE DATA */}
       <div>
-        <img
-          src={!previewAvatar ? `${baseURL}/${avatar_photo}` : previewAvatar}
-          alt="avatar-photo-edit"
-        ></img>
+     <Avatar avatar_source={!previewAvatar ? `${baseURL}/${avatar_photo}` : previewAvatar} avatar_alt={'avatar-photo-edit'} />
+
         <button onClick={avatarPhotoHandle}>
           <AddAPhotoOutlinedIcon />
           UPLOAD PICTURE

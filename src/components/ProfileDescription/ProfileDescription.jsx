@@ -1,3 +1,4 @@
+import Avatar from '../Avatar/Avatar';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -23,8 +24,8 @@ const ProfileDescription =({
       /* MAIN PROFILE DATA */
     }
         <section>
-          <img src={ `${baseURL}/${avatar_photo}`} alt="avatar-photo"></img>
-          <h1>{user_name}</h1>
+<Avatar   avatar_source={`${baseURL}/${avatar_photo}`} avatar_alt={'avatar_photo'}  />        
+  <h1>{user_name}</h1>
           <p>{city}/{province}</p>
           <ul>
             <ul>
