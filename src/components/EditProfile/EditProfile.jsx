@@ -7,7 +7,7 @@ import axios from "axios";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useNavigate } from "react-router-dom";
-
+import Button from "../Button/Button";
 
 const EditProfile = ({
   editMode,
@@ -27,8 +27,7 @@ const EditProfile = ({
   token,
   setEditMode,
 }) => {
-
-  console.log(about)
+  console.log(about);
 
   //VARIABLES
   const hiddenUserPhotoInput = useRef(null);
@@ -114,16 +113,28 @@ const EditProfile = ({
       });
   };
 
+  //CANCEL HANDLE
+
+  const cancelHandleOnClick= ()=>{
+setEditMode(false)
+  }
+
   return (
     <form style={editMode ? show : hide} onSubmit={editProfileHandleSubmit}>
       {/* MAIN PROFILE DATA */}
       <div>
-     <Avatar avatar_source={!previewAvatar ? `${baseURL}/${avatar_photo}` : previewAvatar} avatar_alt={'avatar-photo-edit'} />
+        <Avatar
+          avatar_source={
+            !previewAvatar ? `${baseURL}/${avatar_photo}` : previewAvatar
+          }
+          avatar_alt={"avatar-photo-edit"}
+        />
 
-        <button onClick={avatarPhotoHandle}>
-          <AddAPhotoOutlinedIcon />
-          UPLOAD PICTURE
-        </button>
+        <Button
+          onClick={avatarPhotoHandle}
+          SVG={<AddAPhotoOutlinedIcon />}
+          text="UPLOAD PICTURE"
+        />
 
         <input
           className="upload-page__file"
@@ -145,14 +156,14 @@ const EditProfile = ({
             placeholder={user_name}
           ></input>
         </label>
-        
+
         <label>
           <input
             name="city"
             type="text"
             value={editProfile.city?.city}
             onChange={handleOnChangeEditProfile}
-            placeholder={city? 'Include your city here' : city}
+            placeholder={city ? "Include your city here" : city}
           ></input>
         </label>
         <label>
@@ -161,7 +172,7 @@ const EditProfile = ({
             type="text"
             value={editProfile.province?.province}
             onChange={handleOnChangeEditProfile}
-            placeholder={province? 'Include your province here' : province}
+            placeholder={province ? "Include your province here" : province}
           ></input>
         </label>
         <ul>
@@ -190,10 +201,8 @@ const EditProfile = ({
           ></input>
         </label>
       </div>
-      <button>
-        <PublishOutlinedIcon />
-        SUBMIT CHANGES
-      </button>
+      <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
+      <Button text={'CANCEL'} onClick={cancelHandleOnClick} />
     </form>
   );
 };

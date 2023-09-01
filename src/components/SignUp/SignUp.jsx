@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthHeader from "../AuthHeader/AuthHeader";
 import { useEffect, useState } from "react";
+import ButtonAuth from "../ButtonAuth/ButtonAuth";
 
 const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   // Variables
@@ -209,7 +210,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
           ></input>
         </label>
 
-        <button type="submit">START</button>
+   <ButtonAuth />
       </form>
     </>
   );

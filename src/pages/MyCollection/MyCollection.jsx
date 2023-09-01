@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Button from "../../components/Button/Button";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import { Link } from "react-router-dom";
 
@@ -103,7 +104,7 @@ const MyCollection = ({ baseURL }) => {
             ))}
           </ul>
           <Link to="/additem">
-            <button>ADD MORE</button>
+            <Button text='ADD MORE' />
           </Link>
         </section>
       </main>
