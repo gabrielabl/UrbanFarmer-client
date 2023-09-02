@@ -21,36 +21,29 @@ const ProfileDescription = ({
   editModeHandle,
   baseURL,
   profileId,
-  id,
 }) => {
   // VARIABLES
   const [editButton, setEditButton] = useState({ show });
   const adminUserId = sessionStorage.getItem("id");
   const [seeCollectionBtn, setSeeCollectionBtn] = useState(hide);
+  
 
   //IT DISABLES EDIT BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
+    //IT ENABLE SEE COLLECTION BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
+
   useEffect(() => {
     if (profileId !== undefined) {
       setEditButton(hide);
-      if (profileId === adminUserId) {
-        setEditButton(show);
-      }
-    } else {
-      setEditButton(show);
-    }
-  }, [profileId]);
-
-  //IT ENABLE SEE COLLECTION BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
-  useEffect(() => {
-    if (profileId !== undefined) {
       setSeeCollectionBtn(show);
       if (profileId === adminUserId) {
+        setEditButton(show);
         setSeeCollectionBtn(hide);
       }
     } else {
+      setEditButton(show);
       setSeeCollectionBtn(hide);
     }
-  });
+  }, [profileId]);
 
   return (
     <div style={!editMode ? show : hide}>

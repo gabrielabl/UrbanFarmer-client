@@ -15,9 +15,16 @@ const MyCollection = ({ baseURL }) => {
   const [collectionData, setCollectionData] = useState([]);
   const { profileId } = useParams();
 
+  //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER
+  const show = { display: "flex" };
+  const hide = { display: "none" };
+  const [deleteBtn, setDeleteBtn] = useState(show);
+  const [addMoreBtn, setAddMoreBtn] = useState(show);
+  const [tradeBtn, setTradeBtn] = useState(hide);
+
   //RETRIEVING TOKEN AND DATA FROM SESSION STORE FOR AUTHORIZATION
   const token = sessionStorage.getItem("token");
-  const idUser = sessionStorage.getItem("id");
+  const adminUserId = sessionStorage.getItem("id");
 
   //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE IN THE FUTURE
   if (collectionData.message) {
@@ -31,38 +38,38 @@ const MyCollection = ({ baseURL }) => {
       navigate("/login");
     }
 
-    if(profileId === undefined){
+    if (profileId === undefined) {
       axios
-      .get(`${baseURL}/profile/${idUser}/collection`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setCollectionData(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate("/login");
-      });
+        .get(`${baseURL}/profile/${adminUserId}/collection`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCollectionData(res.data);
+          console.log(collectionData);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          navigate("/login");
+        });
     } else {
       axios
-      .get(`${baseURL}/profile/${profileId}/collection`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setCollectionData(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate("/search");
-      });
+        .get(`${baseURL}/profile/${profileId}/collection`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCollectionData(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          navigate("/search");
+        });
     }
-
   }, [profileId]);
 
   //DELETE HANDLE
@@ -76,7 +83,7 @@ const MyCollection = ({ baseURL }) => {
       .then((res) => {
         console.log(res);
         axios
-          .get(`${baseURL}/profile/${idUser}/collection`, {
+          .get(`${baseURL}/profile/${adminUserId}/collection`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -90,6 +97,23 @@ const MyCollection = ({ baseURL }) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    if (profileId !== undefined) {
+      setAddMoreBtn(hide);
+      setDeleteBtn(hide);
+      setTradeBtn(show);
+      if (profileId === adminUserId) {
+        setAddMoreBtn(show);
+        setDeleteBtn(show);
+        setTradeBtn(hide);
+      }
+    } else {
+      setAddMoreBtn(show);
+      setDeleteBtn(show);
+      setTradeBtn(hide);
+    }
+  }, [profileId]);
 
   //WHILE DATA IS NOT RENDERED
   if (isLoading) {
@@ -111,7 +135,11 @@ const MyCollection = ({ baseURL }) => {
                 ></img>
                 <h2>{item.item_name}</h2>
                 <p>{item.description}</p>
+                <a style={tradeBtn} href={`mailto:${item.email}`}>
+                  TRADE
+                </a>
                 <button
+                  style={deleteBtn}
                   onClick={() => {
                     deleteHandle(item.id);
                   }}
@@ -122,7 +150,7 @@ const MyCollection = ({ baseURL }) => {
             ))}
           </ul>
           <Link to="/additem">
-            <Button text='ADD MORE' />
+            <Button style={addMoreBtn} text="ADD MORE" />
           </Link>
         </section>
       </main>
