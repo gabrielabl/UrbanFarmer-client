@@ -48,7 +48,9 @@ const SearchItem = ({ baseURL }) => {
           <ul>
             {searchData.map((item) => (
               <li key={item.id}>
+                <Link to={`/profile/${item.users_id}/collection`}>
                 <img src={`${baseURL}/${item.item_photo}`}></img>
+                </Link>
                 <div>
                   <h2>{item.item_name}</h2>
                   <p>{item.description}</p>

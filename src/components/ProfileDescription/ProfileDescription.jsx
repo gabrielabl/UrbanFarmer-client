@@ -4,6 +4,7 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import "./ProfileDescription.scss";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ProfileDescription = ({
   avatar_photo,
@@ -25,6 +26,7 @@ const ProfileDescription = ({
   // VARIABLES
   const [editButton, setEditButton] = useState({ show });
   const adminUserId = sessionStorage.getItem("id");
+  const [seeCollectionBtn, setSeeCollectionBtn] = useState(hide);
 
   //IT DISABLES EDIT BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
   useEffect(() => {
@@ -37,6 +39,18 @@ const ProfileDescription = ({
       setEditButton(show);
     }
   }, [profileId]);
+
+  //IT ENABLE SEE COLLECTION BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
+  useEffect(() => {
+    if (profileId !== undefined) {
+      setSeeCollectionBtn(show);
+      if (profileId === adminUserId) {
+        setSeeCollectionBtn(hide);
+      }
+    } else {
+      setSeeCollectionBtn(hide);
+    }
+  });
 
   return (
     <div style={!editMode ? show : hide}>
@@ -62,6 +76,7 @@ const ProfileDescription = ({
           </ul>
           <li>TRADES {trades}</li>
         </ul>
+        <Link to={`/profile/${profileId}/collection`}> <button style={seeCollectionBtn}>SEE COLLECTION</button></Link>
       </section>
 
       {/* ABOUT PROFILE SECTION */}

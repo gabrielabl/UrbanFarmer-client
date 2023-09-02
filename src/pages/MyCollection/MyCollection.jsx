@@ -6,18 +6,18 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Button from "../../components/Button/Button";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MyCollection = ({ baseURL }) => {
   // VARIABLES
   let navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
   const [collectionData, setCollectionData] = useState([]);
+  const { profileId } = useParams();
 
   //RETRIEVING TOKEN AND DATA FROM SESSION STORE FOR AUTHORIZATION
   const token = sessionStorage.getItem("token");
   const idUser = sessionStorage.getItem("id");
-  const user_name = sessionStorage.getItem("user_name");
 
   //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE IN THE FUTURE
   if (collectionData.message) {
@@ -31,7 +31,8 @@ const MyCollection = ({ baseURL }) => {
       navigate("/login");
     }
 
-    axios
+    if(profileId === undefined){
+      axios
       .get(`${baseURL}/profile/${idUser}/collection`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -45,7 +46,24 @@ const MyCollection = ({ baseURL }) => {
         console.log(err);
         navigate("/login");
       });
-  }, []);
+    } else {
+      axios
+      .get(`${baseURL}/profile/${profileId}/collection`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setCollectionData(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/search");
+      });
+    }
+
+  }, [profileId]);
 
   //DELETE HANDLE
   const deleteHandle = (id) => {
@@ -83,7 +101,7 @@ const MyCollection = ({ baseURL }) => {
       <Header />
       <main>
         <section>
-          <h1>{user_name}'S COLLECTION</h1>
+          <h1>{collectionData[0].user_name}'S COLLECTION</h1>
           <ul>
             {collectionData.map((item) => (
               <li key={item.id}>

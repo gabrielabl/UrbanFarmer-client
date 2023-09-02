@@ -57,7 +57,6 @@ if(profileId === undefined){
     setProfileData(res.data);
     setLoading(false);
     sessionStorage.setItem("id", res.data.id);
-    sessionStorage.setItem("user_name", res.data.user_name);
     console.log(res);
   })
   .catch(() => {
@@ -77,7 +76,7 @@ if(profileId === undefined){
   })
   .catch((err) => {
     console.log(err)
-    // navigate("/search");
+    navigate("/search");
   });
 }
 

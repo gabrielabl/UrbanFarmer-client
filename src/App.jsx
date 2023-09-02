@@ -39,6 +39,8 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/additem" element={<AddItem baseURL={baseURL}/>}></Route>
           <Route path="/search" element={<SearchItem baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId" element={<ProfilePage baseURL={baseURL}/>}></Route>
+          <Route path="/profile/:profileId/collection" element={<MyCollection baseURL={baseURL}/>}></Route>
+
         </Routes>
       </div>
     </BrowserRouter>
