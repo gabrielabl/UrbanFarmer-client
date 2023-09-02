@@ -1,3 +1,4 @@
+import ButtonAuth from "../ButtonAuth/ButtonAuth";
 import "./Login.scss";
 import AuthHeader from "../AuthHeader/AuthHeader";
 import axios from "axios";
@@ -80,7 +81,7 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
           ></input>
         </label>
 
-        <button type="submit">START</button>
+<ButtonAuth     />
       </form>
     </>
   );

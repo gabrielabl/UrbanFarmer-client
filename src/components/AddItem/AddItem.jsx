@@ -7,6 +7,7 @@ import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 const AddItem = ({ baseURL }) => {
   //VARIABLES
@@ -124,10 +125,11 @@ const AddItem = ({ baseURL }) => {
               src={!previewItem ? imgPlaceholder : previewItem}
               alt="collectionItem-photo-edit"
             ></img>
-            <button onClick={itemPhotoHandle}>
-              <AddAPhotoOutlinedIcon />
-              ADD PICTURE
-            </button>
+            <Button
+              onClick={itemPhotoHandle}
+              SVG={<AddAPhotoOutlinedIcon />}
+              text="ADD PICTURE"
+            />
 
             <input
               filename={user_name}
@@ -161,10 +163,7 @@ const AddItem = ({ baseURL }) => {
                 placeholder={placeholder.placeholderDescription}
               ></input>
             </label>
-            <button>
-              <PublishOutlinedIcon />
-              SUBMIT
-            </button>
+            <Button text="SUBMIT" SVG={<PublishOutlinedIcon />} />
           </div>
         </form>
       </main>
