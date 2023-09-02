@@ -6,7 +6,7 @@ const StartPage = ({}) => {
 
   return (
     <>
-<AuthHeader navHeader={'ABOUT'}    />
+<AuthHeader navHeader={'ABOUT'} navUrl={'/about'}    />
       <main>
 <section>
 <Link to={'/login'}><h2 >ENTER</h2></Link>
