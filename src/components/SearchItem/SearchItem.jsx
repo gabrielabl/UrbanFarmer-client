@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Avatar from "../Avatar/Avatar";
+import { Link } from "react-router-dom";
 
 const SearchItem = ({ baseURL }) => {
   // VARIABLES
@@ -53,10 +54,12 @@ const SearchItem = ({ baseURL }) => {
                   <p>{item.description}</p>
                 </div>
                 <div>
-                  <Avatar
-                    avatar_source={`${baseURL}/${item.avatar_photo}`}
-                    avatar_alt={"avatar-user-collection"}
-                  />
+                  <Link to={`/profile/${item.users_id}`}>
+                    <Avatar
+                      avatar_source={`${baseURL}/${item.avatar_photo}`}
+                      avatar_alt={"avatar-user-collection"}
+                    />
+                  </Link>
                   <h2>{item.user_name}</h2>
                 </div>
               </li>

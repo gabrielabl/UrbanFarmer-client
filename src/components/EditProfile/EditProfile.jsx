@@ -27,7 +27,6 @@ const EditProfile = ({
   token,
   setEditMode,
 }) => {
-  console.log(about);
 
   //VARIABLES
   const hiddenUserPhotoInput = useRef(null);
@@ -163,7 +162,7 @@ setEditMode(false)
             type="text"
             value={editProfile.city?.city}
             onChange={handleOnChangeEditProfile}
-            placeholder={city ? "Include your city here" : city}
+            placeholder={!city ? "Include your city here" : city}
           ></input>
         </label>
         <label>
@@ -172,7 +171,7 @@ setEditMode(false)
             type="text"
             value={editProfile.province?.province}
             onChange={handleOnChangeEditProfile}
-            placeholder={province ? "Include your province here" : province}
+            placeholder={!province ? "Include your province here" : province}
           ></input>
         </label>
         <ul>
@@ -197,7 +196,7 @@ setEditMode(false)
             type="text"
             value={editProfile.about?.about}
             onChange={handleOnChangeEditProfile}
-            placeholder={about}
+            placeholder={!about ? "Describe yourself" : about}
           ></input>
         </label>
       </div>

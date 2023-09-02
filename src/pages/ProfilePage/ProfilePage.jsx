@@ -1,7 +1,7 @@
 import "./ProfilePage.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
@@ -13,11 +13,13 @@ const ProfilePage = ({ baseURL }) => {
   //VARIABLES
   let navigate = useNavigate();
   const [profileData, setProfileData] = useState({});
-
   const [isLoading, setLoading] = useState(true);
 
+   // Route Parameter
+   const { profileId } = useParams();
+
   // const [profileData, setProfileData] = useState("");
-  const { avatar_photo, user_name, province, city, likes, views, trades, about } =
+  const { avatar_photo, user_name, province, city, likes, views, trades, about} =
     profileData;
 
   //SHOW/HIDE
@@ -44,7 +46,7 @@ const ProfilePage = ({ baseURL }) => {
       navigate('/');
     };
 
-
+if(profileId === undefined){
   axios
   .get(`${baseURL}/profile`, {
     headers: {
@@ -61,6 +63,23 @@ const ProfilePage = ({ baseURL }) => {
   .catch(() => {
     navigate("/login");
   });
+} else {
+  axios
+  .get(`${baseURL}/profile/${profileId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  .then((res) => {
+    setProfileData(res.data);
+    setLoading(false);
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err)
+    // navigate("/search");
+  });
+}
 
   }, [setProfileData]);
 
@@ -87,6 +106,7 @@ const ProfilePage = ({ baseURL }) => {
           about={about}
           editModeHandle={editModeHandle}
           baseURL={baseURL}
+          profileId={profileId}
         />
 
         <EditProfile
