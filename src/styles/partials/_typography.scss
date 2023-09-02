@@ -1,0 +1,49 @@
+@use "./mixins";
+@use "./variables";
+
+//IMPORT FONTS
+
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url('../../Assets/font/Roboto/Roboto-Bold.ttf') format("TrueType"),
+      url('../../Assets/font/Roboto/Roboto-BoldItalic.ttf')
+        format("TrueType");
+    font-weight: 700;
+  };
+
+  @font-face {
+    font-family: 'Arimo', sans-serif;
+    src: url('../../Assets/font/Arimo/static/Arimo-Regular.ttf') format("TrueType"),
+      url('../../Assets/font/Arimo/Arimo-Italic-VariableFont_wght.ttf')
+        format("TrueType");
+    font-weight: 400;
+  };
+
+  @font-face {
+    font-family: 'Arimo', sans-serif;
+    src: url('../../Assets/font/Arimo/static/Arimo-Medium.ttf') format("TrueType"),
+      url('../../Assets/font/Arimo/static/Arimo-MediumItalic.ttf')
+        format("TrueType");
+    font-weight: 500;
+  };
+
+
+  @font-face {
+    font-family: 'Arimo', sans-serif;
+    src: url('../../Assets/font/Arimo/static/Arimo-SemiBold.ttf') format("TrueType"),
+      url('../../Assets/font/Arimo/static/Arimo-MediumItalic.ttf')
+        format("TrueType");
+    font-weight: 600;
+  };
+
+  @font-face {
+    font-family: 'Arimo', sans-serif;
+    src: url('../../Assets/font/Arimo/static/Arimo-Bold.ttf') format("TrueType"),
+      url('../../Assets/font/Arimo/static/Arimo-BoldItalic.ttf')
+        format("TrueType");
+    font-weight: 700;
+  };
+
+  body{
+    font-family: 'Arimo', sans-serif;
+  }

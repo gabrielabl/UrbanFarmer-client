@@ -1,7 +1,7 @@
 import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import Footer from "../../components/Footer/Footer";
 import "./About.scss";
-import logo from "../../Assets/urban-farmer-logo.png";
+import logo from "../../Assets/logo/urban-farmer-logo.png";
 
 const About = () => {
   return (
