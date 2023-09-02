@@ -80,7 +80,7 @@ if(profileId === undefined){
   });
 }
 
-  }, [setProfileData]);
+  },[profileId]);
 
   if(isLoading){
     return <div >Loading...</div>;
