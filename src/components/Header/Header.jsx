@@ -32,7 +32,7 @@ if(event.key === "Enter"){
 }
 
     return(
-        <div>
+        <header>
 
        <div>
         <img className='header__logo' src={logo} alt="urban-farmer-logo"></img>
@@ -57,7 +57,7 @@ if(event.key === "Enter"){
         <li>SIGN OFF</li>
      </ul>
        </div>
-       </div>
+       </header>
     )
 };
 

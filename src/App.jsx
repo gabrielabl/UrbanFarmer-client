@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import StartPage from "./pages/StartPage/StartPage";
+import About from "./pages/About/About";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import MyCollection from "./pages/MyCollection/MyCollection";
@@ -32,6 +33,7 @@ const [signUpVar, setSignUpVar] = useState({
       <div className="App">
         <Routes>
           <Route path="/" element={<StartPage baseURL={baseURL}/>}></Route>
+          <Route path="/about" element={<About />}></Route>
           <Route path="/profile" element={<ProfilePage baseURL={baseURL} />}></Route>
           <Route path="/signup" element={<SignUp signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
