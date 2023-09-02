@@ -10,10 +10,15 @@ import MyCollection from "./pages/MyCollection/MyCollection";
 import AddItem from "./components/AddItem/AddItem";
 import SearchItem from "./components/SearchItem/SearchItem";
 import NotFound from "./pages/NotFound/NotFound";
+import BackgroundPattern from './Assets/images/start-page-pattern.svg'
 
 function App() {
   //Variables
   const baseURL = process.env.REACT_APP_BASE_URL;
+  const [background, setBackground]= useState({
+    backgroundImage: `url(${BackgroundPattern})`,
+    backgroundSize: '40px'
+  })
 
 //FORM VARIABLE STATES
 const [signUpVar, setSignUpVar] = useState({
@@ -31,7 +36,7 @@ const [signUpVar, setSignUpVar] = useState({
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div style={background} className="App">
         <Routes>
           <Route path="/" element={<StartPage baseURL={baseURL}/>}></Route>
           <Route path="/about" element={<About />}></Route>

@@ -3,6 +3,10 @@
 @use "./styles/partials/typography";
 
 //GENERAL CONFIGURATION
+.App{
+  height: 100vh;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -14,5 +18,5 @@ html {
 
 body {
   margin: 0;
-  background-color: white;
 }
+
