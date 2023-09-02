@@ -31,11 +31,18 @@ if(event.key === "Enter"){
 }
 }
 
+//SIGN OFF HANDLE 
+const signOffHandle =()=>{
+  sessionStorage.clear()
+  navigate('/')
+}
+
     return(
         <header>
 
        <div>
-        <img className='header__logo' src={logo} alt="urban-farmer-logo"></img>
+        <NavLink to='/'><img className='header__logo' src={logo} alt="urban-farmer-logo"></img>
+</NavLink>
         <ul>
             {/* ADD LINK TO PAGES LATER */}
           <NavLink to='/profile'><li>PROFILE</li></NavLink> 
@@ -54,7 +61,7 @@ if(event.key === "Enter"){
                 onKeyDown={handleKeyDown}></input></li>
 
         {/* //ADD FUNCTION TO REMOVE TOKEN FROM SESSION STORAGE AND RE-DIRECT TO HOME PAGE */}
-        <li>SIGN OFF</li>
+        <li onClick={signOffHandle}>SIGN OFF</li>
      </ul>
        </div>
        </header>

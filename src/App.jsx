@@ -9,6 +9,7 @@ import Login from "./components/Login/Login";
 import MyCollection from "./pages/MyCollection/MyCollection";
 import AddItem from "./components/AddItem/AddItem";
 import SearchItem from "./components/SearchItem/SearchItem";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   //Variables
@@ -42,6 +43,7 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/search" element={<SearchItem baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId" element={<ProfilePage baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId/collection" element={<MyCollection baseURL={baseURL}/>}></Route>
+          <Route path="*" element={<NotFound />}></Route>
 
         </Routes>
       </div>
