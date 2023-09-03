@@ -3,8 +3,8 @@ import "./AuthHeader.scss";
 
 const AuthHeader = ({ navHeader, navUrl }) => {
   return (
-    <header>
-      <Link to={navUrl}>
+    <header className="auth-header__container">
+      <Link className="auth-header__nav-link" to={navUrl}>
         <p>{navHeader}</p>
       </Link>
       <div>

@@ -1,0 +1,17 @@
+@use '../../styles/partials/mixins';
+@use '../../styles/partials/variables';
+
+//AUTH HEADER
+
+.auth-header{
+    &__container{
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    };
+    &__nav-link{
+        text-decoration: none;
+
+    }
+}
