@@ -26,3 +26,14 @@
     color: variables.$SECONDARY_TEXT_COLOUR;
 }
 
+//PADDING LAYOUT GENERAL
+
+@mixin page-padding-default {
+  padding: 16px;
+  @include tablet{
+      padding: 32px;
+  }
+  @include desktop{
+      padding: auto;
+  }
+}

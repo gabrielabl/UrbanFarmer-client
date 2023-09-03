@@ -5,10 +5,10 @@
 
 .auth-header{
     &__container{
-        padding: 16px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include page-padding-default;
         @include tablet{
             align-items: flex-end;
         }
@@ -22,10 +22,16 @@
         color: $SECONDARY_TEXT_COLOUR;
         font-family: 'Roboto', sans-serif;
         align-self: center;
-        @include tablet{
-            h1{
+        h1{
+            @include tablet{
                 font-size: 48px;
+                padding-right: 40vw;
+                line-height: inherit;
+            }
+            @include desktop{
+                font-size: 60px;
             }
         }
+
     }
 }
