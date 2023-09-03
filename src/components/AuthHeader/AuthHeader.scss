@@ -1,5 +1,5 @@
-@use '../../styles/partials/mixins';
-@use '../../styles/partials/variables';
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 //AUTH HEADER
 
@@ -11,12 +11,12 @@
         align-items: center;
     };
     &__nav-link{
-        @include mixins.start-page-default-link;
+        @include start-page-default-link;
         font-weight:600;
 
     };
     &__title{
-        color: variables.$SECONDARY_TEXT_COLOUR;
+        color: $SECONDARY_TEXT_COLOUR;
         font-family: 'Roboto', sans-serif;
     }
 }

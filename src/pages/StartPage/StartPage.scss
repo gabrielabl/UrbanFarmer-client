@@ -1,5 +1,5 @@
-@use '../../styles/partials/mixins';
-@use '../../styles/partials/variables';
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 
 //START PAGE
@@ -12,9 +12,9 @@
         align-items: center
     };
     &__enter{
-    @include mixins.start-page-default-link;
+    @include start-page-default-link;
     };
     &__join{
-    @include mixins.start-page-default-link;
+    @include start-page-default-link;
     }
 }

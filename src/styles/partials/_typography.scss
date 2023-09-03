@@ -1,5 +1,5 @@
-@use "./mixins";
-@use "./variables";
+@use "./mixins" as *;
+@use "./variables" as *;
 
 //IMPORT FONTS
 
@@ -47,13 +47,35 @@
   body{
     font-family: 'Arimo', sans-serif;
     p{
-      font-size: 12px;
+      font-size: 0.75rem;
+      line-height: 1.625rem;
+      @include tablet{
+        font-size: 1rem;
+        line-height: 1.75rem;
+      }
     }
     h1{
-      font-size: 28px;
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+      @include tablet{
+        font-size: 2rem;
+        line-height: 2.5rem;
+      }
     }
     h2{
-      font-size: 20px;
-      
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      @include tablet{
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+    }
+    h3{
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+      @include tablet{
+        font-size: 0.875rem;
+        line-height: 1.375rem;
+      }
     }
   }
