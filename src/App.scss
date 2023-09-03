@@ -3,14 +3,9 @@
 @use "./styles/partials/typography";
 
 //GENERAL CONFIGURATION
-.App{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 html {
+  height: 100%;
   box-sizing: border-box;
 }
 *,
@@ -19,7 +14,19 @@ html {
   box-sizing: inherit;
 }
 
+#root{
+  height: 150%;
+}
+
+.App{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 body {
+  height: 100%;
   margin: 0;
 }
 
@@ -35,6 +42,7 @@ body {
   border: none;
   padding: 8px;
   width: 90vw;
+  height: 3.125rem;
   @include tablet{
     width: 8.75rem;
   }

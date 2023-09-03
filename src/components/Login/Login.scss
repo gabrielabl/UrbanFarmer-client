@@ -15,7 +15,6 @@
   &__container {
     @include auth-page-layout-default;
     @include tablet {
-      padding-top: 2.5rem;
       padding-bottom: 2.5rem;
     }
     @include desktop {

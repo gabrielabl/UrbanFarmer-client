@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ButtonAuth from "../ButtonAuth/ButtonAuth";
 
 const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
-  // Variables
+  // VARIABLES
   let navigate = useNavigate();
   const { user_name, email, password } = signUpVar;
 
@@ -15,10 +15,10 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   const [isEmailDB, setIsEmailDB] = useState("");
 
   const [placeholder, setPlaceholder] = useState({
-    namePlaceholder: "Include your name here",
-    emailPlaceholder: "Include your email here",
-    passwordPlaceholder: "Add a password with at least 8 characters",
-    confirmPasswordPlaceholder: "Make sure it matches your password",
+    namePlaceholder: "YOUR NAME",
+    emailPlaceholder: "YOUR EMAIL",
+    passwordPlaceholder: "PASSWORD WITH AT LEAST 8 CHAR",
+    confirmPasswordPlaceholder: "TYPE PASSWORD AGAIN",
   });
 
   const {
@@ -28,8 +28,18 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     confirmPasswordPlaceholder,
   } = placeholder;
 
+
+  //FORM VALIDATION ERROR STATE
+
+ const [errorStateForm, setErrorStateForm] = useState({
+   user_name: false,
+   email: false,
+   password: false,
+   confirmPassword: false
+ });
+
   useEffect(() => {
-    //Check DB for email, to keep DB clean
+    //CHECK DB FOR EMAIL, TO KEEP DB CLEAN
     axios
       .post(`${baseURL}/emailcheck`, { email: email })
       .then((res) => {
@@ -46,30 +56,42 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     if (!user_name) {
       setPlaceholder({
         ...placeholder,
-        namePlaceholder: "Make sure to add your name in this field",
+        namePlaceholder: "YOUR NAME IN THIS FIELD",
       });
+      setErrorStateForm({
+        ...errorStateForm, user_name: true,
+      })
       return false;
     }
     if (!email) {
       setPlaceholder({
         ...placeholder,
-        emailPlaceholder: "Make sure to add your email in this field",
+        emailPlaceholder: "YOUR EMAIL IN THIS FIELD",
       });
+      setErrorStateForm({
+        ...errorStateForm, email: true,
+      })
       return false;
     }
     if (!password) {
       setPlaceholder({
         ...placeholder,
-        passwordPlaceholder: "Make sure to add your password in this field",
+        passwordPlaceholder: "YOUR PASSWORD IN THIS FIELD",
       });
+      setErrorStateForm({
+        ...errorStateForm, password: true,
+      })
       return false;
     }
     if (!confirmPassword) {
       setPlaceholder({
         ...placeholder,
         confirmPasswordPlaceholder:
-          "Make sure to add your password in this field",
+          "YOUR PASSWORD IN THIS FIELD",
       });
+      setErrorStateForm({
+        ...errorStateForm, confirmPassword: true,
+      })
       return false;
     }
     return true;
@@ -80,16 +102,22 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
       setSignUpVar({ ...signUpVar, email: "" });
       setPlaceholder({
         ...placeholder,
-        emailPlaceholder: "This email is not valid",
+        emailPlaceholder: "THIS EMAIL IS NOT VALID",
       });
+      setErrorStateForm({
+        ...errorStateForm, email: true,
+      })
       return false;
     }
     if (isEmailDB.length === 0) {
       setSignUpVar({ ...signUpVar, email: "" });
       setPlaceholder({
         ...placeholder,
-        emailPlaceholder: "This email is already used",
+        emailPlaceholder: "THIS EMAIL IS ALREADY USED",
       });
+      setErrorStateForm({
+        ...errorStateForm, email: true,
+      })
       return false;
     }
     return true;
@@ -99,17 +127,23 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     if (password !== confirmPassword) {
       setPlaceholder({
         ...placeholder,
-        confirmPasswordPlaceholder: "Passwords don't match",
+        confirmPasswordPlaceholder: "PASSWORDS DON'T MATCH",
       });
+      setErrorStateForm({
+        ...errorStateForm, password: true, confirmPassword:true,
+      })
       setConfirmPassword("");
       return false;
     }
     if (password.length < 8) {
       setPlaceholder({
         ...placeholder,
-        passwordPlaceholder: "Passwords should have at least 8 characters",
+        passwordPlaceholder: "PASSWORDS SHOULD HAVE AT LEAST 8 CHARACTERS",
       });
       setSignUpVar({ ...SignUp, password: "" });
+      setErrorStateForm({
+        ...errorStateForm, password: true,
+      })
       return false;
     }
     return true;
@@ -140,6 +174,9 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
         [name]: value,
       });
     }
+    setErrorStateForm({
+      ...errorStateForm, [name]: false,
+    })
   };
 
   //SIGN UP SUBMIT HANDLE
@@ -163,56 +200,51 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
   };
 
   return (
-    <>
+    <main className="signup-page__main">
       <AuthHeader navHeader={"HOME"} navUrl={"/"} />
 
-      <form onSubmit={signUpHandleSubmit}>
+      <form className="signup-page__container" onSubmit={signUpHandleSubmit}>
         <h2>SIGN UP</h2>
-        <label name="user_name">
-          NAME{" "}
+
+        {/* INPUT FIELDS */}
           <input
             name="user_name"
             type="text"
             onChange={handleOnChangeSignUp}
             placeholder={namePlaceholder}
+            className={`signup-page__input ${errorStateForm.user_name? "signup-page__input--error-state": ""}` }
           ></input>
-        </label>
 
-        <label name="email">
-          EMAIL{" "}
           <input
             name="email"
             type="text"
             onChange={handleOnChangeSignUp}
             placeholder={emailPlaceholder}
             value={email}
+            className={`signup-page__input ${errorStateForm.email? "signup-page__input--error-state": ""}` }
           ></input>
-        </label>
-        <label name="password">
-          PASSWORD
+
           <input
             name="password"
-            type="text"
+            type="password"
             onChange={handleOnChangeSignUp}
             placeholder={passwordPlaceholder}
             value={password}
+            className={`signup-page__input ${errorStateForm.password? "signup-page__input--error-state": ""}` }
           ></input>
-        </label>
 
-        <label name="confirmPassword">
-          CONFIRM PASSWORD{" "}
           <input
             name="confirmPassword"
-            type="text"
+            type="password"
             onChange={handleOnChangeSignUp}
             placeholder={confirmPasswordPlaceholder}
             value={confirmPassword}
+            className={`signup-page__input ${errorStateForm.confirmPassword? "signup-page__input--error-state": ""}` }
           ></input>
-        </label>
 
    <ButtonAuth />
       </form>
-    </>
+    </main>
   );
 };
 
