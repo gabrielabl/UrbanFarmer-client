@@ -20,6 +20,7 @@ function App() {
     backgroundSize: '40px'
   })
 
+
 //FORM VARIABLE STATES
 const [signUpVar, setSignUpVar] = useState({
   user_name:"",

@@ -17,7 +17,7 @@ const SearchItem = ({ baseURL }) => {
   useEffect(() => {
     axios
       .post(
-        `${baseURL}/collection`,
+        `${baseURL}/collection/search`,
         { search: search },
         {
           headers: {

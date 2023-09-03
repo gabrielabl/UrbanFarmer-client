@@ -106,7 +106,7 @@ const AddItem = ({ baseURL }) => {
           },
         })
         .then((res) => {
-          console.log(res);
+          console.log(res)
           navigate("/mycollection");
         })
         .catch((err) => {
