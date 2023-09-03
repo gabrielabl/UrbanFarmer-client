@@ -2,8 +2,10 @@ import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import "./StartPage.scss";
 import { Link } from "react-router-dom";
 import Logo from "../../Assets/logo/urban-farmer-logo-light.png";
+import { useEffect } from "react";
+import BackgroundPattern from '../../Assets/images/start-page-pattern.svg'
 
-const StartPage = ({}) => {
+const StartPage = ({setBackground}) => {
   //HANDLE TO RE-DIRECT USER TO PROFILE IN CASE TOKEN IS IN SESSION STORAGE
   const enterHandle = () => {
     const token = sessionStorage.getItem("token");
@@ -13,6 +15,15 @@ const StartPage = ({}) => {
       return "/login";
     }
   };
+
+  useEffect(()=>{
+
+    setBackground({
+      backgroundImage: `url(${BackgroundPattern})`,
+      backgroundSize: '40px'
+    });
+  
+  })
 
   return (
     <main className="start-page__main">

@@ -7,9 +7,9 @@ import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
 import EditProfile from "./../../components/EditProfile/EditProfile";
 
-
-const ProfilePage = ({ baseURL }) => {
+const ProfilePage = ({ baseURL, setBackground }) => {
   
+
   //VARIABLES
   let navigate = useNavigate();
   const [profileData, setProfileData] = useState({});
@@ -45,6 +45,10 @@ const ProfilePage = ({ baseURL }) => {
     if(!token){
       navigate('/');
     };
+
+      setBackground({
+    backgroundColor: '#F5DECD'
+  });
 
 if(profileId === undefined){
   axios
