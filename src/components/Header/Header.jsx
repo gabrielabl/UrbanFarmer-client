@@ -1,5 +1,5 @@
 import "./Header.scss";
-import logo from '../../Assets/urban-farmer-logo.png';
+import logo from '../../Assets/logo/urban-farmer-logo.png';
 import SearchIcon from '@mui/icons-material/Search';
 import { NavLink} from "react-router-dom";
 import { useState } from "react";

@@ -1,7 +1,7 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import "./AddItem.scss";
-import imgPlaceholder from "../../Assets/placeholder.png";
+import imgPlaceholder from "../../Assets/images/placeholder.png";
 import { useState, useRef } from "react";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
@@ -106,7 +106,7 @@ const AddItem = ({ baseURL }) => {
           },
         })
         .then((res) => {
-          console.log(res);
+          console.log(res)
           navigate("/mycollection");
         })
         .catch((err) => {

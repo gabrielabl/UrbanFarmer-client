@@ -1,0 +1,75 @@
+@use "./variables" as *;
+
+//RESPONSIVE DESIGN MIXINS
+
+// Media mixins
+
+@mixin tablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+//START PAGE MIXINS
+
+//LINKS - TEXT DECORATION AND COLOUR
+
+@mixin start-page-default-link {
+  text-decoration: none;
+  color: $SECONDARY_TEXT_COLOUR;
+}
+
+//PADDING LAYOUT GENERAL
+
+@mixin page-padding-default {
+  padding: 16px;
+  @include tablet {
+    padding: 32px;
+  }
+  @include desktop {
+    padding: auto;
+  }
+}
+
+//AUTH PAGE LAYOUT DEFAULT
+
+@mixin auth-page-layout-default {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+//INPUT LAYOUT-STYLE DEFAULT
+
+@mixin auth-input {
+  background-color: $BACKGROUND_DARK;
+  border: solid 0.125rem $PRIMARY_CTA;
+  color: $SECONDARY_TEXT_COLOUR;
+  outline: none;
+  width: 90vw;
+  @include tablet {
+    width: 40vw;
+  }
+  @include desktop {
+    width: 30vw;
+  }
+  height: 3.125rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  &:focus {
+    border: solid 0.125rem $SECONDARY_TEXT_COLOUR;
+  }
+  &::placeholder {
+    color: $SECONDARY_TEXT_COLOUR;
+    text-align: center;
+  }
+  &--error-state {
+    border: solid 0.0625rem $ERROR-STATE;
+  }
+}

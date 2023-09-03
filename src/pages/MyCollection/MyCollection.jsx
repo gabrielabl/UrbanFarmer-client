@@ -25,6 +25,7 @@ const MyCollection = ({ baseURL }) => {
   //RETRIEVING TOKEN AND DATA FROM SESSION STORE FOR AUTHORIZATION
   const token = sessionStorage.getItem("token");
   const adminUserId = sessionStorage.getItem("id");
+  // const user_name = sessionStorage.getItem("user_name");
 
   //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE IN THE FUTURE
   if (collectionData.message) {

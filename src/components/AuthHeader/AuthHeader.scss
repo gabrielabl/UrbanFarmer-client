@@ -1,0 +1,37 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+//AUTH HEADER
+
+.auth-header{
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include page-padding-default;
+        @include tablet{
+            align-items: flex-end;
+        }
+    };
+    &__nav-link{
+        @include start-page-default-link;
+        font-weight:600;
+
+    };
+    &__title{
+        color: $SECONDARY_TEXT_COLOUR;
+        font-family: 'Roboto', sans-serif;
+        align-self: center;
+        h1{
+            @include tablet{
+                font-size: 48px;
+                padding-right: 40vw;
+                line-height: inherit;
+            }
+            @include desktop{
+                font-size: 60px;
+            }
+        }
+
+    }
+}
