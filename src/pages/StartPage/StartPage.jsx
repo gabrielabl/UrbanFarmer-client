@@ -17,11 +17,11 @@ const StartPage = ({}) => {
 
   
   return (
-    <>
+    <main className="start-page__main"> 
       <AuthHeader navHeader={"ABOUT"} navUrl={"/about"} />
-      <main>
+      <div className="start-page__container">
     <img className="logo" src={Logo} alt="urban-farmer-logo" ></img>
-        <section className="start-page__container">
+        <section >
           <Link className="start-page__enter" to={enterHandle()}>
             <h2>ENTER</h2>
           </Link>
@@ -30,8 +30,8 @@ const StartPage = ({}) => {
             JOIN HERE.
           </Link>
         </section>
-      </main>
-    </>
+      </div>
+    </main>
   );
 };
 export default StartPage;

@@ -9,6 +9,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include tablet{
+            align-items: flex-end;
+        }
     };
     &__nav-link{
         @include start-page-default-link;
@@ -18,5 +21,11 @@
     &__title{
         color: $SECONDARY_TEXT_COLOUR;
         font-family: 'Roboto', sans-serif;
+        align-self: center;
+        @include tablet{
+            h1{
+                font-size: 48px;
+            }
+        }
     }
 }
