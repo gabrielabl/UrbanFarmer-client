@@ -1,5 +1,49 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
+//HEADER
 
-.header__logo{
-    width: 180px;
+.header{
+    //HEADER WRAPPER
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $SECONDARY_CTA;
+        @include page-padding-default;
+        @include tablet{
+            align-items: flex-end;
+        }
+    };
+    //NAVIGATION
+    &__logo{
+        width: 180px;
+    }
+    &__nav-link{
+        @include start-page-default-link;
+        list-style: none;
+        color: $SECONDARY_CTA;
+        font-weight:600;
+
+    };
+    &__search-sign-off-wrapper{
+        list-style: none;
+    }
+
+    //SIGN OFF
+    &__sign-off{
+        list-style: none;
+        font-weight: 600;
+    }
+
+    //SEARCH
+    &__search{
+        border: none;
+        background-color: $BACKGROUND_LIGHT;
+        &::placeholder{
+            color: $SECONDARY_CTA;
+            font-weight: 600;
+        }
+  
+    }
 }

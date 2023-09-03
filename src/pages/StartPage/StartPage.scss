@@ -27,8 +27,10 @@
   //ROUTES
   &__enter {
     @include start-page-default-link;
+    color: $SECONDARY_TEXT_COLOUR;
   }
   &__join {
     @include start-page-default-link;
+    color: $SECONDARY_TEXT_COLOUR;
   }
 }
