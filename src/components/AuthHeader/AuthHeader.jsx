@@ -8,7 +8,7 @@ const AuthHeader = ({ navHeader, navUrl }) => {
         <p>{navHeader}</p>
       </Link>
       <div>
-        <h1>LOCAL FROM YOUR NEIGHBORHOOD</h1>
+        <h1 className="auth-header__title">LOCAL FROM YOUR NEIGHBORHOOD</h1>
       </div>
     </header>
   );

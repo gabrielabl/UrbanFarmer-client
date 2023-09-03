@@ -1,2 +1,28 @@
-@use './variables'
+@use './variables';
+
+//RESPONSIVE DESIGN MIXINS
+
+// Media mixins
+
+@mixin tablet {
+    @media (min-width: variables.$tablet) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (min-width: variables.$desktop) {
+      @content;
+    }
+  }
+
+
+//START PAGE MIXINS
+
+//LINKS - TEXT DECORATION AND COLOUR
+
+@mixin start-page-default-link{
+    text-decoration: none;
+    color: variables.$SECONDARY_TEXT_COLOUR;
+}
 

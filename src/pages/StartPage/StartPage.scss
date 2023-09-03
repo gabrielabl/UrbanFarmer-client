@@ -1,7 +1,20 @@
+@use '../../styles/partials/mixins';
+@use '../../styles/partials/variables';
+
+
 //START PAGE
 
 .start-page{
     &__container{
         padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    };
+    &__enter{
+    @include mixins.start-page-default-link;
+    };
+    &__join{
+    @include mixins.start-page-default-link;
     }
 }
