@@ -77,7 +77,7 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
           className={`login-page__input ${errorStateForm? "login-page__input--error-state": ""}` }
           id="passwordLogin"
           name="passwordLogin"
-          type="text"
+          type="password"
           onChange={handleOnChangeLogin}
           placeholder={passwordPlaceholder}
           value={passwordLogin}

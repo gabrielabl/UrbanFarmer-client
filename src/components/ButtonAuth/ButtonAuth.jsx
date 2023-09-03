@@ -1,7 +1,7 @@
 import "./ButtonAuth.scss";
 
 const ButtonAuth =({})=> {
-  return <button type="submit">START</button>;
+  return <button className={`btn ${`btn__auth`}`} type="submit">START</button>;
 }
 
 export default ButtonAuth

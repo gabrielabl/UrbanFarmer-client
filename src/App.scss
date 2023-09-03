@@ -28,3 +28,17 @@ body {
 .logo{
   height: 24px;
 }
+
+//BUTTONS
+.btn{
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  padding: 8px;
+  width: 90vw;
+  @include tablet{
+    width: 8.75rem;
+  }
+  @include desktop{
+    width: 6.25rem;
+  }
+}
