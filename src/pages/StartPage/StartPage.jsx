@@ -1,11 +1,10 @@
 import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import "./StartPage.scss";
 import { Link } from "react-router-dom";
-import Logo from '../../Assets/logo/urban-farmer-logo-light.png'
+import Logo from "../../Assets/logo/urban-farmer-logo-light.png";
 
 const StartPage = ({}) => {
-  //VARIABLES
-
+  //HANDLE TO RE-DIRECT USER TO PROFILE IN CASE TOKEN IS IN SESSION STORAGE
   const enterHandle = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -15,13 +14,12 @@ const StartPage = ({}) => {
     }
   };
 
-  
   return (
-    <main className="start-page__main"> 
+    <main className="start-page__main">
       <AuthHeader navHeader={"ABOUT"} navUrl={"/about"} />
       <div className="start-page__container">
-    <img className="logo" src={Logo} alt="urban-farmer-logo" ></img>
-        <section >
+        <img className="logo" src={Logo} alt="urban-farmer-logo"></img>
+        <section>
           <Link className="start-page__enter" to={enterHandle()}>
             <h2>ENTER</h2>
           </Link>

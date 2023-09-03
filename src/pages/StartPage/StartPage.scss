@@ -1,40 +1,34 @@
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/variables' as *;
-
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 //START PAGE
 
-.start-page{
+.start-page {
+  //PAGE WRAPPER
+  &__main {
+    @include auth-page-layout-default;
+    @include page-padding-default;
+  }
 
-    //PAGE WRAPPER
-    &__main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-     @include page-padding-default;
+  //CONTAINER
+  &__container {
+    section {
+      @include auth-page-layout-default;
     }
-   
-    //CONTAINER
-    &__container{
-        section{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        @include tablet{
-        padding-top: 40px;
-        padding-bottom: 40px;
-        }
-        @include desktop{
-            align-self: flex-end;
-            padding-right: 100px;
-         }
-    };
-    //ROUTES
-    &__enter{
-    @include start-page-default-link;
-    };
-    &__join{
-    @include start-page-default-link;
+    @include tablet {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
     }
+    @include desktop {
+      align-self: flex-end;
+      padding-right: 6.25rem;
+    }
+  }
+  //ROUTES
+  &__enter {
+    @include start-page-default-link;
+  }
+  &__join {
+    @include start-page-default-link;
+  }
 }

@@ -1,0 +1,31 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//LOGIN PAGE
+.login-page {
+  //PAGE WRAPPER
+  &__main {
+    height: 100%;
+    @include auth-page-layout-default;
+    @include page-padding-default;
+    color: $SECONDARY_TEXT_COLOUR;
+  }
+
+  //FORM CONTAINER
+  &__container {
+    @include auth-page-layout-default;
+    @include tablet {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    @include desktop {
+      align-self: flex-end;
+      padding-right: 6.25rem;
+    }
+  }
+
+  //INPUT 
+  &__input {
+  @include auth-input;
+  }
+}

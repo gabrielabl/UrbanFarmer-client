@@ -6,18 +6,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ loginVar, setLoginVar, baseURL }) => {
-  //Variables
+  //VARIABLES
   let navigate = useNavigate();
   const { emailLogin, passwordLogin } = loginVar;
-
   const [placeholder, setPlaceholder] = useState({
-    emailPlaceholder: "Include your email here",
-    passwordPlaceholder: "Include your password here",
+    emailPlaceholder: "YOUR EMAIL",
+    passwordPlaceholder: "YOUR PASSWORD HERE",
   });
 
   const { emailPlaceholder, passwordPlaceholder } = placeholder;
+  const [errorStateForm, setErrorStateForm] =useState(false);
 
-  //HANDLES ON HANDLE
+
+  //HANDLE ON CHANGE
   const handleOnChangeLogin = (event) => {
     const value = event.target.value;
     const nameForm = event.target.name;
@@ -27,12 +28,14 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
     });
   };
 
+  //HANDLE TO SET ERROR STATE ON FORM
   const failedRequest = () => {
     setLoginVar({ emailLogin: "", passwordLogin: "" });
     setPlaceholder({
-      emailPlaceholder: "Invalid email",
-      passwordPlaceholder: "Invalid password",
+      emailPlaceholder: "INVALID EMAIL",
+      passwordPlaceholder: "INVALID PASSWORD",
     });
+    setErrorStateForm(true)
   };
 
   //LOGIN UP HANDLE
@@ -54,36 +57,35 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
   };
 
   return (
-    <>
+    <main className="login-page__main">
       <AuthHeader navHeader={"HOME"} navUrl={"/"} />
 
-      <form onSubmit={loginHandleSubmit}>
+      {/* LOGIN FORM */}
+      <form className="login-page__container" onSubmit={loginHandleSubmit}>
         <h2>WELCOME</h2>
-        <label name="emailLogin">
-          EMAIL
-          <input
-            name="emailLogin"
-            type="text"
-            onChange={handleOnChangeLogin}
-            placeholder={emailPlaceholder}
-            value={emailLogin}
-          ></input>
-        </label>
+        <input
+          className={`login-page__input ${errorStateForm? "login-page__input--error-state": ""}` }
+          id="emailLogin"
+          name="emailLogin"
+          type="text"
+          onChange={handleOnChangeLogin}
+          placeholder={emailPlaceholder}
+          value={emailLogin}
+        ></input>
 
-        <label name="passwordLogin">
-          PASSWORD{" "}
-          <input
-            name="passwordLogin"
-            type="text"
-            onChange={handleOnChangeLogin}
-            placeholder={passwordPlaceholder}
-            value={passwordLogin}
-          ></input>
-        </label>
+        <input
+          className={`login-page__input ${errorStateForm? "login-page__input--error-state": ""}` }
+          id="passwordLogin"
+          name="passwordLogin"
+          type="text"
+          onChange={handleOnChangeLogin}
+          placeholder={passwordPlaceholder}
+          value={passwordLogin}
+        ></input>
 
-<ButtonAuth     />
+        <ButtonAuth />
       </form>
-    </>
+    </main>
   );
 };
 
