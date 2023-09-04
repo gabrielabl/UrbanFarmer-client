@@ -13,9 +13,9 @@
     @include page-padding-default;
     @include tablet {
       flex-direction: row;
-      padding: 16px;
+      padding: 1rem;
       align-items: baseline;
-      justify-content: space-between;
+      justify-content:space-around;
       width: 100%;
     }
   }
@@ -28,10 +28,10 @@
   }
   //NAVIGATION
   &__logo {
-    padding-top: 15px;
-    width: 180px;
-    @include tablet{
-        padding-right: 10px
+    padding-top: 0.9375rem;
+    width: 11.25rem;
+    @include tablet {
+      padding-right: 0.625rem;
     }
   }
   &__nav-link {
@@ -44,11 +44,11 @@
   //NAVIGATION WRAPPER
   &__nav {
     display: flex;
-    gap: 3.125rem;
+    gap: 50px;
     padding: 0;
     justify-content: center;
-    @include tablet{
-        gap: 10px;
+    @include tablet {
+      gap: 0.625rem;
     }
   }
 
@@ -61,21 +61,20 @@
     padding: 0;
     margin-top: 0;
     align-items: center;
-    @include tablet{
-        flex-direction: row;
-
+    @include tablet {
+      flex-direction: row;
     }
   }
 
   //SIGN OFF
   &__sign-off {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   //SEARCH
-  &__search-container{
-    @include tablet{
-        padding-left: 10px;
+  &__search-container {
+    @include tablet {
+      padding-left: 0.625rem;
     }
   }
   &__search {
@@ -83,17 +82,20 @@
     background-color: $BACKGROUND_LIGHT;
     outline: none;
     color: $SECONDARY_CTA;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
     align-self: center;
-    @include tablet{
-        width: 80px;
+    @include tablet {
+      width: 5rem;
+    }
+    @include desktop {
+      width: 6.25rem;
     }
     &::placeholder {
       color: $SECONDARY_TEXT_COLOUR;
       font-weight: 600;
-     @include tablet{
+      @include tablet {
         color: $SECONDARY_CTA;
-     }
+      }
     }
   }
 }
