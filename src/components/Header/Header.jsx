@@ -66,13 +66,13 @@ const Header = () => {
         <ul className="header__nav">
           {/* NAVIGATION */}
           <NavLink className="header__nav-link" to="/profile">
-            <li>{mobileScreen? <Person2Icon /> : "PROFILE"}</li>
+            <li>{mobileScreen? <Person2Icon fontSize="large" /> : "PROFILE"}</li>
           </NavLink>
           <NavLink className="header__nav-link" to="/mycollection">
-            <li>{mobileScreen? <CollectionsIcon /> :"MY COLLECTION" }</li>
+            <li>{mobileScreen? <CollectionsIcon fontSize="large"  /> :"MY COLLECTION" }</li>
           </NavLink>
           <NavLink className="header__nav-link">
-            <li>{mobileScreen? <EmailIcon /> : "MESSAGES"}</li>
+            <li>{mobileScreen? <EmailIcon  fontSize="large" /> : "MESSAGES"}</li>
           </NavLink>
         </ul>
       </nav>
@@ -80,7 +80,7 @@ const Header = () => {
       <div>
         <ul className="header__search-sign-off-wrapper">
           <li className="header__search-container">
-            <SearchIcon sx={{ color: "#FD7988" }} />
+            <SearchIcon />
             <input
               className="header__search"
               name="search"
