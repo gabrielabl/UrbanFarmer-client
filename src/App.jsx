@@ -15,10 +15,7 @@ import BackgroundPattern from './Assets/images/start-page-pattern.svg'
 function App() {
   //Variables
   const baseURL = process.env.REACT_APP_BASE_URL;
-  const [background, setBackground]= useState({
-    backgroundImage: `url(${BackgroundPattern})`,
-    backgroundSize: '40px'
-  })
+  const [background, setBackground]= useState({ backgroundColor: '#F5DECD'});
 
 
 //FORM VARIABLE STATES

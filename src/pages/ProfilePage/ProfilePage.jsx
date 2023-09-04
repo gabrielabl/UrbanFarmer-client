@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
 import EditProfile from "./../../components/EditProfile/EditProfile";
 
-const ProfilePage = ({ baseURL, setBackground }) => {
+const ProfilePage = ({ baseURL, setBackground}) => {
   
 
   //VARIABLES
@@ -34,8 +34,10 @@ const ProfilePage = ({ baseURL, setBackground }) => {
 
   //EDIT MODE HANDLE
   const editModeHandle = () => {
+    
     setEditMode(true);
   };
+
 
   //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
   useEffect(() => {
@@ -46,9 +48,6 @@ const ProfilePage = ({ baseURL, setBackground }) => {
       navigate('/');
     };
 
-      setBackground({
-    backgroundColor: '#F5DECD'
-  });
 
 if(profileId === undefined){
   axios
@@ -62,6 +61,11 @@ if(profileId === undefined){
     setLoading(false);
     sessionStorage.setItem("id", res.data.id);
     sessionStorage.setItem("user_name", res.data.user_name);
+    //SETTING BACKGROUND FOR PROFILE
+    setBackground({
+      backgroundColor: '#F5DECD'
+    });
+
     console.log(res);
   })
   .catch(() => {
@@ -87,9 +91,12 @@ if(profileId === undefined){
 
   },[profileId]);
 
+
   if(isLoading){
     return <div >Loading...</div>;
    };
+
+
 
   return (
     <>

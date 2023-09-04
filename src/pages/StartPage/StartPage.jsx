@@ -23,7 +23,7 @@ const StartPage = ({setBackground}) => {
       backgroundSize: '40px'
     });
   
-  })
+  },[])
 
   return (
     <main className="start-page__main">
