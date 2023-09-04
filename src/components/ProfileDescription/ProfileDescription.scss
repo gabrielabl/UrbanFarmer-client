@@ -23,6 +23,9 @@
     //USER INFO
     &__user{
         font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         //USER NAME
         h1,p,li{
             display:flex;
