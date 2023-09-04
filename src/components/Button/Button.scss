@@ -7,4 +7,7 @@ justify-content: center;
 align-items: center;
 background-color: $PRIMARY_CTA;
 color: $SECONDARY_TEXT_COLOUR;
+display: flex;
+gap: 0.625rem;
+margin-bottom: 1rem;
 }

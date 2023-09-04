@@ -1,0 +1,80 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.profile-edit {
+  &__form {
+    //FORM WRAPPER
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $PRIMARY-CTA;
+    text-transform: uppercase;
+    @include tablet {
+      flex-direction: row;
+      gap: 4.375rem;
+      height: 100vh;
+    }
+    @include desktop {
+      padding-right: 6.25rem;
+      padding-left: 6.25rem;
+    }
+  }
+  &__user {
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        align-self: flex-start;
+        padding-top: 3.125rem;
+        flex-grow: 2;
+      }
+    //USER NAME
+    input,
+    p,
+    li {
+      display: flex;
+      border-top: solid 0.125rem $SECONDARY_CTA;
+      width: 100%;
+      justify-content: center;
+      margin: 0;
+      padding-top: 0.125rem;
+    }
+   // INPUT CONFIGURATION
+   input{ 
+    @include input-default; 
+    @include input-colour-set-profile;
+    text-transform: uppercase;
+     }
+  }
+  //INTERACTION WRAPPER
+  &__interaction {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    ul{
+        padding: 0;
+        margin: 0;
+    }
+  }
+  //ABOUT INFO
+  &__about-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    margin-top: 16px;
+    @include input-default; 
+    @include input-colour-set-profile;
+    height: 50vh;
+    @include tablet {
+      flex-grow: 1;
+    }
+    @include desktop {
+      width: 50vw;
+      align-items: flex-start;
+      align-self: start;
+    }
+  }
+}

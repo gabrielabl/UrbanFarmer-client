@@ -28,6 +28,7 @@
 
   //INPUT 
   &__input {
-  @include auth-input;
+  @include input-default;
+  @include input-colour-set-auth;
   }
 }
