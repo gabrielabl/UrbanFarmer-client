@@ -15,6 +15,7 @@
     };
     &__nav-link{
         @include start-page-default-link;
+        color: $SECONDARY_TEXT_COLOUR;
         font-weight:600;
 
     };
