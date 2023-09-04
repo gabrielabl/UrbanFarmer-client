@@ -4,7 +4,9 @@
 //AVATAR
 
 .avatar{
-    width: 150px;
-    height: 150px;
+    width: 8.75rem;
+    height: 8.75rem;
     border-radius: 100%;
+    border: 5px solid $SECONDARY_CTA;
+    margin-bottom: 10px;
 }
