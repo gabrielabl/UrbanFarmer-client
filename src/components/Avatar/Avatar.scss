@@ -5,8 +5,12 @@
 
 .avatar{
     width: 8.75rem;
-    height: 8.75rem;
+    height: 140px;
     border-radius: 100%;
     border: 5px solid $SECONDARY_CTA;
     margin-bottom: 10px;
+    @include tablet{
+        width: 11.25rem;
+        height: 11.25rem;
+    }
 }

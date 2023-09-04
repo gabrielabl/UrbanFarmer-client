@@ -12,8 +12,12 @@
        text-transform: uppercase;
        @include tablet{
         flex-direction: row;
-        gap:70px;
+        gap:4.375rem;
         height: 100vh;
+       }
+       @include desktop{
+        padding-right: 6.25rem;
+        padding-left: 6.25rem;
        }
     };
     //USER INFO
@@ -22,15 +26,15 @@
         //USER NAME
         h1,p,li{
             display:flex;
-       border-top: solid 2px $SECONDARY_CTA;
+       border-top: solid 0.125rem $SECONDARY_CTA;
        width: 100%;
        justify-content: center;
        margin: 0;
-       padding-top: 2px
+       padding-top: 0.125rem
         }
         @include tablet{
             align-self: flex-start;
-            padding-top: 50px;
+            padding-top: 3.125rem;
         }
     };
     //INTERACTION WRAPPER
@@ -61,6 +65,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include desktop{
+            width: 50vw;
+            align-items: flex-start;
+            align-self: start;
+        }
     }
 
 
