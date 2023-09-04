@@ -63,7 +63,7 @@ const Header = () => {
             alt="urban-farmer-logo"
           ></img>
         </NavLink>
-        <ul>
+        <ul className="header__nav">
           {/* NAVIGATION */}
           <NavLink className="header__nav-link" to="/profile">
             <li>{mobileScreen? <Person2Icon /> : "PROFILE"}</li>
@@ -78,15 +78,15 @@ const Header = () => {
       </nav>
 
       <div>
-        <ul>
-          <li className="header__search-sign-off-wrapper">
+        <ul className="header__search-sign-off-wrapper">
+          <li >
             <SearchIcon sx={{ color: "#FD7988" }} />
             <input
               className="header__search"
               name="search"
               type="text"
               onChange={handleOnChangeSearch}
-              placeholder="SEARCH ITEMS TO TRADE"
+              placeholder={ !mobileScreen? "SEARCH ITEMS TO TRADE" : ""}
               onKeyDown={handleKeyDown}
             ></input>
           </li>

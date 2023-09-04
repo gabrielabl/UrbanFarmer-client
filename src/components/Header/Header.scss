@@ -12,12 +12,15 @@
         color: $SECONDARY_CTA;
         @include page-padding-default;
         @include tablet{
-            align-items: flex-end;
+            flex-direction: row
+            // align-items: flex-end;
         }
     };
     //NAVIGATION
     &__logo{
+        padding-top: 15px;
         width: 180px;
+
     }
     &__nav-link{
         @include start-page-default-link;
@@ -28,22 +31,38 @@
     };
     &__search-sign-off-wrapper{
         list-style: none;
-    }
+        display: flex;
+        font-weight: 600;
+        flex-direction: column;
+        padding: 0;
+        margin-top: 0;
+        align-items: center;
+    };
+    //NAVIGATION WRAPPER
+    &__nav{
+     display: flex;
+     gap: 3.125rem;
+     padding: 0;
+     justify-content: center;
+
+    };
 
     //SIGN OFF
     &__sign-off{
-        list-style: none;
-        font-weight: 600;
     }
 
     //SEARCH
     &__search{
         border: none;
         background-color: $BACKGROUND_LIGHT;
+        outline: none;
+        color: $SECONDARY_CTA;
+        padding-bottom: 10px;
+        align-self: center;
         &::placeholder{
             color: $SECONDARY_CTA;
             font-weight: 600;
         }
   
-    }
+    };
 }
