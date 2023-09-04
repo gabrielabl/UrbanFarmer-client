@@ -10,6 +10,11 @@
         align-items: center;
         color: $PRIMARY-CTA;
        text-transform: uppercase;
+       @include tablet{
+        flex-direction: row;
+        gap:70px;
+        height: 100vh;
+       }
     };
     //USER INFO
     &__user{
@@ -22,6 +27,10 @@
        justify-content: center;
        margin: 0;
        padding-top: 2px
+        }
+        @include tablet{
+            align-self: flex-start;
+            padding-top: 50px;
         }
     };
     //INTERACTION WRAPPER
