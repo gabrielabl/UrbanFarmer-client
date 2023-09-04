@@ -5,6 +5,7 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import "./ProfileDescription.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../Button/Button";
 
 const ProfileDescription = ({
   avatar_photo,
@@ -74,13 +75,11 @@ const ProfileDescription = ({
 
       {/* ABOUT PROFILE SECTION */}
       <section className="profile-page__about">
-        <h2>ABOUT</h2>
+        <h2>ABOUT {user_name}</h2>
         <p>{about}</p>
 
         {/* BUTTON WILL HIDDEN WHEN EDIT MODE IS TRUE */}
-        <button style={editButton} onClick={editModeHandle}>
-          <EditOutlinedIcon /> EDIT PROFILE
-        </button>
+        <Button SVG={<EditOutlinedIcon />} text={"EDIT PROFILE"} style={editButton} onClick={editModeHandle} />
       </section>
     </div>
   );
