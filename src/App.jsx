@@ -15,10 +15,7 @@ import BackgroundPattern from './Assets/images/start-page-pattern.svg'
 function App() {
   //Variables
   const baseURL = process.env.REACT_APP_BASE_URL;
-  const [background, setBackground]= useState({
-    backgroundImage: `url(${BackgroundPattern})`,
-    backgroundSize: '40px'
-  })
+  const [background, setBackground]= useState({ backgroundColor: '#F5DECD'});
 
 
 //FORM VARIABLE STATES
@@ -42,8 +39,8 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/" element={<StartPage setBackground={setBackground} baseURL={baseURL}/>}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/profile" element={<ProfilePage baseURL={baseURL} setBackground={setBackground} />}></Route>
-          <Route path="/signup" element={<SignUp signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
-          <Route path="/login" element={<Login loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
+          <Route path="/signup" element={<SignUp setBackground={setBackground} signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
+          <Route path="/login" element={<Login setBackground={setBackground} loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
           <Route path="/mycollection" element={<MyCollection  baseURL={baseURL}/>}></Route>
           <Route path="/additem" element={<AddItem baseURL={baseURL}/>}></Route>
           <Route path="/search" element={<SearchItem baseURL={baseURL}/>}></Route>

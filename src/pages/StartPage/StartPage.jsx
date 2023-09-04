@@ -16,14 +16,14 @@ const StartPage = ({setBackground}) => {
     }
   };
 
+  //BACKGROUND USE EFFECT
   useEffect(()=>{
-
     setBackground({
       backgroundImage: `url(${BackgroundPattern})`,
       backgroundSize: '40px'
     });
   
-  })
+  },[])
 
   return (
     <main className="start-page__main">

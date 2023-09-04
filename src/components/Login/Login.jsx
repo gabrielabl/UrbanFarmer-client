@@ -2,10 +2,11 @@ import ButtonAuth from "../ButtonAuth/ButtonAuth";
 import "./Login.scss";
 import AuthHeader from "../AuthHeader/AuthHeader";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BackgroundPattern from "../../Assets/images/start-page-pattern.svg";
 
-const Login = ({ loginVar, setLoginVar, baseURL }) => {
+const Login = ({ loginVar, setLoginVar, baseURL, setBackground }) => {
   //VARIABLES
   let navigate = useNavigate();
   const { emailLogin, passwordLogin } = loginVar;
@@ -15,8 +16,15 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
   });
 
   const { emailPlaceholder, passwordPlaceholder } = placeholder;
-  const [errorStateForm, setErrorStateForm] =useState(false);
+  const [errorStateForm, setErrorStateForm] = useState(false);
 
+  //BACKGROUND USE EFFECT
+  useEffect(() => {
+    setBackground({
+      backgroundImage: `url(${BackgroundPattern})`,
+      backgroundSize: "40px",
+    });
+  }, []);
 
   //HANDLE ON CHANGE
   const handleOnChangeLogin = (event) => {
@@ -35,7 +43,7 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
       emailPlaceholder: "INVALID EMAIL",
       passwordPlaceholder: "INVALID PASSWORD",
     });
-    setErrorStateForm(true)
+    setErrorStateForm(true);
   };
 
   //LOGIN UP HANDLE
@@ -64,7 +72,9 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
       <form className="login-page__container" onSubmit={loginHandleSubmit}>
         <h2>WELCOME</h2>
         <input
-          className={`login-page__input ${errorStateForm? "login-page__input--error-state": ""}` }
+          className={`login-page__input ${
+            errorStateForm ? "login-page__input--error-state" : ""
+          }`}
           id="emailLogin"
           name="emailLogin"
           type="text"
@@ -74,7 +84,9 @@ const Login = ({ loginVar, setLoginVar, baseURL }) => {
         ></input>
 
         <input
-          className={`login-page__input ${errorStateForm? "login-page__input--error-state": ""}` }
+          className={`login-page__input ${
+            errorStateForm ? "login-page__input--error-state" : ""
+          }`}
           id="passwordLogin"
           name="passwordLogin"
           type="password"

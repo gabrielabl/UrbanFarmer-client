@@ -5,6 +5,7 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import "./ProfileDescription.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../Button/Button";
 
 const ProfileDescription = ({
   avatar_photo,
@@ -46,9 +47,9 @@ const ProfileDescription = ({
   }, [profileId]);
 
   return (
-    <div style={!editMode ? show : hide}>
+    <div className="profile-page__wrapper" style={!editMode ? show : hide}>
       {/* MAIN PROFILE DATA */}
-      <section>
+      <section className="profile-page__user">
         <Avatar
           avatar_source={`${baseURL}/${avatar_photo}`}
           avatar_alt={"avatar_photo"}
@@ -57,10 +58,10 @@ const ProfileDescription = ({
         <p>
           {city}/{province}
         </p>
-        <ul>
-          <ul>
+        <ul className="profile-page__interaction">
+          <ul >
             <li>
-              <FavoriteOutlinedIcon /> {likes}
+              <FavoriteOutlinedIcon />{likes}
             </li>
             <li>
               <RemoveRedEyeOutlinedIcon />
@@ -73,14 +74,12 @@ const ProfileDescription = ({
       </section>
 
       {/* ABOUT PROFILE SECTION */}
-      <section>
-        <h2>ABOUT</h2>
+      <section className="profile-page__about">
+        <h2>ABOUT {user_name}</h2>
         <p>{about}</p>
 
         {/* BUTTON WILL HIDDEN WHEN EDIT MODE IS TRUE */}
-        <button style={editButton} onClick={editModeHandle}>
-          <EditOutlinedIcon /> EDIT PROFILE
-        </button>
+        <Button SVG={<EditOutlinedIcon />} text={"EDIT PROFILE"} style={editButton} onClick={editModeHandle} />
       </section>
     </div>
   );

@@ -5,7 +5,6 @@
 //GENERAL CONFIGURATION
 
 html {
-  height: 100%;
   box-sizing: border-box;
 }
 *,
@@ -14,19 +13,13 @@ html {
   box-sizing: inherit;
 }
 
-#root{
-  height: 100%;
-}
-
 .App{
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 body {
-  height: 100%;
   margin: 0;
 }
 
@@ -51,6 +44,6 @@ main{
     width: 8.75rem;
   }
   @include desktop{
-    width: 6.25rem;
+    width: 200px;
   }
 }

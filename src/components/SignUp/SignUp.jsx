@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import AuthHeader from "../AuthHeader/AuthHeader";
 import { useEffect, useState } from "react";
 import ButtonAuth from "../ButtonAuth/ButtonAuth";
+import BackgroundPattern from '../../Assets/images/start-page-pattern.svg'
 
-const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
+
+const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
   // VARIABLES
   let navigate = useNavigate();
   const { user_name, email, password } = signUpVar;
@@ -28,6 +30,14 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL }) => {
     confirmPasswordPlaceholder,
   } = placeholder;
 
+    //BACKGROUND USE EFFECT
+    useEffect(()=>{
+      setBackground({
+        backgroundImage: `url(${BackgroundPattern})`,
+        backgroundSize: '40px'
+      });
+    
+    },[])
 
   //FORM VALIDATION ERROR STATE
 

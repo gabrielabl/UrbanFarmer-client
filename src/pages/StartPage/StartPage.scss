@@ -8,6 +8,7 @@
   &__main {
     @include auth-page-layout-default;
     @include page-padding-default;
+    height: 100vh;
   }
 
   //CONTAINER

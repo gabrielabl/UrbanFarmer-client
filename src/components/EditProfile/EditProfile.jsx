@@ -4,8 +4,6 @@ import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { useRef, useState } from "react";
 import axios from "axios";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 
@@ -17,9 +15,6 @@ const EditProfile = ({
   user_name,
   province,
   city,
-  likes,
-  views,
-  trades,
   about,
   profileData,
   setProfileData,
@@ -119,9 +114,11 @@ setEditMode(false)
   }
 
   return (
-    <form style={editMode ? show : hide} onSubmit={editProfileHandleSubmit}>
-      {/* MAIN PROFILE DATA */}
-      <div>
+    <form className="profile-edit__form" style={editMode ? show : hide} onSubmit={editProfileHandleSubmit}>
+
+      {/* MAIN PROFILE EDIT DATA */}
+      <div className="profile-edit__user" >
+      <h1>EDIT PROFILE</h1>
         <Avatar
           avatar_source={
             !previewAvatar ? `${baseURL}/${avatar_photo}` : previewAvatar
@@ -146,7 +143,7 @@ setEditMode(false)
           accept="image/*"
         ></input>
 
-        <label>
+  
           <input
             name="user_name"
             type="text"
@@ -154,9 +151,9 @@ setEditMode(false)
             onChange={handleOnChangeEditProfile}
             placeholder={user_name}
           ></input>
-        </label>
 
-        <label>
+
+   
           <input
             name="city"
             type="text"
@@ -164,8 +161,7 @@ setEditMode(false)
             onChange={handleOnChangeEditProfile}
             placeholder={!city ? "Include your city here" : city}
           ></input>
-        </label>
-        <label>
+    
           <input
             name="province"
             type="text"
@@ -173,35 +169,24 @@ setEditMode(false)
             onChange={handleOnChangeEditProfile}
             placeholder={!province ? "Include your province here" : province}
           ></input>
-        </label>
-        <ul>
-          <ul>
-            <li>
-              <FavoriteOutlinedIcon /> {likes}
-            </li>
-            <li>
-              <RemoveRedEyeOutlinedIcon /> {views}
-            </li>
-          </ul>
-          <li>ABOUT {user_name}</li>
-          <li>TRADES {trades}</li>
-        </ul>
+
       </div>
 
       {/* ABOUT PROFILE SECTION */}
       <div>
-        <label>
-          <input
+      <h2>ABOUT {user_name}</h2>
+          <textarea
+          className="profile-edit__about-input"
             name="about"
             type="text"
-            value={editProfile.about?.about}
+            value={editProfile.about? editProfile.about : about }
             onChange={handleOnChangeEditProfile}
             placeholder={!about ? "Describe yourself" : about}
-          ></input>
-        </label>
-      </div>
-      <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
+          ></textarea>
+    <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
       <Button text={'CANCEL'} onClick={cancelHandleOnClick} />
+      </div>
+  
     </form>
   );
 };
