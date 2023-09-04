@@ -3,66 +3,97 @@
 
 //HEADER
 
-.header{
-    //HEADER WRAPPER
-    &__container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: $SECONDARY_CTA;
-        @include page-padding-default;
-        @include tablet{
-            flex-direction: row
-            // align-items: flex-end;
-        }
-    };
-    //NAVIGATION
-    &__logo{
-        padding-top: 15px;
-        width: 180px;
+.header {
+  //HEADER WRAPPER
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $SECONDARY_CTA;
+    @include page-padding-default;
+    @include tablet {
+      flex-direction: row;
+      padding: 16px;
+      align-items: baseline;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  // ICON NAV WRAPPER
+  &__icon-nav-wrapper {
+    @include tablet {
+      display: flex;
+    }
+  }
+  //NAVIGATION
+  &__logo {
+    padding-top: 15px;
+    width: 180px;
+    @include tablet{
+        padding-right: 10px
+    }
+  }
+  &__nav-link {
+    @include start-page-default-link;
+    list-style: none;
+    color: $SECONDARY_CTA;
+    font-weight: 600;
+  }
+
+  //NAVIGATION WRAPPER
+  &__nav {
+    display: flex;
+    gap: 3.125rem;
+    padding: 0;
+    justify-content: center;
+    @include tablet{
+        gap: 10px;
+    }
+  }
+
+  //SEARCH AND SIGN OFF WRAPPER
+  &__search-sign-off-wrapper {
+    list-style: none;
+    display: flex;
+    font-weight: 600;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 0;
+    align-items: center;
+    @include tablet{
+        flex-direction: row;
 
     }
-    &__nav-link{
-        @include start-page-default-link;
-        list-style: none;
-        color: $SECONDARY_CTA;
-        font-weight:600;
+  }
 
-    };
-    &__search-sign-off-wrapper{
-        list-style: none;
-        display: flex;
-        font-weight: 600;
-        flex-direction: column;
-        padding: 0;
-        margin-top: 0;
-        align-items: center;
-    };
-    //NAVIGATION WRAPPER
-    &__nav{
-     display: flex;
-     gap: 3.125rem;
-     padding: 0;
-     justify-content: center;
+  //SIGN OFF
+  &__sign-off {
+    font-size: 12px;
+  }
 
-    };
-
-    //SIGN OFF
-    &__sign-off{
+  //SEARCH
+  &__search-container{
+    @include tablet{
+        padding-left: 10px;
     }
-
-    //SEARCH
-    &__search{
-        border: none;
-        background-color: $BACKGROUND_LIGHT;
-        outline: none;
+  }
+  &__search {
+    border: none;
+    background-color: $BACKGROUND_LIGHT;
+    outline: none;
+    color: $SECONDARY_CTA;
+    padding-bottom: 10px;
+    align-self: center;
+    @include tablet{
+        width: 80px;
+    }
+    &::placeholder {
+      color: $SECONDARY_TEXT_COLOUR;
+      font-weight: 600;
+     @include tablet{
         color: $SECONDARY_CTA;
-        padding-bottom: 10px;
-        align-self: center;
-        &::placeholder{
-            color: $SECONDARY_CTA;
-            font-weight: 600;
-        }
-  
-    };
+     }
+    }
+  }
 }

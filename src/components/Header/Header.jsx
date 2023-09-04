@@ -55,7 +55,7 @@ const Header = () => {
 
   return (
     <header className="header__container">
-      <nav>
+      <nav className="header__icon-nav-wrapper">
         <NavLink className="header__nav-link" to="/">
           <img
             className="header__logo"
@@ -79,14 +79,14 @@ const Header = () => {
 
       <div>
         <ul className="header__search-sign-off-wrapper">
-          <li >
+          <li className="header__search-container">
             <SearchIcon sx={{ color: "#FD7988" }} />
             <input
               className="header__search"
               name="search"
               type="text"
               onChange={handleOnChangeSearch}
-              placeholder={ !mobileScreen? "SEARCH ITEMS TO TRADE" : ""}
+              placeholder="SEARCH"
               onKeyDown={handleKeyDown}
             ></input>
           </li>
