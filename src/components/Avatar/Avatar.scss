@@ -1,0 +1,10 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//AVATAR
+
+.avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}

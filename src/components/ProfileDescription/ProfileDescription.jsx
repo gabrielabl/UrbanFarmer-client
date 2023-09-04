@@ -46,9 +46,9 @@ const ProfileDescription = ({
   }, [profileId]);
 
   return (
-    <div style={!editMode ? show : hide}>
+    <div className="profile-page__wrapper" style={!editMode ? show : hide}>
       {/* MAIN PROFILE DATA */}
-      <section>
+      <section className="profile-page__user">
         <Avatar
           avatar_source={`${baseURL}/${avatar_photo}`}
           avatar_alt={"avatar_photo"}
@@ -57,10 +57,10 @@ const ProfileDescription = ({
         <p>
           {city}/{province}
         </p>
-        <ul>
-          <ul>
+        <ul className="profile-page__interaction">
+          <ul >
             <li>
-              <FavoriteOutlinedIcon /> {likes}
+              <FavoriteOutlinedIcon />{likes}
             </li>
             <li>
               <RemoveRedEyeOutlinedIcon />
@@ -73,7 +73,7 @@ const ProfileDescription = ({
       </section>
 
       {/* ABOUT PROFILE SECTION */}
-      <section>
+      <section className="profile-page__about">
         <h2>ABOUT</h2>
         <p>{about}</p>
 

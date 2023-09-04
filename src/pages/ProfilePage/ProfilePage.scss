@@ -1,0 +1,10 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//PROFILE PAGE
+
+.profile-page{
+    &__container{
+        @include page-padding-default;
+    }
+}

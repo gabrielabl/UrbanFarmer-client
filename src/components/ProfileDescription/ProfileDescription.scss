@@ -1,0 +1,58 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//PROFILE PAGE DESCRIPTION
+
+.profile-page{
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $PRIMARY-CTA;
+       text-transform: uppercase;
+    };
+    //USER INFO
+    &__user{
+        font-weight: 600;
+        //USER NAME
+        h1,p,li{
+            display:flex;
+       border-top: solid 2px $SECONDARY_CTA;
+       width: 100%;
+       justify-content: center;
+       margin: 0;
+       padding-top: 2px
+        }
+    };
+    //INTERACTION WRAPPER
+    &__interaction{
+     color: $SECONDARY_CTA;
+     padding: 0;
+     width: 100%;
+     //ALL LIST CONTAINERS
+     & >ul {
+        padding: 0;
+        align-self: center;
+        width: 100%;
+        display: flex;
+     }
+     //TRADE LIST ITEM
+     >li {
+        list-style: none;
+     }
+     //LIKES AND VIEWS ITEMS
+     ul > li {
+        list-style: none;
+        align-items: center;  
+        justify-content: space-evenly;
+     }
+    }
+    //ABOUT INFO
+    &__about{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+}

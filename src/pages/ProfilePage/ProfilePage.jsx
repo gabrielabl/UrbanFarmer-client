@@ -95,7 +95,7 @@ if(profileId === undefined){
     <>
       <Header />
 
-      <main>
+      <main className="profile-page__container">
         <ProfileDescription
           avatar_photo={avatar_photo}
           user_name={user_name}
