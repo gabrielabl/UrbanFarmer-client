@@ -25,12 +25,6 @@ const MyCollection = ({ baseURL }) => {
   //RETRIEVING TOKEN AND DATA FROM SESSION STORE FOR AUTHORIZATION
   const token = sessionStorage.getItem("token");
   const adminUserId = sessionStorage.getItem("id");
-  // const user_name = sessionStorage.getItem("user_name");
-
-  //IF USER DOES NOT HAVE ANY ITEM IN COLLECTION, IT WILL RE-DIRECT TO NEW COLLECTION ITEM PAGE IN THE FUTURE
-  if (collectionData.message) {
-    navigate("/profile");
-  }
 
   //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
   useEffect(() => {
@@ -125,7 +119,9 @@ const MyCollection = ({ baseURL }) => {
     <>
       <Header />
       <main>
-        <section>
+        {collectionData.message? <div><p>YOU HAVE NO ITEMS IN YOUR COLLECTION</p><Link to="/additem">
+            <Button style={addMoreBtn} text="ADD MORE" />
+          </Link></div> : <section>
           <h1>{collectionData[0].user_name}'S COLLECTION</h1>
           <ul>
             {collectionData.map((item) => (
@@ -153,7 +149,7 @@ const MyCollection = ({ baseURL }) => {
           <Link to="/additem">
             <Button style={addMoreBtn} text="ADD MORE" />
           </Link>
-        </section>
+        </section>}
       </main>
       <Footer />
     </>
