@@ -7,6 +7,8 @@ import Footer from "../../components/Footer/Footer";
 import Button from "../../components/Button/Button";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import { Link, useParams } from "react-router-dom";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const MyCollection = ({ baseURL }) => {
   // VARIABLES
@@ -14,6 +16,8 @@ const MyCollection = ({ baseURL }) => {
   const [isLoading, setLoading] = useState(true);
   const [collectionData, setCollectionData] = useState([]);
   const { profileId } = useParams();
+  const [activeItems, setActiveItems] = useState([]);
+  const [activeCarousel, setActiveCarousel]= useState(false);
 
   //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER
   const show = { display: "flex" };
@@ -42,7 +46,6 @@ const MyCollection = ({ baseURL }) => {
         })
         .then((res) => {
           setCollectionData(res.data);
-          console.log(collectionData);
           setLoading(false);
         })
         .catch((err) => {
@@ -65,7 +68,41 @@ const MyCollection = ({ baseURL }) => {
           navigate("/search");
         });
     }
-  }, [profileId]);
+
+  }, [profileId],[collectionData]);
+
+useEffect(()=>{
+//IF USER ONLY HAVE ONE ITEM IN COLLECTION
+if(collectionData.length <= 1){
+  setActiveItems(collectionData)
+} else{
+  //INITIAL VALUE FOR CAROUSEL TO RUN
+  if(!activeCarousel){
+    setActiveItems(collectionData.splice(0,1))
+    console.log(activeItems)
+  } else{
+    console.log(activeItems)
+  }
+}
+  },[collectionData],[activeItems])
+
+//ACTIVE ITEM CAROUSEL HANDLES
+// FORWARD
+const nextCarouselHandle =()=>{
+  setActiveCarousel(true)
+  collectionData.push(activeItems[0]);
+  console.log(activeItems)
+  console.log(collectionData)
+  setActiveItems(collectionData.splice(0,1))
+};
+//BACKWARD
+const backCarouselHandle =()=>{
+  setActiveCarousel(true)
+  collectionData.splice(0,0,activeItems[0]);
+  console.log(activeItems)
+  setActiveItems(collectionData.splice(-1,1))
+};
+
 
   //DELETE HANDLE
   const deleteHandle = (id) => {
@@ -118,15 +155,16 @@ const MyCollection = ({ baseURL }) => {
   return (
     <>
       <Header />
-      <main>
+      <main className="collection-page__container">
         {collectionData.message? <div><p>YOU HAVE NO ITEMS IN YOUR COLLECTION</p><Link to="/additem">
             <Button style={addMoreBtn} text="ADD MORE" />
           </Link></div> : <section>
           <h1>{collectionData[0].user_name}'S COLLECTION</h1>
           <ul>
-            {collectionData.map((item) => (
+            {activeItems.map((item) => (
               <li key={item.id}>
                 <img
+                className="collection-page__item"
                   src={`${baseURL}/${item.item_photo}`}
                   alt={item.item_name}
                 ></img>
@@ -146,7 +184,9 @@ const MyCollection = ({ baseURL }) => {
               </li>
             ))}
           </ul>
-          <Link to="/additem">
+          <ArrowBackIosIcon onClick={backCarouselHandle} />
+          <ArrowForwardIosIcon onClick={nextCarouselHandle} />
+          <Link className="collection-page__btn" to="/additem">
             <Button style={addMoreBtn} text="ADD MORE" />
           </Link>
         </section>}

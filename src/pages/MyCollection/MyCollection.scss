@@ -1,0 +1,20 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//COLLECTION PAGE
+
+.collection-page{
+    //PAGE WRAPPER
+    &__container{
+        @include page-padding-default;
+    }
+    &__item{
+        height: 200px;
+        width: 100%;
+    }
+
+    //ADD MORE BUTTON
+    &__btn{
+        text-decoration: none;
+    }
+}
