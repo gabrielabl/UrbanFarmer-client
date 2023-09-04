@@ -47,6 +47,7 @@ const MyCollection = ({ baseURL }) => {
         .then((res) => {
           setCollectionData(res.data);
           setLoading(false);
+          setActiveCarousel(false)
         })
         .catch((err) => {
           console.log(err);
@@ -84,7 +85,7 @@ if(collectionData.length <= 1){
     console.log(activeItems)
   }
 }
-  },[collectionData],[activeItems])
+  },[collectionData],[activeItems],[profileId])
 
 //ACTIVE ITEM CAROUSEL HANDLES
 // FORWARD
