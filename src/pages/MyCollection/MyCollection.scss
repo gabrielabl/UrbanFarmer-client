@@ -7,10 +7,23 @@
     //PAGE WRAPPER
     &__container{
         @include page-padding-default;
+        width: 100%;
+        background-color: $BACKGROUND_DARK;
+        text-transform: uppercase; 
+        display: flex;  
+        justify-content: center;
+        color: $SECONDARY_TEXT_COLOUR;
     }
     &__item{
-        height: 200px;
+        padding: 0;
+        height: 300px;
         width: 100%;
+        border: solid 8px $BACKGROUND_LIGHT; 
+        align-self: center;
+    }
+    &__item-container{
+        @include page-padding-default;
+        display: flex;
     }
 
     //ADD MORE BUTTON

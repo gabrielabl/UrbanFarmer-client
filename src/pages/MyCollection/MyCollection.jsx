@@ -7,8 +7,8 @@ import Footer from "../../components/Footer/Footer";
 import Button from "../../components/Button/Button";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import { Link, useParams } from "react-router-dom";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const MyCollection = ({ baseURL }) => {
   // VARIABLES
@@ -19,13 +19,13 @@ const MyCollection = ({ baseURL }) => {
 
   //CAROUSEL STATES
   const [activeItems, setActiveItems] = useState([]);
-  const [activeCarousel, setActiveCarousel]= useState(false);
+  const [activeCarousel, setActiveCarousel] = useState(false);
 
   //SCREEN SIZE STATES
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [mobileScreen, setMobileScreen] = useState();
 
-  //WILL CHANGE STATE ACCORDING TO SCREEN SIZE TO CHANGE NAVIGATION MENU
+  //WILL CHANGE STATE ACCORDING TO SCREEN SIZE TO CHANGE LAYOUT ITEMS
   useEffect(() => {
     function handleResize() {
       setScreenSize(window.innerWidth);
@@ -36,7 +36,7 @@ const MyCollection = ({ baseURL }) => {
     } else {
       setMobileScreen(false);
     }
-  },);
+  });
 
   //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER
   const show = { display: "flex" };
@@ -50,113 +50,120 @@ const MyCollection = ({ baseURL }) => {
   const adminUserId = sessionStorage.getItem("id");
 
   //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
-  useEffect(() => {
-    //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
-    console.log('is it render')
-    if (!token) {
-      navigate("/login");
-    }
+  useEffect(
+    () => {
+      //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
+      console.log("is it render");
+      if (!token) {
+        navigate("/login");
+      }
 
-    if (profileId === undefined) {
-      axios
-        .get(`${baseURL}/profile/${adminUserId}/collection`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setCollectionData(res.data);
-          setLoading(false);
-          setActiveCarousel(false)
-        })
-        .catch((err) => {
-          console.log(err);
-          navigate("/login");
-        });
+      if (profileId === undefined) {
+        axios
+          .get(`${baseURL}/profile/${adminUserId}/collection`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            setCollectionData(res.data);
+            setLoading(false);
+            setActiveCarousel(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            navigate("/login");
+          });
+      } else {
+        axios
+          .get(`${baseURL}/profile/${profileId}/collection`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            setCollectionData(res.data);
+            setLoading(false);
+            setActiveCarousel(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            navigate("/search");
+          });
+      }
+    },
+    [mobileScreen, profileId],
+    [adminUserId],
+    [collectionData],
+    [deleteBtn]
+  );
+
+  //MOBILE SCREEN USER EFFECT
+  useEffect(
+    () => {
+      //IF USER ONLY HAVE ONE ITEM IN COLLECTION
+      if (mobileScreen) {
+        if (collectionData.length <= 1) {
+          setActiveItems(collectionData);
+        } else {
+          //INITIAL VALUE FOR CAROUSEL TO RUN
+          if (!activeCarousel) {
+            setActiveItems(collectionData.splice(0, 1));
+            console.log(activeItems);
+          } else {
+            console.log(activeItems);
+          }
+        }
+      } else {
+        if (collectionData.length <= 3) {
+          setActiveItems(collectionData);
+        } else {
+          if (!activeCarousel) {
+            setActiveItems(collectionData.splice(0, 3));
+            console.log(activeItems);
+          } else {
+            console.log(activeItems);
+          }
+        }
+      }
+    },
+    [collectionData],
+    [activeItems],
+    [profileId]
+  );
+
+  //ACTIVE ITEM CAROUSEL HANDLES
+  // FORWARD
+  const nextCarouselHandle = () => {
+    if (mobileScreen) {
+      setActiveCarousel(true);
+      collectionData.push(activeItems[0]);
+      console.log(activeItems);
+      console.log(collectionData);
+      setActiveItems(collectionData.splice(0, 1));
     } else {
-      axios
-        .get(`${baseURL}/profile/${profileId}/collection`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setCollectionData(res.data);
-          setLoading(false);
-          setActiveCarousel(false)
-        })
-        .catch((err) => {
-          console.log(err);
-          navigate("/search");
-        });
+      //  TABLET SCREEN
+      if (activeItems.length >= 3) {
+        setActiveCarousel(true);
+        collectionData.push(activeItems[0], activeItems[1], activeItems[2]);
+        console.log(activeItems);
+        console.log(collectionData);
+        setActiveItems(collectionData.splice(0, 3));
+      }
     }
+  };
 
-  },[mobileScreen], [profileId],[collectionData],[deleteBtn]);
-
-
-useEffect(()=>{
-//IF USER ONLY HAVE ONE ITEM IN COLLECTION
-if(mobileScreen){
-  if(collectionData.length <= 1){
-    setActiveItems(collectionData)
-  } else{
-    //INITIAL VALUE FOR CAROUSEL TO RUN
-    if(!activeCarousel){
-        setActiveItems(collectionData.splice(0,1))
-      console.log(activeItems)
-    } else{
-      console.log(activeItems)
+  //BACKWARD
+  const backCarouselHandle = () => {
+    if (mobileScreen) {
+      setActiveCarousel(true);
+      collectionData.splice(0, 0, activeItems[0]);
+      console.log(activeItems);
+      setActiveItems(collectionData.splice(-1, 1));
+    } else {
+      console.log("Button inactive for tablet and desktop");
     }
-  }
-} else {
-  if(collectionData.length <= 3){
-    setActiveItems(collectionData)
-  } else {
-    if(!activeCarousel){
-      setActiveItems(collectionData.splice(0,3))
-    console.log(activeItems)
-  } else{
-    console.log(activeItems)
-  }
-  }
-}
-  },[collectionData],[activeItems],[profileId])
-
-
-
-//ACTIVE ITEM CAROUSEL HANDLES
-// FORWARD
-const nextCarouselHandle =()=>{
-  if(mobileScreen){
-    setActiveCarousel(true)
-    collectionData.push(activeItems[0]);
-    console.log(activeItems)
-    console.log(collectionData)
-    setActiveItems(collectionData.splice(0,1))
-  } else {
-  //  TABLET SCREEN
-  if(activeItems.length  >= 3){
-    setActiveCarousel(true)
-    collectionData.push(activeItems[0],activeItems[1],activeItems[2]);
-    console.log(activeItems)
-    console.log(collectionData)
-    setActiveItems(collectionData.splice(0,3))
-  }
-  }
-};
-
-//BACKWARD
-const backCarouselHandle =()=>{
-  if(mobileScreen){
-    setActiveCarousel(true)
-    collectionData.splice(0,0,activeItems[0]);
-    console.log(activeItems)
-    setActiveItems(collectionData.splice(-1,1))
-  } else{
-    console.log('Button inactive for tablet and desktop')
-  }
-};
-
+  };
 
   //DELETE HANDLE
   const deleteHandle = (id) => {
@@ -210,40 +217,52 @@ const backCarouselHandle =()=>{
     <>
       <Header />
       <main className="collection-page__container">
-        {collectionData.message? <div><p>YOU HAVE NO ITEMS IN YOUR COLLECTION</p><Link to="/additem">
-            <Button style={addMoreBtn} text="ADD MORE" />
-          </Link></div> : <section>
-          <h1>{collectionData[0].user_name}'S COLLECTION</h1>
-          <ul>
-            {activeItems.map((item) => (
-              <li key={item.id}>
-                <img
-                className="collection-page__item"
-                  src={`${baseURL}/${item.item_photo}`}
-                  alt={item.item_name}
-                ></img>
-                <h2>{item.item_name}</h2>
-                <p>{item.description}</p>
-                <a style={tradeBtn} href={`mailto:${item.email}`}>
-                  TRADE
-                </a>
-                <button
-                  style={deleteBtn}
-                  onClick={() => {
-                    deleteHandle(item.id);
-                  }}
-                >
-                  <DeleteOutlineTwoToneIcon />
-                </button>
-              </li>
-            ))}
-          </ul>
-          {mobileScreen? <ArrowBackIosIcon onClick={backCarouselHandle} /> : ""}
-          <ArrowForwardIosIcon onClick={nextCarouselHandle} />
-          <Link className="collection-page__btn" to="/additem">
-            <Button style={addMoreBtn} text="ADD MORE" />
-          </Link>
-        </section>}
+        {collectionData.message ? (
+          <div>
+            <p>YOU HAVE NO ITEMS IN YOUR COLLECTION</p>
+            <Link to="/additem">
+              <Button style={addMoreBtn} text="ADD MORE" />
+            </Link>
+          </div>
+        ) : (
+          <section>
+            <h1>{collectionData[0].user_name}'S COLLECTION</h1>
+            <ul className="collection-page__item-container">
+              {activeItems.map((item) => (
+                <li key={item.id}>
+                  {mobileScreen ? (
+                    <ArrowBackIosIcon onClick={backCarouselHandle} />
+                  ) : (
+                    ""
+                  )}
+                  <img
+                    className="collection-page__item"
+                    src={`${baseURL}/${item.item_photo}`}
+                    alt={item.item_name}
+                  ></img>
+                  <ArrowForwardIosIcon onClick={nextCarouselHandle} />
+                  <h2>{item.item_name}</h2>
+                  <p>{item.description}</p>
+                  <a style={tradeBtn} href={`mailto:${item.email}`}>
+                    TRADE
+                  </a>
+                  <button
+                    style={deleteBtn}
+                    onClick={() => {
+                      deleteHandle(item.id);
+                    }}
+                  >
+                    <DeleteOutlineTwoToneIcon />
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <Link className="collection-page__btn" to="/additem">
+              <Button style={addMoreBtn} text="ADD MORE" />
+            </Link>
+          </section>
+        )}
       </main>
       <Footer />
     </>
