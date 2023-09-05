@@ -16,8 +16,27 @@ const MyCollection = ({ baseURL }) => {
   const [isLoading, setLoading] = useState(true);
   const [collectionData, setCollectionData] = useState([]);
   const { profileId } = useParams();
+
+  //CAROUSEL STATES
   const [activeItems, setActiveItems] = useState([]);
   const [activeCarousel, setActiveCarousel]= useState(false);
+
+  //SCREEN SIZE STATES
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const [mobileScreen, setMobileScreen] = useState();
+
+  //WILL CHANGE STATE ACCORDING TO SCREEN SIZE TO CHANGE NAVIGATION MENU
+  useEffect(() => {
+    function handleResize() {
+      setScreenSize(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    if (screenSize < 768) {
+      setMobileScreen(true);
+    } else {
+      setMobileScreen(false);
+    }
+  },);
 
   //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER
   const show = { display: "flex" };
@@ -33,6 +52,7 @@ const MyCollection = ({ baseURL }) => {
   //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
   useEffect(() => {
     //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
+    console.log('is it render')
     if (!token) {
       navigate("/login");
     }
@@ -63,6 +83,7 @@ const MyCollection = ({ baseURL }) => {
         .then((res) => {
           setCollectionData(res.data);
           setLoading(false);
+          setActiveCarousel(false)
         })
         .catch((err) => {
           console.log(err);
@@ -70,38 +91,70 @@ const MyCollection = ({ baseURL }) => {
         });
     }
 
-  }, [profileId],[collectionData]);
+  },[mobileScreen], [profileId],[collectionData],[deleteBtn]);
+
 
 useEffect(()=>{
 //IF USER ONLY HAVE ONE ITEM IN COLLECTION
-if(collectionData.length <= 1){
-  setActiveItems(collectionData)
-} else{
-  //INITIAL VALUE FOR CAROUSEL TO RUN
-  if(!activeCarousel){
-    setActiveItems(collectionData.splice(0,1))
+if(mobileScreen){
+  if(collectionData.length <= 1){
+    setActiveItems(collectionData)
+  } else{
+    //INITIAL VALUE FOR CAROUSEL TO RUN
+    if(!activeCarousel){
+        setActiveItems(collectionData.splice(0,1))
+      console.log(activeItems)
+    } else{
+      console.log(activeItems)
+    }
+  }
+} else {
+  if(collectionData.length <= 3){
+    setActiveItems(collectionData)
+  } else {
+    if(!activeCarousel){
+      setActiveItems(collectionData.splice(0,3))
     console.log(activeItems)
   } else{
     console.log(activeItems)
   }
+  }
 }
   },[collectionData],[activeItems],[profileId])
+
+
 
 //ACTIVE ITEM CAROUSEL HANDLES
 // FORWARD
 const nextCarouselHandle =()=>{
-  setActiveCarousel(true)
-  collectionData.push(activeItems[0]);
-  console.log(activeItems)
-  console.log(collectionData)
-  setActiveItems(collectionData.splice(0,1))
+  if(mobileScreen){
+    setActiveCarousel(true)
+    collectionData.push(activeItems[0]);
+    console.log(activeItems)
+    console.log(collectionData)
+    setActiveItems(collectionData.splice(0,1))
+  } else {
+  //  TABLET SCREEN
+  if(activeItems.length  >= 3){
+    setActiveCarousel(true)
+    collectionData.push(activeItems[0],activeItems[1],activeItems[2]);
+    console.log(activeItems)
+    console.log(collectionData)
+    setActiveItems(collectionData.splice(0,3))
+  }
+  }
 };
+
 //BACKWARD
 const backCarouselHandle =()=>{
-  setActiveCarousel(true)
-  collectionData.splice(0,0,activeItems[0]);
-  console.log(activeItems)
-  setActiveItems(collectionData.splice(-1,1))
+  if(mobileScreen){
+    setActiveCarousel(true)
+    collectionData.splice(0,0,activeItems[0]);
+    console.log(activeItems)
+    setActiveItems(collectionData.splice(-1,1))
+  } else{
+    console.log('Button inactive for tablet and desktop')
+  }
 };
 
 
@@ -185,7 +238,7 @@ const backCarouselHandle =()=>{
               </li>
             ))}
           </ul>
-          <ArrowBackIosIcon onClick={backCarouselHandle} />
+          {mobileScreen? <ArrowBackIosIcon onClick={backCarouselHandle} /> : ""}
           <ArrowForwardIosIcon onClick={nextCarouselHandle} />
           <Link className="collection-page__btn" to="/additem">
             <Button style={addMoreBtn} text="ADD MORE" />
