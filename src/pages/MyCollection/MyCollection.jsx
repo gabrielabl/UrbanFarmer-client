@@ -133,7 +133,7 @@ const MyCollection = ({ baseURL }) => {
         }
       }
     },
-    [collectionData, activeItems],
+    [collectionData],
     [profileId]
   );
 
