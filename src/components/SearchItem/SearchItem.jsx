@@ -42,20 +42,21 @@ const SearchItem = ({ baseURL }) => {
   return (
     <>
       <Header />
-      <main>
-        <h1>You search for "{search}"</h1>
+      <main className="search-item__main">
+        <h1 className="search-item__title">You search for "{search}"</h1>
+        {searchData.length === 0? <div className="search-item__no-item">NO ITEMS FOUND FOR {search}</div> :
         <div>
-          <ul>
+          <ul className="search-item__container-wrapper">
             {searchData.map((item) => (
-              <li key={item.id}>
+              <li className="search-item__container" key={item.id}>
                 <Link to={`/profile/${item.users_id}/collection`}>
-                <img src={`${baseURL}/${item.item_photo}`}></img>
+                <img className="search-item__image" src={`${baseURL}/${item.item_photo}`}></img>
                 </Link>
-                <div>
+                <div className="search-item__info">
                   <h2>{item.item_name}</h2>
                   <p>{item.description}</p>
                 </div>
-                <div>
+                <div className="search-item__avatar">
                   <Link to={`/profile/${item.users_id}`}>
                     <Avatar
                       avatar_source={`${baseURL}/${item.avatar_photo}`}
@@ -68,6 +69,7 @@ const SearchItem = ({ baseURL }) => {
             ))}
           </ul>
         </div>
+        }
       </main>
 
       <Footer />

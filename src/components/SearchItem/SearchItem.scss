@@ -1,0 +1,72 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.search-item{
+    &__main{
+        @include page-padding-default;
+        height: 100%;
+    };
+    &__title{
+        color: $SECONDARY_CTA;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+    };
+    //ITEM IMAGE
+    &__image{
+        width: 100%;
+        height: 40vh;
+        border: solid 0.25rem $BACKGROUND_LIGHT;
+        @include tablet{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    //ITEM NAME AND DESCRIPTION WRAPPER
+    &__info{
+        align-self: flex-start;
+    }
+    //LIST 
+    &__container-wrapper{
+    padding: 0;
+
+    }
+    //LIST ITEM AND ITEM CONTAINER
+    &__container{
+        background-color: $BACKGROUND_DARK;
+        color: $SECONDARY_TEXT_COLOUR;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        @include tablet{
+            flex-direction: row;
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+        @include desktop{
+            width: 60vw;
+            gap: 1.5rem;
+        }
+
+    }
+    //USER AVATAR
+    &__avatar{
+        border: solid 4px $SECONDARY_TEXT_COLOUR;
+        padding: 10px;
+        align-self: center;
+        h2{
+       text-align: center;
+        }
+    }
+
+    //NOT ITEMS FOUND IN SEARCH
+    &__no-item{
+        text-transform: uppercase;
+        height: 100vh;
+        color: $PRIMARY_CTA;
+    }
+
+}

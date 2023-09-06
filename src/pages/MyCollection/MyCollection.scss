@@ -80,7 +80,7 @@
     @include tablet {
      width: 200px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-around;
     }
   }
   //DELETE BUTTON
@@ -100,4 +100,11 @@
     align-self: center;
     padding: 0.375rem;
   }
+ //NO ITEMS CONDITIONAL
+ &__no-items-wrapper{
+  height: 100vh;
+ }
+ &__no-items{
+    color: $PRIMARY_CTA;
+ }
 }
