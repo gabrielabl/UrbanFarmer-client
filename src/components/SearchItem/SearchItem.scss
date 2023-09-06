@@ -1,0 +1,43 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.search-item{
+    &__main{
+        @include page-padding-default;
+        height: 100%;
+    };
+    &__title{
+        color: $SECONDARY_CTA;
+        text-transform: uppercase;
+        font-size: 20px;
+    };
+    &__image{
+        width: 100%;
+        height: 40vh;
+        border: solid 4px $BACKGROUND_LIGHT;
+    }
+    //LIST 
+    &__container-wrapper{
+    padding: 0;
+
+    }
+    //LIST ITEM AND ITEM CONTAINER
+    &__container{
+        background-color: $BACKGROUND_DARK;
+        color: $SECONDARY_TEXT_COLOUR;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 16px;
+    }
+    //USER AVATAR
+    &__avatar{
+        align-self: center;
+        h2{
+       text-align: center;
+        }
+    }
+}

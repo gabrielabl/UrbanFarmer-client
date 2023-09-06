@@ -223,10 +223,10 @@ const MyCollection = ({ baseURL }) => {
       <Header />
       <main className="collection-page__main">
         {collectionData.message ? (
-          <div>
-            <p>YOU HAVE NO ITEMS IN YOUR COLLECTION</p>
-            <Link to="/additem">
-              <Button style={addMoreBtn} text="ADD MORE" />
+          <div className="collection-page__no-items-wrapper">
+            <p className="collection-page__no-items">YOU HAVE NO ITEMS IN YOUR COLLECTION</p>
+            <Link className="collection-page__btn" to="/additem">
+              <Button classVar={"collection-page__btn"} style={addMoreBtn} text="ADD MORE" />
             </Link>
           </div>
         ) : (
