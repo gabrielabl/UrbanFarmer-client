@@ -86,7 +86,10 @@ const AddItem = ({ baseURL }) => {
         ...newItem,
         [name]: event.target.files[0],
       });
-      setPreviewItem(URL.createObjectURL(event.target.files[0]));
+      //WILL NOT STORE IMAGE IF FILE IS UNDEFINED
+       if(event.target.files[0] !== undefined){
+        setPreviewItem(URL.createObjectURL(event.target.files[0]));
+       }
     } else {
       setNewItem({
         ...newItem,
