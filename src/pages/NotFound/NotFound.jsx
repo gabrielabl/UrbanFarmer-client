@@ -17,8 +17,8 @@ const NotFound =({setBackground}) =>{
         <>
         <Header headerStyleSwitch={headerStyleSwitch} />
         <main className="not-found__container">
-            <h1>404</h1>
-            <p>OPS, PAGE NOT FOUND</p>
+            <h1 className="not-found__code">404</h1>
+            <p className="not-found__info">OPS, PAGE NOT FOUND</p>
         </main>
         <Footer />
         </>
