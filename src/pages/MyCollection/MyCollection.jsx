@@ -228,25 +228,25 @@ const MyCollection = ({ baseURL }) => {
           <section>
             <h1>{collectionData[0].user_name}'S COLLECTION</h1>
             <ul className="collection-page__item-container">
+              {mobileScreen ? (
+                <ArrowBackIosIcon onClick={backCarouselHandle} />
+              ) : (
+                ""
+              )}
               {activeItems.map((item) => (
-                <li key={item.id}>
-                  {mobileScreen ? (
-                    <ArrowBackIosIcon onClick={backCarouselHandle} />
-                  ) : (
-                    ""
-                  )}
+                <li className="collection-page__list-item" key={item.id}>
                   <img
-                    className="collection-page__item"
+                    className="collection-page__image"
                     src={`${baseURL}/${item.item_photo}`}
                     alt={item.item_name}
                   ></img>
-                  <ArrowForwardIosIcon onClick={nextCarouselHandle} />
                   <h2>{item.item_name}</h2>
                   <p>{item.description}</p>
                   <a style={tradeBtn} href={`mailto:${item.email}`}>
                     TRADE
                   </a>
                   <button
+                    className="collection-page__btn-delete"
                     style={deleteBtn}
                     onClick={() => {
                       deleteHandle(item.id);
@@ -256,6 +256,7 @@ const MyCollection = ({ baseURL }) => {
                   </button>
                 </li>
               ))}
+              <ArrowForwardIosIcon onClick={nextCarouselHandle} />
             </ul>
 
             <Link className="collection-page__btn" to="/additem">

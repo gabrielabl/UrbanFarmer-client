@@ -13,21 +13,53 @@
         display: flex;  
         justify-content: center;
         color: $SECONDARY_TEXT_COLOUR;
+        //FORWARD AND BACKWARD ICONS
+        svg{
+            color: $SECONDARY_CTA;
+            // align-self: center;
+        }
     }
-    &__item{
+
+    &__image{
         padding: 0;
-        height: 300px;
+        height: 80vw;
         width: 100%;
         border: solid 8px $BACKGROUND_LIGHT; 
         align-self: center;
+        @include tablet{
+            height: 100%;
+            width: 27vw;
+        }
     }
     &__item-container{
         @include page-padding-default;
         display: flex;
     }
+    &__list-item{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include tablet{
+        margin: 8px;
+        }
+   
+    }
 
     //ADD MORE BUTTON
     &__btn{
         text-decoration: none;
+        @include tablet{
+            display: flex;
+            justify-content: flex-end;     
+            padding-right: 30px;
+        }
+
+    }
+    //DELETE BUTTON
+    &__btn-delete{
+    background-color: $BACKGROUND_DARK;
+    border: none;
+    color: $SECONDARY_CTA;
     }
 }
