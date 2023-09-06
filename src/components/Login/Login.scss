@@ -29,6 +29,6 @@
   //INPUT 
   &__input {
   @include input-default;
-  @include input-colour-set-auth;
+  @include input-colour-set-primary;
   }
 }

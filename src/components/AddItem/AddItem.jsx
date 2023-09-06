@@ -15,8 +15,8 @@ const AddItem = ({ baseURL }) => {
   const formData = new FormData();
   const [previewItem, setPreviewItem] = useState(imgPlaceholder);
   const [placeholder, setPlaceholder] = useState({
-    placeholderName: "Make sure to include a name for your item",
-    placeholderDescription: "Make sure to describe your item",
+    placeholderName: "include a name for your item",
+    placeholderDescription: "describe your item",
   });
   // RE-DIRECT
   let navigate = useNavigate();
@@ -36,6 +36,12 @@ const AddItem = ({ baseURL }) => {
     hiddenUserPhotoInput.current.click();
   };
 
+   //FORM VALIDATION ERROR STATE
+ const [errorStateForm, setErrorStateForm] = useState({
+  item_name: false,
+  description: false,
+});
+
   //FORM VALIDATION
   const isFieldEmpty = () => {
     //DESTRUCTURING
@@ -46,6 +52,7 @@ const AddItem = ({ baseURL }) => {
         ...placeholder,
         placeholderName: "No fields should be empty",
       });
+      setErrorStateForm({...errorStateForm, item_name: true})
       return false;
     }
     if (!description) {
@@ -53,9 +60,11 @@ const AddItem = ({ baseURL }) => {
         ...placeholder,
         placeholderDescription: "No fields should be empty",
       });
+      setErrorStateForm({...errorStateForm, description: true})
       return false;
     }
     if (!item_photo) {
+      alert('PLEASE INCLUDE A  📸 FOR YOUR ITEM')
       return false;
     }
     return true;
@@ -77,7 +86,10 @@ const AddItem = ({ baseURL }) => {
         ...newItem,
         [name]: event.target.files[0],
       });
-      setPreviewItem(URL.createObjectURL(event.target.files[0]));
+      //WILL NOT STORE IMAGE IF FILE IS UNDEFINED
+       if(event.target.files[0] !== undefined){
+        setPreviewItem(URL.createObjectURL(event.target.files[0]));
+       }
     } else {
       setNewItem({
         ...newItem,
@@ -117,11 +129,15 @@ const AddItem = ({ baseURL }) => {
   return (
     <>
       <Header />
-      <main>
+      <main className="add-item__container">
         <h1>{user_name}'S COLLECTION</h1>
-        <form onSubmit={addNewItemHandleSubmit}>
-          <div>
+        <form 
+        className="add-item__form"
+        onSubmit={addNewItemHandleSubmit}>
+          <div 
+          className="add-item__image">
             <img
+            className="add-item__preview"
               src={!previewItem ? imgPlaceholder : previewItem}
               alt="collectionItem-photo-edit"
             ></img>
@@ -142,10 +158,12 @@ const AddItem = ({ baseURL }) => {
             ></input>
           </div>
 
-          <div>
+          <div
+           className="add-item__text">
             <label>
               ITEM NAME
               <input
+                className={`add-item__input ${errorStateForm.item_name? "add-item__input--error-state" : "" }`}
                 name="item_name"
                 type="text"
                 value={newItem.item_name?.item_name}
@@ -155,13 +173,14 @@ const AddItem = ({ baseURL }) => {
             </label>
             <label>
               DESCRIPTION
-              <input
+              <textarea
+                className={`add-item__input ${errorStateForm.description? "add-item__input--error-state" : "" } ${"add-item__description"}`}
                 name="description"
                 type="text"
                 value={newItem.description?.description}
                 onChange={handleOnChangeNewItem}
                 placeholder={placeholder.placeholderDescription}
-              ></input>
+              ></textarea>
             </label>
             <Button text="SUBMIT" SVG={<PublishOutlinedIcon />} />
           </div>

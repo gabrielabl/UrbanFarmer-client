@@ -1,0 +1,72 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+//ADD COLLECTION ITEM
+
+.add-item{
+    //ADD ITEM FORM WRAPPER
+    &__container{
+        @include page-padding-default;
+        background-color: $BACKGROUND_DARK;
+        color: $SECONDARY_TEXT_COLOUR;
+        text-transform: uppercase;
+    };
+    //ADD ITEM FORM 
+    &__form{
+        @include tablet{
+            display: flex;
+            gap: 24px;
+            }
+    }
+    //IMAGE DIV WRAPPER
+    &__image{
+height: 100%;
+    }
+    //TEXT DIV WRAPPER
+    &__text{
+height: 100%;
+@include tablet{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    @include desktop{
+        width: 40vw;
+    }
+
+}
+
+    }
+    //ADD ITEM PREVIEW INPUT
+    &__preview{
+        height: 100%;
+        width: 90vw;
+        @include tablet{
+            height: 80%;
+            width: 50vw;
+            padding-bottom: 16px
+        }
+        @include desktop{
+            width: 40vw
+        }
+    };
+    //ALL TEXT INPUT
+    &__input{
+        @include input-default;
+       @include input-colour-set-primary;
+       text-transform: uppercase;
+       @include tablet{
+        width: 100%;
+       }
+    };
+    //DESCRIPTION INPUT
+    &__description{
+        font-family: 'Arimo', sans-serif;
+        @include tablet{
+                    height: 100%;
+        }
+
+        @include desktop{
+        // height: 60%;
+        }
+    }
+}
