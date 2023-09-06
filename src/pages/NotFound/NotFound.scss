@@ -1,0 +1,16 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//NOT FOUND PAGE
+.not-found{
+    &__container{
+        @include page-padding-default;
+        color: $SECONDARY_TEXT_COLOUR;
+        font-weight: 700;
+        height: 100vh;
+        text-align: center;
+        background-image: url('../../Assets/images/not-found-background.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+}
