@@ -54,6 +54,8 @@
     }
     //USER AVATAR
     &__avatar{
+        border: solid 4px $SECONDARY_TEXT_COLOUR;
+        padding: 10px;
         align-self: center;
         h2{
        text-align: center;
