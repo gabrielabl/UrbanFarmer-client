@@ -70,7 +70,7 @@ const ProfileDescription = ({
           </ul>
           <li>TRADES {trades}</li>
         </ul>
-        <Link to={`/profile/${profileId}/collection`}> <button style={seeCollectionBtn}>SEE COLLECTION</button></Link>
+        <Link className="profile-page__collection-link"  to={`/profile/${profileId}/collection`}> <button className="profile-page__collection-btn" style={seeCollectionBtn}>SEE COLLECTION</button></Link>
       </section>
 
       {/* ABOUT PROFILE SECTION */}
