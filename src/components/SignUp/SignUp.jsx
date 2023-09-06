@@ -210,9 +210,9 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
   };
 
   return (
+  <>
+    <AuthHeader navHeader={"HOME"} navUrl={"/"} />
     <main className="signup-page__main">
-      <AuthHeader navHeader={"HOME"} navUrl={"/"} />
-
       <form className="signup-page__container" onSubmit={signUpHandleSubmit}>
         <h2>SIGN UP</h2>
 
@@ -255,6 +255,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
    <ButtonAuth />
       </form>
     </main>
+    </>
   );
 };
 
