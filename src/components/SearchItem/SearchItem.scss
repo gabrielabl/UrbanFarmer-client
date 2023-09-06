@@ -40,4 +40,14 @@
        text-align: center;
         }
     }
+
+
+
+
+    &__no-item{
+        text-transform: uppercase;
+        height: 100vh;
+        color: $PRIMARY_CTA;
+    }
+
 }

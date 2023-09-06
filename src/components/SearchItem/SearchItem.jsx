@@ -44,6 +44,7 @@ const SearchItem = ({ baseURL }) => {
       <Header />
       <main className="search-item__main">
         <h1 className="search-item__title">You search for "{search}"</h1>
+        {searchData.length === 0? <div className="search-item__no-item">NO ITEMS FOUND FOR {search}</div> :
         <div>
           <ul className="search-item__container-wrapper">
             {searchData.map((item) => (
@@ -68,6 +69,7 @@ const SearchItem = ({ baseURL }) => {
             ))}
           </ul>
         </div>
+        }
       </main>
 
       <Footer />
