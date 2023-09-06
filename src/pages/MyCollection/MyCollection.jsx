@@ -269,7 +269,7 @@ const MyCollection = ({ baseURL }) => {
             </ul>
 
             <Link className="collection-page__btn" to="/additem">
-              <Button style={addMoreBtn} text="ADD MORE" />
+              <Button classVar={"collection-page__btn"} style={addMoreBtn} text="ADD MORE" />
             </Link>
           </section>
         )}
