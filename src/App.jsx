@@ -41,7 +41,7 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/profile" element={<ProfilePage baseURL={baseURL} setBackground={setBackground} />}></Route>
           <Route path="/signup" element={<SignUp setBackground={setBackground} signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login setBackground={setBackground} loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
-          <Route path="/mycollection" element={<MyCollection  baseURL={baseURL}/>}></Route>
+          <Route path="/mycollection" element={<MyCollection setBackground={setBackground} baseURL={baseURL}/>}></Route>
           <Route path="/additem" element={<AddItem baseURL={baseURL}/>}></Route>
           <Route path="/search" element={<SearchItem baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId" element={<ProfilePage baseURL={baseURL}/>}></Route>

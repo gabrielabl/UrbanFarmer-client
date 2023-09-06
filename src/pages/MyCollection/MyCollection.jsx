@@ -10,7 +10,7 @@ import { Link, useParams } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-const MyCollection = ({ baseURL }) => {
+const MyCollection = ({ baseURL, setBackground }) => {
   // VARIABLES
   let navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
@@ -69,6 +69,10 @@ const MyCollection = ({ baseURL }) => {
             setCollectionData(res.data);
             setLoading(false);
             setActiveCarousel(false);
+            //SETTING BACKGROUND FOR PROFILE
+            setBackground({
+              backgroundColor: "#F5DECD",
+            });
           })
           .catch((err) => {
             console.log(err);
@@ -85,6 +89,10 @@ const MyCollection = ({ baseURL }) => {
             setCollectionData(res.data);
             setLoading(false);
             setActiveCarousel(false);
+            //SETTING BACKGROUND FOR PROFILE
+            setBackground({
+              backgroundColor: "#F5DECD",
+            });
           })
           .catch((err) => {
             console.log(err);
@@ -101,8 +109,7 @@ const MyCollection = ({ baseURL }) => {
   //MOBILE SCREEN USER EFFECT
   useEffect(
     () => {
-
-      //IF COLLECTION DATA EMPTY IT WILL TO PROCEED WITH ACTIVE ITEMS 
+      //IF COLLECTION DATA EMPTY IT WILL TO PROCEED WITH ACTIVE ITEMS
       if (collectionData.message) {
         console.log("no items");
       } else {
@@ -224,14 +231,22 @@ const MyCollection = ({ baseURL }) => {
       <main className="collection-page__main">
         {collectionData.message ? (
           <div className="collection-page__no-items-wrapper">
-            <p className="collection-page__no-items">YOU HAVE NO ITEMS IN YOUR COLLECTION</p>
+            <p className="collection-page__no-items">
+              YOU HAVE NO ITEMS IN YOUR COLLECTION
+            </p>
             <Link className="collection-page__btn" to="/additem">
-              <Button classVar={"collection-page__btn"} style={addMoreBtn} text="ADD MORE" />
+              <Button
+                classVar={"collection-page__btn"}
+                style={addMoreBtn}
+                text="ADD MORE"
+              />
             </Link>
           </div>
         ) : (
           <section className="collection-page__container">
-            <h1 className="collection-page__title">{collectionData[0].user_name}'S COLLECTION</h1>
+            <h1 className="collection-page__title">
+              {collectionData[0].user_name}'S COLLECTION
+            </h1>
             <ul className="collection-page__item-container">
               {mobileScreen ? (
                 <ArrowBackIosIcon onClick={backCarouselHandle} />
@@ -269,7 +284,11 @@ const MyCollection = ({ baseURL }) => {
             </ul>
 
             <Link className="collection-page__btn" to="/additem">
-              <Button classVar={"collection-page__btn"} style={addMoreBtn} text="ADD MORE" />
+              <Button
+                classVar={"collection-page__btn"}
+                style={addMoreBtn}
+                text="ADD MORE"
+              />
             </Link>
           </section>
         )}
