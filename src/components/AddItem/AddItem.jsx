@@ -131,8 +131,11 @@ const AddItem = ({ baseURL }) => {
       <Header />
       <main className="add-item__container">
         <h1>{user_name}'S COLLECTION</h1>
-        <form onSubmit={addNewItemHandleSubmit}>
-          <div>
+        <form 
+        className="add-item__form"
+        onSubmit={addNewItemHandleSubmit}>
+          <div 
+          className="add-item__image">
             <img
             className="add-item__preview"
               src={!previewItem ? imgPlaceholder : previewItem}
@@ -155,7 +158,8 @@ const AddItem = ({ baseURL }) => {
             ></input>
           </div>
 
-          <div>
+          <div
+           className="add-item__text">
             <label>
               ITEM NAME
               <input
@@ -169,14 +173,14 @@ const AddItem = ({ baseURL }) => {
             </label>
             <label>
               DESCRIPTION
-              <input
-                className={`add-item__input ${errorStateForm.description? "add-item__input--error-state" : "" }`}
+              <textarea
+                className={`add-item__input ${errorStateForm.description? "add-item__input--error-state" : "" } ${"add-item__description"}`}
                 name="description"
                 type="text"
                 value={newItem.description?.description}
                 onChange={handleOnChangeNewItem}
                 placeholder={placeholder.placeholderDescription}
-              ></input>
+              ></textarea>
             </label>
             <Button text="SUBMIT" SVG={<PublishOutlinedIcon />} />
           </div>
