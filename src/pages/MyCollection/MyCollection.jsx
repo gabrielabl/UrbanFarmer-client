@@ -221,7 +221,7 @@ const MyCollection = ({ baseURL }) => {
   return (
     <>
       <Header />
-      <main className="collection-page__container">
+      <main className="collection-page__main">
         {collectionData.message ? (
           <div>
             <p>YOU HAVE NO ITEMS IN YOUR COLLECTION</p>
@@ -230,8 +230,8 @@ const MyCollection = ({ baseURL }) => {
             </Link>
           </div>
         ) : (
-          <section>
-            <h1>{collectionData[0].user_name}'S COLLECTION</h1>
+          <section className="collection-page__container">
+            <h1 className="collection-page__title">{collectionData[0].user_name}'S COLLECTION</h1>
             <ul className="collection-page__item-container">
               {mobileScreen ? (
                 <ArrowBackIosIcon onClick={backCarouselHandle} />
