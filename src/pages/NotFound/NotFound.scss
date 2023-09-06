@@ -1,0 +1,38 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//NOT FOUND PAGE
+.not-found {
+  &__container {
+    @include page-padding-default;
+    color: $SECONDARY_TEXT_COLOUR;
+    font-weight: 700;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background-image: url("../../Assets/images/not-found-background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    @include tablet {
+      padding: 1.5rem;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+  &__code {
+    @include tablet {
+      font-size: 5rem;
+    }
+    @include desktop {
+      font-size: 10rem;
+    }
+  }
+  &__info {
+    @include tablet {
+      font-size: 2.5rem;
+    }
+    @include desktop {
+      font-size: 5rem;
+    }
+  }
+}

@@ -26,8 +26,10 @@ const StartPage = ({setBackground}) => {
   },[])
 
   return (
+    <>
+    <AuthHeader navHeader={"ABOUT"} navUrl={"/about"} />
     <main className="start-page__main">
-      <AuthHeader navHeader={"ABOUT"} navUrl={"/about"} />
+
       <div className="start-page__container">
         <img className="logo" src={Logo} alt="urban-farmer-logo"></img>
         <section>
@@ -41,6 +43,7 @@ const StartPage = ({setBackground}) => {
         </section>
       </div>
     </main>
+    </>
   );
 };
 export default StartPage;

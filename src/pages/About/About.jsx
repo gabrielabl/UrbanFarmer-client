@@ -1,13 +1,21 @@
 import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import Footer from "../../components/Footer/Footer";
 import "./About.scss";
-import logo from "../../Assets/logo/urban-farmer-logo.png";
+import logo from "../../Assets/logo/urban-farmer-logo-light.png"
+import { useEffect } from "react";
 
-const About = () => {
+const About = ({setBackground}) => {
+
+//SETTING BACKGROUND WHEN PAGE LOADS
+useEffect(()=>{
+setBackground({backgroundColor: '#FD7988'})
+},[])
+
   return (
     <>
       <AuthHeader navHeader={"HOME"} navUrl={"/"} />
-      <main>
+      <main className="about__wrapper">
+        <div className="about__container">
         <p>
           UrbanFarmer is a platform where city residents who are enthusiastic
           about growing their food and crafting farm-like products, such as
@@ -20,7 +28,8 @@ const About = () => {
           regardless of their tech skills, can enjoy the trading experience
           within the community.
         </p>
-        <img src={logo} alt="urbanFarmer-logo"></img>
+        <img className="logo" src={logo} alt="urbanFarmer-logo"></img>
+        </div>
       </main>
       <Footer />
     </>

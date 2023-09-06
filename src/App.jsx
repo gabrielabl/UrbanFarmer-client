@@ -15,8 +15,8 @@ import BackgroundPattern from './Assets/images/start-page-pattern.svg'
 function App() {
   //Variables
   const baseURL = process.env.REACT_APP_BASE_URL;
+  //BACKGROUND FOR THE WHOLE PAGE
   const [background, setBackground]= useState({ backgroundColor: '#F5DECD'});
-
 
 //FORM VARIABLE STATES
 const [signUpVar, setSignUpVar] = useState({
@@ -37,7 +37,7 @@ const [signUpVar, setSignUpVar] = useState({
       <div style={background} className="App">
         <Routes>
           <Route path="/" element={<StartPage setBackground={setBackground} baseURL={baseURL}/>}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/about" element={<About setBackground={setBackground} />}></Route>
           <Route path="/profile" element={<ProfilePage baseURL={baseURL} setBackground={setBackground} />}></Route>
           <Route path="/signup" element={<SignUp setBackground={setBackground} signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login setBackground={setBackground} loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
@@ -46,7 +46,7 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/search" element={<SearchItem baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId" element={<ProfilePage baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId/collection" element={<MyCollection baseURL={baseURL}/>}></Route>
-          <Route path="*" element={<NotFound />}></Route>
+          <Route path="*" element={<NotFound setBackground={setBackground}  />}></Route>
 
         </Routes>
       </div>

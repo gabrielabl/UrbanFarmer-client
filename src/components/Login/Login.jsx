@@ -65,9 +65,9 @@ const Login = ({ loginVar, setLoginVar, baseURL, setBackground }) => {
   };
 
   return (
+    <>
+    <AuthHeader navHeader={"HOME"} navUrl={"/"} />
     <main className="login-page__main">
-      <AuthHeader navHeader={"HOME"} navUrl={"/"} />
-
       {/* LOGIN FORM */}
       <form className="login-page__container" onSubmit={loginHandleSubmit}>
         <h2>WELCOME</h2>
@@ -98,6 +98,7 @@ const Login = ({ loginVar, setLoginVar, baseURL, setBackground }) => {
         <ButtonAuth />
       </form>
     </main>
+    </>
   );
 };
 

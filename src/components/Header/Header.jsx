@@ -8,7 +8,7 @@ import Person2Icon from '@mui/icons-material/Person2';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import EmailIcon from '@mui/icons-material/Email';
 
-const Header = () => {
+const Header = ({headerStyleSwitch}) => {
   // VARIABLES
   const [search, setSearch] = useState();
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -54,7 +54,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header__container">
+    <header className={`header__container ${headerStyleSwitch? "header__container--not-found" : ""}`}>
       <nav className="header__icon-nav-wrapper">
         <NavLink className="header__nav-link" to="/">
           <img
@@ -65,13 +65,13 @@ const Header = () => {
         </NavLink>
         <ul className="header__nav">
           {/* NAVIGATION */}
-          <NavLink className="header__nav-link" to="/profile">
+          <NavLink className={`header__nav-link ${headerStyleSwitch?"header__nav-link--not-found" :""}`} to="/profile">
             <li>{mobileScreen? <Person2Icon fontSize="large" /> : "PROFILE"}</li>
           </NavLink>
-          <NavLink className="header__nav-link" to="/mycollection">
+          <NavLink className={`header__nav-link ${headerStyleSwitch?"header__nav-link--not-found" :""}`}  to="/mycollection">
             <li>{mobileScreen? <CollectionsIcon fontSize="large"  /> :"MY COLLECTION" }</li>
           </NavLink>
-          <NavLink className="header__nav-link">
+          <NavLink className={`header__nav-link ${headerStyleSwitch?"header__nav-link--not-found" :""}`} >
             <li>{mobileScreen? <EmailIcon  fontSize="large" /> : "MESSAGES"}</li>
           </NavLink>
         </ul>
@@ -82,7 +82,7 @@ const Header = () => {
           <li className="header__search-container">
             <SearchIcon />
             <input
-              className="header__search"
+              className={`header__search ${headerStyleSwitch? "header__search--not-found": ""}`}
               name="search"
               type="text"
               onChange={handleOnChangeSearch}
