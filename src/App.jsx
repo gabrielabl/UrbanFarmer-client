@@ -37,7 +37,7 @@ const [signUpVar, setSignUpVar] = useState({
       <div style={background} className="App">
         <Routes>
           <Route path="/" element={<StartPage setBackground={setBackground} baseURL={baseURL}/>}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/about" element={<About setBackground={setBackground} />}></Route>
           <Route path="/profile" element={<ProfilePage baseURL={baseURL} setBackground={setBackground} />}></Route>
           <Route path="/signup" element={<SignUp setBackground={setBackground} signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login setBackground={setBackground} loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>

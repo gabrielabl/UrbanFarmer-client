@@ -1,0 +1,17 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.about{
+    &__wrapper{
+        @include page-padding-default;
+        font-weight: 700;
+        color: $SECONDARY_TEXT_COLOUR;
+        text-transform: uppercase;
+        height: 100vh;
+    }
+    &__container{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}
