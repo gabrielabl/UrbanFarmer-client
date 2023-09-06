@@ -52,7 +52,7 @@ const SearchItem = ({ baseURL }) => {
                 <Link to={`/profile/${item.users_id}/collection`}>
                 <img className="search-item__image" src={`${baseURL}/${item.item_photo}`}></img>
                 </Link>
-                <div>
+                <div className="search-item__info">
                   <h2>{item.item_name}</h2>
                   <p>{item.description}</p>
                 </div>

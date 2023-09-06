@@ -9,17 +9,21 @@
     &__title{
         color: $SECONDARY_CTA;
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 1.25rem;
     };
     //ITEM IMAGE
     &__image{
         width: 100%;
         height: 40vh;
-        border: solid 4px $BACKGROUND_LIGHT;
+        border: solid 0.25rem $BACKGROUND_LIGHT;
         @include tablet{
             width: 100%;
             height: 100%;
         }
+    }
+    //ITEM NAME AND DESCRIPTION WRAPPER
+    &__info{
+        align-self: flex-start;
     }
     //LIST 
     &__container-wrapper{
@@ -35,13 +39,18 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 16px;
-        margin-bottom: 16px;
+        padding: 1rem;
+        margin-bottom: 1rem;
         @include tablet{
             flex-direction: row;
-            gap: 16px;
-            padding: 24px;
+            gap: 1rem;
+            padding: 1.5rem;
         }
+        @include desktop{
+            width: 60vw;
+            gap: 1.5rem;
+        }
+
     }
     //USER AVATAR
     &__avatar{
@@ -51,9 +60,7 @@
         }
     }
 
-
-
-
+    //NOT ITEMS FOUND IN SEARCH
     &__no-item{
         text-transform: uppercase;
         height: 100vh;
