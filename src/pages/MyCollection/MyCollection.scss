@@ -62,4 +62,15 @@
     border: none;
     color: $SECONDARY_CTA;
     }
+    // TRADE BUTTON
+    &__trade-btn{
+        text-decoration: none;
+        font-weight: 700;
+        color: $SECONDARY_TEXT_COLOUR;
+        background-color: $SECONDARY_CTA;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        padding: 6px;        
+    }
 }

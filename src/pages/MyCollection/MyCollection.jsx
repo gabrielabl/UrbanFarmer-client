@@ -242,7 +242,7 @@ const MyCollection = ({ baseURL }) => {
                   ></img>
                   <h2>{item.item_name}</h2>
                   <p>{item.description}</p>
-                  <a style={tradeBtn} href={`mailto:${item.email}`}>
+                  <a className="collection-page__trade-btn" style={tradeBtn} href={`mailto:${item.email}`}>
                     TRADE
                   </a>
                   <button
