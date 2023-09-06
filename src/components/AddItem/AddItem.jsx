@@ -15,8 +15,8 @@ const AddItem = ({ baseURL }) => {
   const formData = new FormData();
   const [previewItem, setPreviewItem] = useState(imgPlaceholder);
   const [placeholder, setPlaceholder] = useState({
-    placeholderName: "Make sure to include a name for your item",
-    placeholderDescription: "Make sure to describe your item",
+    placeholderName: "include a name for your item",
+    placeholderDescription: "describe your item",
   });
   // RE-DIRECT
   let navigate = useNavigate();
@@ -117,11 +117,12 @@ const AddItem = ({ baseURL }) => {
   return (
     <>
       <Header />
-      <main>
+      <main className="add-item__container">
         <h1>{user_name}'S COLLECTION</h1>
         <form onSubmit={addNewItemHandleSubmit}>
           <div>
             <img
+            className="add-item__preview"
               src={!previewItem ? imgPlaceholder : previewItem}
               alt="collectionItem-photo-edit"
             ></img>
@@ -132,6 +133,7 @@ const AddItem = ({ baseURL }) => {
             />
 
             <input
+
               filename={user_name}
               type="file"
               name="item_photo"
@@ -146,6 +148,7 @@ const AddItem = ({ baseURL }) => {
             <label>
               ITEM NAME
               <input
+                className="add-item__input"
                 name="item_name"
                 type="text"
                 value={newItem.item_name?.item_name}
@@ -156,6 +159,7 @@ const AddItem = ({ baseURL }) => {
             <label>
               DESCRIPTION
               <input
+               className="add-item__input"
                 name="description"
                 type="text"
                 value={newItem.description?.description}

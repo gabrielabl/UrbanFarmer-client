@@ -1,0 +1,22 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+//ADD COLLECTION ITEM
+
+.add-item{
+    &__container{
+        @include page-padding-default;
+        background-color: $BACKGROUND_DARK;
+        color: $SECONDARY_TEXT_COLOUR;
+        text-transform: uppercase;
+    };
+    &__preview{
+        height: 100%;
+        width: 90vw;
+    };
+    &__input{
+        @include input-default;
+       @include input-colour-set-auth;
+       text-transform: uppercase;
+    }
+}
