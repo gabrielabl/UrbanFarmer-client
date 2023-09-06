@@ -101,34 +101,39 @@ const MyCollection = ({ baseURL }) => {
   //MOBILE SCREEN USER EFFECT
   useEffect(
     () => {
-      //IF USER ONLY HAVE ONE ITEM IN COLLECTION
-      if (mobileScreen) {
-        if (collectionData.length <= 1) {
-          setActiveItems(collectionData);
-        } else {
-          //INITIAL VALUE FOR CAROUSEL TO RUN
-          if (!activeCarousel) {
-            setActiveItems(collectionData.splice(0, 1));
-            console.log(activeItems);
-          } else {
-            console.log(activeItems);
-          }
-        }
+
+      //IF COLLECTION DATA EMPTY IT WILL TO PROCEED WITH ACTIVE ITEMS 
+      if (collectionData.message) {
+        console.log("no items");
       } else {
-        if (collectionData.length <= 3) {
-          setActiveItems(collectionData);
-        } else {
-          if (!activeCarousel) {
-            setActiveItems(collectionData.splice(0, 3));
-            console.log(activeItems);
+        //IF USER ONLY HAVE ONE ITEM IN COLLECTION
+        if (mobileScreen) {
+          if (collectionData.length <= 1) {
+            setActiveItems(collectionData);
           } else {
-            console.log(activeItems);
+            //INITIAL VALUE FOR CAROUSEL TO RUN
+            if (!activeCarousel) {
+              setActiveItems(collectionData.splice(0, 1));
+              console.log(activeItems);
+            } else {
+              console.log(activeItems);
+            }
+          }
+        } else {
+          if (collectionData.length <= 3) {
+            setActiveItems(collectionData);
+          } else {
+            if (!activeCarousel) {
+              setActiveItems(collectionData.splice(0, 3));
+              console.log(activeItems);
+            } else {
+              console.log(activeItems);
+            }
           }
         }
       }
     },
-    [collectionData],
-    [activeItems],
+    [collectionData, activeItems],
     [profileId]
   );
 
@@ -242,7 +247,11 @@ const MyCollection = ({ baseURL }) => {
                   ></img>
                   <h2>{item.item_name}</h2>
                   <p>{item.description}</p>
-                  <a className="collection-page__trade-btn" style={tradeBtn} href={`mailto:${item.email}`}>
+                  <a
+                    className="collection-page__trade-btn"
+                    style={tradeBtn}
+                    href={`mailto:${item.email}`}
+                  >
                     TRADE
                   </a>
                   <button

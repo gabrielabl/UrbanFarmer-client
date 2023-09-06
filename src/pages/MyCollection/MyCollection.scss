@@ -16,7 +16,6 @@
         //FORWARD AND BACKWARD ICONS
         svg{
             color: $SECONDARY_CTA;
-            // align-self: center;
         }
     }
 
@@ -42,7 +41,7 @@
         flex-direction: column;
         align-items: center;
         @include tablet{
-        margin: 8px;
+        margin: 0.5rem;
         }
    
     }
