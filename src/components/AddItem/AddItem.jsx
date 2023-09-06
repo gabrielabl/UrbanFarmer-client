@@ -36,6 +36,12 @@ const AddItem = ({ baseURL }) => {
     hiddenUserPhotoInput.current.click();
   };
 
+   //FORM VALIDATION ERROR STATE
+ const [errorStateForm, setErrorStateForm] = useState({
+  item_name: false,
+  description: false,
+});
+
   //FORM VALIDATION
   const isFieldEmpty = () => {
     //DESTRUCTURING
@@ -46,6 +52,7 @@ const AddItem = ({ baseURL }) => {
         ...placeholder,
         placeholderName: "No fields should be empty",
       });
+      setErrorStateForm({...errorStateForm, item_name: true})
       return false;
     }
     if (!description) {
@@ -53,9 +60,11 @@ const AddItem = ({ baseURL }) => {
         ...placeholder,
         placeholderDescription: "No fields should be empty",
       });
+      setErrorStateForm({...errorStateForm, description: true})
       return false;
     }
     if (!item_photo) {
+      alert('PLEASE INCLUDE A  📸 FOR YOUR ITEM')
       return false;
     }
     return true;
@@ -133,7 +142,6 @@ const AddItem = ({ baseURL }) => {
             />
 
             <input
-
               filename={user_name}
               type="file"
               name="item_photo"
@@ -148,7 +156,7 @@ const AddItem = ({ baseURL }) => {
             <label>
               ITEM NAME
               <input
-                className="add-item__input"
+                className={`add-item__input ${errorStateForm.item_name? "add-item__input--error-state" : "" }`}
                 name="item_name"
                 type="text"
                 value={newItem.item_name?.item_name}
@@ -159,7 +167,7 @@ const AddItem = ({ baseURL }) => {
             <label>
               DESCRIPTION
               <input
-               className="add-item__input"
+                className={`add-item__input ${errorStateForm.description? "add-item__input--error-state" : "" }`}
                 name="description"
                 type="text"
                 value={newItem.description?.description}

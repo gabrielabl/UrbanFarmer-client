@@ -67,7 +67,7 @@
   }
 };
 
-@mixin input-colour-set-auth{
+@mixin input-colour-set-primary{
   background-color: $BACKGROUND_DARK;
   border: solid 0.125rem $PRIMARY_CTA;
   color: $SECONDARY_TEXT_COLOUR;
