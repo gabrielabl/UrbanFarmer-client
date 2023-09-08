@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Avatar from "../Avatar/Avatar";
 import { Link } from "react-router-dom";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const SearchItem = ({ baseURL,setBackground }) => {
   // VARIABLES
@@ -38,9 +39,17 @@ const SearchItem = ({ baseURL,setBackground }) => {
   }, [searchData,setBackground,baseURL,search,token]);
 
   //WHILE DATA IS NOT RENDERED
-  if (isLoading) {
-    return <div>LOADING..</div>;
-  }
+  if(isLoading){
+    return <div  >
+      <Header />
+      <div className="loading-page">
+      <p >LOADING...</p><LoadingButton loading={true} />
+      </div>
+ 
+      <Footer />
+      </div>;
+   };
+
 
   return (
     <>

@@ -6,6 +6,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
 import EditProfile from "./../../components/EditProfile/EditProfile";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const ProfilePage = ({ baseURL, setBackground}) => {
   
@@ -93,7 +94,14 @@ if(profileId === undefined){
 
 
   if(isLoading){
-    return <div >Loading...</div>;
+    return <div  >
+      <Header />
+      <div className="loading-page">
+      <p >LOADING...</p><LoadingButton loading={true} />
+      </div>
+ 
+      <Footer />
+      </div>;
    };
 
 

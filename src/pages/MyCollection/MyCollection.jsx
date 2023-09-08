@@ -9,6 +9,7 @@ import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import { Link, useParams } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const MyCollection = ({ baseURL, setBackground }) => {
   // VARIABLES
@@ -215,9 +216,17 @@ const MyCollection = ({ baseURL, setBackground }) => {
   }, [profileId,adminUserId,hide,show]);
 
   //WHILE DATA IS NOT RENDERED
-  if (isLoading) {
-    return <div>LOADING..</div>;
-  }
+  if(isLoading){
+    return <div  >
+      <Header />
+      <div className="loading-page">
+      <p >LOADING...</p><LoadingButton loading={true} />
+      </div>
+ 
+      <Footer />
+      </div>;
+   };
+
 
   return (
     <>

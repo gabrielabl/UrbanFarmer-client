@@ -47,3 +47,14 @@ main{
     width: 200px;
   }
 }
+
+//LOADING PAGE
+.loading-page{
+  @include page-padding-default;
+  display: flex;
+  height: 100vh;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  color: $SECONDARY_CTA;
+}
