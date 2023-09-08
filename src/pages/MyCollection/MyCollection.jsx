@@ -36,11 +36,12 @@ const MyCollection = ({ baseURL, setBackground }) => {
     } else {
       setMobileScreen(false);
     }
-  });
+  },[screenSize]);
 
   //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER
-  const show = { display: "flex" };
-  const hide = { display: "none" };
+  const [show] = useState({ display: "flex" });
+  const [hide] = useState({ display: "none" });
+
   const [deleteBtn, setDeleteBtn] = useState(show);
   const [addMoreBtn, setAddMoreBtn] = useState(show);
   const [tradeBtn, setTradeBtn] = useState(hide);
@@ -96,10 +97,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
           });
       }
     },
-    [mobileScreen, profileId],
-    [adminUserId],
-    [collectionData],
-    [deleteBtn]
+    [mobileScreen, profileId,adminUserId,baseURL,navigate,setBackground,token]
   );
 
   //MOBILE SCREEN USER EFFECT
@@ -117,9 +115,8 @@ const MyCollection = ({ baseURL, setBackground }) => {
             //INITIAL VALUE FOR CAROUSEL TO RUN
             if (!activeCarousel) {
               setActiveItems(collectionData.splice(0, 1));
-              console.log(activeItems);
             } else {
-              console.log(activeItems);
+            console.log('didnt work')
             }
           }
         } else {
@@ -128,15 +125,15 @@ const MyCollection = ({ baseURL, setBackground }) => {
           } else {
             if (!activeCarousel) {
               setActiveItems(collectionData.splice(0, 3));
-              console.log(activeItems);
+
             } else {
-              console.log(activeItems);
+
             }
           }
         }
       }
     },
-    [collectionData],
+    [collectionData,activeCarousel,mobileScreen],
     [profileId]
   );
 
@@ -199,6 +196,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
       });
   };
 
+  //CONDITIONAL BUTTONS 
   useEffect(() => {
     if (profileId !== undefined) {
       setAddMoreBtn(hide);
@@ -214,7 +212,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
       setDeleteBtn(show);
       setTradeBtn(hide);
     }
-  }, [profileId]);
+  }, [profileId,adminUserId,hide,show]);
 
   //WHILE DATA IS NOT RENDERED
   if (isLoading) {

@@ -35,7 +35,7 @@ const SearchItem = ({ baseURL,setBackground }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [searchData]);
+  }, [searchData,setBackground,baseURL,search,token]);
 
   //WHILE DATA IS NOT RENDERED
   if (isLoading) {
@@ -53,7 +53,7 @@ const SearchItem = ({ baseURL,setBackground }) => {
             {searchData.map((item) => (
               <li className="search-item__container" key={item.id}>
                 <Link to={`/profile/${item.users_id}/collection`}>
-                <img className="search-item__image" src={`${baseURL}/${item.item_photo}`}></img>
+                <img className="search-item__image" alt={item.item_name} src={`${baseURL}/${item.item_photo}`}></img>
                 </Link>
                 <div className="search-item__info">
                   <h2>{item.item_name}</h2>

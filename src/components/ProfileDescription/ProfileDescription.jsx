@@ -44,7 +44,7 @@ const ProfileDescription = ({
       setEditButton(show);
       setSeeCollectionBtn(hide);
     }
-  }, [profileId]);
+  }, [profileId,adminUserId,hide,show]);
 
   return (
     <div className="profile-page__wrapper" style={!editMode ? show : hide}>

@@ -10,7 +10,6 @@ import MyCollection from "./pages/MyCollection/MyCollection";
 import AddItem from "./components/AddItem/AddItem";
 import SearchItem from "./components/SearchItem/SearchItem";
 import NotFound from "./pages/NotFound/NotFound";
-import BackgroundPattern from './Assets/images/start-page-pattern.svg'
 
 function App() {
   //Variables

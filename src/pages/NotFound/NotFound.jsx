@@ -11,7 +11,7 @@ const NotFound =({setBackground}) =>{
   useEffect(()=>{
     setBackground({backgroundColor: '#FD7988'})
     setHeaderStyleSwitch(true)
-  },[])
+  },[setBackground])
 
     return(
         <>

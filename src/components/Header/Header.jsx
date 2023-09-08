@@ -25,7 +25,7 @@ const Header = ({headerStyleSwitch}) => {
     } else {
       setMobileScreen(false);
     }
-  });
+  },[screenSize]);
 
   // RE-DIRECT
   let navigate = useNavigate();

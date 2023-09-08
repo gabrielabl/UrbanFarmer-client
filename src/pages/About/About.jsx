@@ -9,7 +9,7 @@ const About = ({setBackground}) => {
 //SETTING BACKGROUND WHEN PAGE LOADS
 useEffect(()=>{
 setBackground({backgroundColor: '#FD7988'})
-},[])
+},[setBackground])
 
   return (
     <>

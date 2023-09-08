@@ -24,7 +24,7 @@ const Login = ({ loginVar, setLoginVar, baseURL, setBackground }) => {
       backgroundImage: `url(${BackgroundPattern})`,
       backgroundSize: "40px",
     });
-  }, []);
+  }, [setBackground]);
 
   //HANDLE ON CHANGE
   const handleOnChangeLogin = (event) => {

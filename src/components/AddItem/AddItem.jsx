@@ -139,7 +139,7 @@ const AddItem = ({ baseURL }) => {
             <img
             className="add-item__preview"
               src={!previewItem ? imgPlaceholder : previewItem}
-              alt="collectionItem-photo-edit"
+              alt="collectionItem-preview"
             ></img>
             <Button
               onClick={itemPhotoHandle}

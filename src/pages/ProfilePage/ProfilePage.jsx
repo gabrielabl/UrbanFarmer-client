@@ -89,7 +89,7 @@ if(profileId === undefined){
   });
 }
 
-  },[profileId]);
+  },[profileId,baseURL,navigate,setBackground,token]);
 
 
   if(isLoading){

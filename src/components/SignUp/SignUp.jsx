@@ -37,7 +37,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
         backgroundSize: '40px'
       });
     
-    },[])
+    },[setBackground])
 
   //FORM VALIDATION ERROR STATE
 
@@ -59,7 +59,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
 
         setIsEmailDB("");
       });
-  }, [email]);
+  }, [email,baseURL]);
 
   //FORM VALIDATION
   const isFieldEmpty = () => {
