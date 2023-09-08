@@ -1,0 +1,13 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//PRIMARY BUTTON STYLE
+.btn__primary{
+justify-content: center;
+align-items: center;
+background-color: $PRIMARY_CTA;
+color: $SECONDARY_TEXT_COLOUR;
+display: flex;
+gap: 0.625rem;
+margin-bottom: 1rem;
+}

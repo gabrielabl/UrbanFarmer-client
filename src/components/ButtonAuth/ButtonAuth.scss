@@ -1,0 +1,11 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+
+//AUTH BUTTON
+
+.btn__auth{
+    background-color: $SECONDARY_CTA;
+    color: $SECONDARY_TEXT_COLOUR;
+    font-weight: 600;
+}

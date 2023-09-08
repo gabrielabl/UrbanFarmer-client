@@ -1,0 +1,110 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//COLLECTION PAGE
+
+.collection-page {
+  //PAGE WRAPPER
+  &__main {
+    @include page-padding-default;
+    width: 100%;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    color: $SECONDARY_TEXT_COLOUR;
+    //FORWARD AND BACKWARD ICONS
+    svg {
+      color: $SECONDARY_CTA;
+    }
+  }
+  //CONTAINER
+  &__container {
+    background-color: $BACKGROUND_DARK;
+    width: 100%;
+  }
+  //USER COLLECTION TITLE
+  &__title {
+    padding: 1rem;
+  }
+//ITEM PHOTO
+  &__image {
+    padding: 0;
+    height: 80vw;
+    width: 100%;
+    border: solid 8px $BACKGROUND_LIGHT;
+    align-self: center;
+    @include tablet {
+      height: 12.5rem;
+      width: 12.5rem;
+    }
+    @include desktop {
+      height: 18.75rem;
+      width: 18.75rem;
+    }
+  }
+  //CONTAINER THAT WRAPS THE ITEM INDIVIDUALLY 
+  &__item-container {
+    @include page-padding-default;
+    justify-content: center;
+    display: flex;
+    @include tablet {
+      justify-content: center;
+    }
+  }
+
+  //LIST ITEM 
+  &__list-item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    @include tablet {
+      margin: 0.5rem;
+      width: 100%;
+    }
+    //PARAGRAPH  DESCRIPTION
+    p {
+      @include tablet {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  //ADD MORE BUTTON
+  &__btn {
+    text-decoration: none;
+    width: 90%;
+    margin-left: 1.5rem;
+    @include tablet {
+     width: 200px;
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  //DELETE BUTTON
+  &__btn-delete {
+    background-color: $BACKGROUND_DARK;
+    border: none;
+    color: $SECONDARY_CTA;
+  }
+  // TRADE BUTTON
+  &__trade-btn {
+    text-decoration: none;
+    font-weight: 700;
+    color: $SECONDARY_TEXT_COLOUR;
+    background-color: $SECONDARY_CTA;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 0.375rem;
+  }
+ //NO ITEMS CONDITIONAL
+ &__no-items-wrapper{
+  height: 100vh;
+ }
+ &__no-items{
+    color: $PRIMARY_CTA;
+ }
+}

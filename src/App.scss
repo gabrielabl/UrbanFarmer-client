@@ -1,0 +1,49 @@
+@use "./styles/partials/variables" as *;
+@use "./styles/partials/mixins" as *;;
+@use "./styles/partials/typography";
+
+//GENERAL CONFIGURATION
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+}
+
+main{
+  height: 100%;
+}
+
+
+//LOGO
+.logo{
+  height: 24px;
+}
+
+//BUTTONS
+.btn{
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  padding: 8px;
+  width: 90vw;
+  height: 3.125rem;
+  @include tablet{
+    width: 8.75rem;
+  }
+  @include desktop{
+    width: 200px;
+  }
+}
