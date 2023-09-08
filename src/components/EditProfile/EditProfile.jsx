@@ -182,7 +182,7 @@ setEditMode(false)
             type="text"
             value={editProfile.about? editProfile.about : about }
             onChange={handleOnChangeEditProfile}
-            placeholder={about.length == 1 ? "Describe yourself" : about}
+            placeholder={about.length <= 1 ? "Describe yourself" : about}
           ></textarea>
     <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
       <Button text={'CANCEL'} onClick={cancelHandleOnClick} />

@@ -134,7 +134,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
         }
       }
     },
-    [collectionData,activeCarousel,mobileScreen],
+    [collectionData],
     [profileId]
   );
 

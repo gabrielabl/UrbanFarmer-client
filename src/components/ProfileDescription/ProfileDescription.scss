@@ -90,6 +90,11 @@
         border: none;
         padding: 0.625rem;
         font-size: 1rem;
+        &:hover{
+            background-color: $SECONDARY_TEXT_COLOUR;
+            color: $SECONDARY_CTA;
+            border: solid 2px $SECONDARY_CTA;
+        }
         @include tablet{
             font-size: 1.25rem;
         }
