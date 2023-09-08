@@ -7,6 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
 import EditProfile from "./../../components/EditProfile/EditProfile";
 import LoadingButton from '@mui/lab/LoadingButton';
+import ProfileAvatarPlaceholder from '../../Assets/images/avatar-placeholder.png';
 
 const ProfilePage = ({ baseURL, setBackground}) => {
   
@@ -89,9 +90,12 @@ if(profileId === undefined){
     navigate("/search");
   });
 }
-
   },[profileId,baseURL,navigate,setBackground,token]);
 
+//IF AVATAR_PHOTO NO PROVIDED, USE PLACEHOLDER INSTEAD
+if(profileData.avatar_photo <=1){
+  setProfileData({...profileData, avatar_photo: ProfileAvatarPlaceholder })
+};
 
   if(isLoading){
     return <div  >

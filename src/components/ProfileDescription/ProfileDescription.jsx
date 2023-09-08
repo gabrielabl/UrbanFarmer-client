@@ -51,7 +51,7 @@ const ProfileDescription = ({
       {/* MAIN PROFILE DATA */}
       <section className="profile-page__user">
         <Avatar
-          avatar_source={`${baseURL}/${avatar_photo}`}
+          avatar_source={avatar_photo.includes('placeholder')? avatar_photo :`${baseURL}/${avatar_photo}`}
           avatar_alt={"avatar_photo"}
         />
         <h1>{user_name}</h1>
