@@ -49,7 +49,9 @@ const EditProfile = ({
       setEditProfileAvatar({
         [name]: event.target.files[0],
       });
-      setPreviewAvatar(URL.createObjectURL(event.target.files[0]));
+      if(event.target.files[0] !== undefined){
+        setPreviewAvatar(URL.createObjectURL(event.target.files[0]));
+       }
     } else {
       setEditProfile({
         ...editProfile,
