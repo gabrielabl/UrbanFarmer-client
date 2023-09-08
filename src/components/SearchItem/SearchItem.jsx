@@ -6,7 +6,7 @@ import axios from "axios";
 import Avatar from "../Avatar/Avatar";
 import { Link } from "react-router-dom";
 
-const SearchItem = ({ baseURL }) => {
+const SearchItem = ({ baseURL,setBackground }) => {
   // VARIABLES
 
   const [searchData, setSearchData] = useState({});
@@ -28,6 +28,9 @@ const SearchItem = ({ baseURL }) => {
       .then((res) => {
         setSearchData(res.data);
         setLoading(false);
+        setBackground({
+          backgroundColor: "#F5DECD",
+        });
       })
       .catch((err) => {
         console.log(err);

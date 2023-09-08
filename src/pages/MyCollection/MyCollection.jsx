@@ -89,10 +89,6 @@ const MyCollection = ({ baseURL, setBackground }) => {
             setCollectionData(res.data);
             setLoading(false);
             setActiveCarousel(false);
-            //SETTING BACKGROUND FOR PROFILE
-            setBackground({
-              backgroundColor: "#F5DECD",
-            });
           })
           .catch((err) => {
             console.log(err);
