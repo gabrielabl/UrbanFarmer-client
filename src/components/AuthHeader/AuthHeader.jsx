@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./AuthHeader.scss";
 
-const AuthHeader = ({ navHeader, navUrl }) => {
+const AuthHeader = ({ navHeader, navUrl}) => {
   return (
     <header className="auth-header__container">
       <Link className="auth-header__nav-link" to={navUrl}>

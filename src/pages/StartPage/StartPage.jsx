@@ -36,7 +36,7 @@ const StartPage = ({setBackground}) => {
           <Link className="start-page__enter" to={enterHandle()}>
             <h2>ENTER</h2>
           </Link>
-          <p className="start-page__join">NEW TO THE COMMUNITY?</p>
+          <p>NEW TO THE COMMUNITY?</p>
           <Link className="start-page__join" to={"/signup"}>
             JOIN HERE.
           </Link>

@@ -17,7 +17,14 @@
         @include start-page-default-link;
         color: $SECONDARY_TEXT_COLOUR;
         font-weight:600;
-
+        h2{
+        &:hover{
+        opacity: 0.7;
+        }
+        &:active{
+        font-style: oblique;
+        }
+        }
     };
     &__title{
         color: $SECONDARY_TEXT_COLOUR;

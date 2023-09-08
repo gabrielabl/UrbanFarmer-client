@@ -15,6 +15,7 @@
   &__container {
     section {
       @include auth-page-layout-default;
+      color: $SECONDARY_TEXT_COLOUR;
     }
     @include tablet {
       padding-top: 2.5rem;
@@ -29,9 +30,22 @@
   &__enter {
     @include start-page-default-link;
     color: $SECONDARY_TEXT_COLOUR;
+    &:hover{
+      color: $SECONDARY_CTA;
+    }
+    &:active{
+          color: $SECONDARY_TEXT_COLOUR;
+    }
   }
   &__join {
     @include start-page-default-link;
     color: $SECONDARY_TEXT_COLOUR;
+      &:hover{
+        color: $SECONDARY_CTA;
+    }
+    &:active{
+      color: $SECONDARY_TEXT_COLOUR;
+    }
   }
+ 
 }
