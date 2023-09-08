@@ -1,6 +1,53 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
+
+//KEY FRAME ANIMATION
+@keyframes btnEffectProfile {
+    0% {
+      background: linear-gradient(
+        180deg,
+        $PRIMARY_CTA 100%,
+        $BACKGROUND_LIGHT 0%
+      );
+      color: $BACKGROUND_LIGHT;
+    }
+    25% {
+      background: linear-gradient(
+        180deg,
+        $PRIMARY_CTA 75%,
+        $BACKGROUND_LIGHT 25%
+      );
+      color: $PRIMARY_CTA;
+    }
+    50% {
+      background: linear-gradient(
+        180deg,
+        $PRIMARY_CTA 50%,
+        $BACKGROUND_LIGHT 50%
+      );
+      color: $BACKGROUND_LIGHT;
+    }
+    75% {
+      background: linear-gradient(
+        to top,
+        $BACKGROUND_LIGHT 75%,
+        $PRIMARY_CTA 25%
+      );
+      color: $PRIMARY_CTA;
+    }
+    100% {
+      background: linear-gradient(
+        to top,
+        $BACKGROUND_LIGHT 100%,
+        $PRIMARY_CTA 0%
+      );
+      color: linear-gradient(to top, $PRIMARY_CTA 100%, $BACKGROUND_LIGHT 0%);
+      color: $PRIMARY_CTA;
+    }
+  }
+
+
 //PRIMARY BUTTON STYLE
 .btn__primary{
 justify-content: center;
@@ -10,4 +57,14 @@ color: $SECONDARY_TEXT_COLOUR;
 display: flex;
 gap: 0.625rem;
 margin-bottom: 1rem;
+border: solid 1px $PRIMARY_CTA;
+&:hover {
+    animation: btnEffectProfile 0.15s ease-out;
+    background-color: $BACKGROUND_LIGHT;
+    color: $PRIMARY_CTA;
+  }
+  &:active {
+    background-color: $SECONDARY_CTA;
+    color: $BACKGROUND_LIGHT;
+  }
 }

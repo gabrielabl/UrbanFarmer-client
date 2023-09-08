@@ -47,6 +47,9 @@
     align-items: center;
     text-transform: uppercase;
     margin-top: 16px;
+    &::placeholder{
+      color: $SECONDARY_CTA;
+    }
     @include input-default; 
     @include input-colour-set-profile;
     height: 50vh;

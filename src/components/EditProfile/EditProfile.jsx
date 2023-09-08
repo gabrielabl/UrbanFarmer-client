@@ -92,8 +92,7 @@ const EditProfile = ({
           })
           .then((res) => {
             setProfileData(res.data);
-            console.log(res);
-
+       console.log(res.data)
             //CLEARING EDITING DATA FROM OBJECT
             setEditProfile({});
             setEditProfileAvatar({});
@@ -107,8 +106,8 @@ const EditProfile = ({
       });
   };
 
-  //CANCEL HANDLE
 
+  //CANCEL HANDLE
   const cancelHandleOnClick= ()=>{
 setEditMode(false)
   }
@@ -159,7 +158,7 @@ setEditMode(false)
             type="text"
             value={editProfile.city?.city}
             onChange={handleOnChangeEditProfile}
-            placeholder={!city ? "Include your city here" : city}
+            placeholder={city.length <= 1? "Include your city here" : city}
           ></input>
     
           <input
@@ -167,7 +166,7 @@ setEditMode(false)
             type="text"
             value={editProfile.province?.province}
             onChange={handleOnChangeEditProfile}
-            placeholder={!province ? "Include your province here" : province}
+            placeholder={province.length <= 1? "Include your province here" : province}
           ></input>
 
       </div>
@@ -181,7 +180,7 @@ setEditMode(false)
             type="text"
             value={editProfile.about? editProfile.about : about }
             onChange={handleOnChangeEditProfile}
-            placeholder={!about ? "Describe yourself" : about}
+            placeholder={about.length == 1 ? "Describe yourself" : about}
           ></textarea>
     <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
       <Button text={'CANCEL'} onClick={cancelHandleOnClick} />
