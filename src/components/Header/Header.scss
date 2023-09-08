@@ -10,9 +10,9 @@
     flex-direction: column;
     align-items: center;
     color: $SECONDARY_CTA;
-    &--not-found{
+    &--not-found {
       color: $BACKGROUND_LIGHT;
-  }
+    }
     @include page-padding-default;
     @include tablet {
       flex-direction: row;
@@ -51,8 +51,26 @@
     list-style: none;
     color: $SECONDARY_CTA;
     font-weight: 600;
-    &--not-found{
-        color: $BACKGROUND_LIGHT;
+    padding: 10px;
+    &:hover {
+      background-color: $SECONDARY_CTA;
+      color: $SECONDARY_TEXT_COLOUR;
+    }
+    &:active {
+      background-color: $SECONDARY_TEXT_COLOUR;
+      color: $SECONDARY_CTA;
+    }
+    //NOT FOUND PAGE HEADER
+    &--not-found {
+      color: $BACKGROUND_LIGHT;
+      &:hover {
+        background-color: $SECONDARY_TEXT_COLOUR;
+        color: $SECONDARY_CTA;
+      }
+      &:active {
+        background-color: $SECONDARY_CTA;
+        color: $SECONDARY_TEXT_COLOUR;
+      }
     }
   }
 
@@ -84,6 +102,9 @@
   //SIGN OFF
   &__sign-off {
     font-size: 12px;
+    &:hover{
+      color: $PRIMARY_CTA;
+    }
   }
 
   //SEARCH
@@ -99,19 +120,28 @@
     color: $SECONDARY_CTA;
     padding-bottom: 10px;
     align-self: center;
-    &--not-found{
+    &::placeholder{
+      color: $SECONDARY_TEXT_COLOUR;;
+    }
+    &--not-found {
       background-color: $SECONDARY_CTA;
       color: $SECONDARY_TEXT_COLOUR;
-  }
+      @include tablet{
+        &::placeholder{
+          color: $SECONDARY_TEXT_COLOUR;;
+        }
+      }
+    }
     @include tablet {
       width: 80px;
+      &::placeholder {
+        color: $SECONDARY_CTA;
+        font-weight: 600;
+      }
     }
     @include desktop {
       width: 100px;
     }
-    &::placeholder {
-      color: $SECONDARY_TEXT_COLOUR;
-      font-weight: 600;
-    }
+
   }
 }

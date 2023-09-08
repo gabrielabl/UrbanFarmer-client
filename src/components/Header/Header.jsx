@@ -56,7 +56,7 @@ const Header = ({headerStyleSwitch}) => {
   return (
     <header className={`header__container ${headerStyleSwitch? "header__container--not-found" : ""}`}>
       <nav className="header__icon-nav-wrapper">
-        <NavLink className="header__nav-link" to="/">
+        <NavLink  to="/">
           <img
             className="header__logo"
             src={logo}
