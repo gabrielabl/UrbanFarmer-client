@@ -22,8 +22,9 @@ const EditProfile = ({
   token,
   setEditMode,
 }) => {
-
   //VARIABLES
+
+  //REF TO BUTTON THAT UPLOAD FILES
   const hiddenUserPhotoInput = useRef(null);
   let navigate = useNavigate();
 
@@ -45,11 +46,14 @@ const EditProfile = ({
   const handleOnChangeEditProfile = (event) => {
     const { value, name } = event.target;
 
+    //IF FILE IS AVATAR_PHOTO AND IS EMPTY TO NOT STORE IN TEMP URL
     if (name === "avatar_photo") {
       setEditProfileAvatar({
         [name]: event.target.files[0],
       });
-      setPreviewAvatar(URL.createObjectURL(event.target.files[0]));
+      if (event.target.files[0] !== undefined) {
+        setPreviewAvatar(URL.createObjectURL(event.target.files[0]));
+      }
     } else {
       setEditProfile({
         ...editProfile,
@@ -58,7 +62,7 @@ const EditProfile = ({
     }
   };
 
-  //   HANDLE SUBMIT EDIT PROFILE
+  //HANDLE SUBMIT EDIT PROFILE
   const editProfileHandleSubmit = (event) => {
     event.preventDefault();
 
@@ -67,6 +71,7 @@ const EditProfile = ({
       formData.append(key, editProfile[key]);
     }
 
+    //APPEDING AVATAR_PHOTO
     if (editProfileAvatar.avatar_photo !== undefined) {
       formData.append("avatar_photo", editProfileAvatar.avatar_photo);
     }
@@ -80,10 +85,9 @@ const EditProfile = ({
         },
       })
       .then((res) => {
-        console.log(res);
         setEditMode(false);
 
-        //RENDERING UPDATED DATA
+        //RE-RENDERING UPDATED DATA
         axios
           .get(`${baseURL}/profile`, {
             headers: {
@@ -92,7 +96,6 @@ const EditProfile = ({
           })
           .then((res) => {
             setProfileData(res.data);
-            console.log(res);
 
             //CLEARING EDITING DATA FROM OBJECT
             setEditProfile({});
@@ -102,23 +105,24 @@ const EditProfile = ({
             navigate("/login");
           });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
-  //CANCEL HANDLE
-
-  const cancelHandleOnClick= ()=>{
-setEditMode(false)
-  }
+  //CANCEL EDITING HANDLE
+  const cancelHandleOnClick = () => {
+    setEditMode(false);
+  };
 
   return (
-    <form className="profile-edit__form" style={editMode ? show : hide} onSubmit={editProfileHandleSubmit}>
-
+    //FORM
+    <form
+      className="profile-edit__form"
+      style={editMode ? show : hide}
+      onSubmit={editProfileHandleSubmit}
+    >
       {/* MAIN PROFILE EDIT DATA */}
-      <div className="profile-edit__user" >
-      <h1>EDIT PROFILE</h1>
+      <div className="profile-edit__user">
+        <h1>EDIT PROFILE</h1>
         <Avatar
           avatar_source={
             !previewAvatar ? `${baseURL}/${avatar_photo}` : previewAvatar
@@ -126,12 +130,14 @@ setEditMode(false)
           avatar_alt={"avatar-photo-edit"}
         />
 
+        {/* UPLOAD BUTTON */}
         <Button
           onClick={avatarPhotoHandle}
           SVG={<AddAPhotoOutlinedIcon />}
           text="UPLOAD PICTURE"
         />
 
+        {/* FORM FIELDS */}
         <input
           className="upload-page__file"
           filename={user_name}
@@ -142,51 +148,46 @@ setEditMode(false)
           ref={hiddenUserPhotoInput}
           accept="image/*"
         ></input>
-
-  
-          <input
-            name="user_name"
-            type="text"
-            value={editProfile.user_name?.user_name}
-            onChange={handleOnChangeEditProfile}
-            placeholder={user_name}
-          ></input>
-
-
-   
-          <input
-            name="city"
-            type="text"
-            value={editProfile.city?.city}
-            onChange={handleOnChangeEditProfile}
-            placeholder={!city ? "Include your city here" : city}
-          ></input>
-    
-          <input
-            name="province"
-            type="text"
-            value={editProfile.province?.province}
-            onChange={handleOnChangeEditProfile}
-            placeholder={!province ? "Include your province here" : province}
-          ></input>
-
+        <input
+          name="user_name"
+          type="text"
+          value={editProfile.user_name?.user_name}
+          onChange={handleOnChangeEditProfile}
+          placeholder={user_name}
+        ></input>
+        <input
+          name="city"
+          type="text"
+          value={editProfile.city?.city}
+          onChange={handleOnChangeEditProfile}
+          placeholder={city.length <= 1 ? "Include your city here" : city}
+        ></input>
+        <input
+          name="province"
+          type="text"
+          value={editProfile.province?.province}
+          onChange={handleOnChangeEditProfile}
+          placeholder={
+            province.length <= 1 ? "Include your province here" : province
+          }
+        ></input>
       </div>
 
       {/* ABOUT PROFILE SECTION */}
       <div>
-      <h2>ABOUT {user_name}</h2>
-          <textarea
+        <h2>ABOUT {user_name}</h2>
+        <textarea
           className="profile-edit__about-input"
-            name="about"
-            type="text"
-            value={editProfile.about? editProfile.about : about }
-            onChange={handleOnChangeEditProfile}
-            placeholder={!about ? "Describe yourself" : about}
-          ></textarea>
-    <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
-      <Button text={'CANCEL'} onClick={cancelHandleOnClick} />
+          name="about"
+          type="text"
+          value={editProfile.about ? editProfile.about : about}
+          onChange={handleOnChangeEditProfile}
+          placeholder={about.length <= 1 ? "Describe yourself" : about}
+        ></textarea>
+        {/* BUTTONS */}
+        <Button SVG={<PublishOutlinedIcon />} text="SUBMIT CHANGES" />
+        <Button text={"CANCEL"} onClick={cancelHandleOnClick} />
       </div>
-  
     </form>
   );
 };

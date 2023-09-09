@@ -1,11 +1,65 @@
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/variables' as *;
-
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 //AUTH BUTTON
 
-.btn__auth{
+//KEY FRAME ANIMATION
+@keyframes btnEffect {
+  0% {
+    background: linear-gradient(
+      180deg,
+      $SECONDARY_CTA 100%,
+      $BACKGROUND_LIGHT 0%
+    );
+    color: $BACKGROUND_LIGHT;
+  }
+  25% {
+    background: linear-gradient(
+      180deg,
+      $SECONDARY_CTA 75%,
+      $BACKGROUND_LIGHT 25%
+    );
+    color: $SECONDARY_CTA;
+  }
+  50% {
+    background: linear-gradient(
+      180deg,
+      $SECONDARY_CTA 50%,
+      $BACKGROUND_LIGHT 50%
+    );
+    color: $BACKGROUND_LIGHT;
+  }
+  75% {
+    background: linear-gradient(
+      to top,
+      $BACKGROUND_LIGHT 75%,
+      $SECONDARY_CTA 25%
+    );
+    color: $SECONDARY_CTA;
+  }
+  100% {
+    background: linear-gradient(
+      to top,
+      $BACKGROUND_LIGHT 100%,
+      $SECONDARY_CTA 0%
+    );
+    color: linear-gradient(to top, $SECONDARY_CTA 100%, $BACKGROUND_LIGHT 0%);
+    color: $SECONDARY_CTA;
+  }
+}
+
+//AUTH BUTTON
+.btn__auth {
+  background-color: $SECONDARY_CTA;
+  color: $SECONDARY_TEXT_COLOUR;
+  font-weight: 600;
+  &:hover {
+    animation: btnEffect 0.15s ease-out;
+    background-color: $BACKGROUND_LIGHT;
+    color: $SECONDARY_CTA;
+  }
+  &:active {
     background-color: $SECONDARY_CTA;
-    color: $SECONDARY_TEXT_COLOUR;
-    font-weight: 600;
+    color: $BACKGROUND_LIGHT;
+  }
 }

@@ -9,8 +9,9 @@ import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import { Link, useParams } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import LoadingButton from "@mui/lab/LoadingButton";
 
-const MyCollection = ({ baseURL }) => {
+const MyCollection = ({ baseURL, setBackground }) => {
   // VARIABLES
   let navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
@@ -36,11 +37,13 @@ const MyCollection = ({ baseURL }) => {
     } else {
       setMobileScreen(false);
     }
-  });
+  }, [screenSize]);
 
-  //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER
-  const show = { display: "flex" };
-  const hide = { display: "none" };
+  //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER/ DELETE AND ADD MORE BUTTONS
+  const [show] = useState({ display: "flex" });
+  const [hide] = useState({ display: "none" });
+
+  // BUTTONS
   const [deleteBtn, setDeleteBtn] = useState(show);
   const [addMoreBtn, setAddMoreBtn] = useState(show);
   const [tradeBtn, setTradeBtn] = useState(hide);
@@ -50,63 +53,68 @@ const MyCollection = ({ baseURL }) => {
   const adminUserId = sessionStorage.getItem("id");
 
   //RETRIEVING USER DATA ACCORDING TO AUTHORIZATION TOKEN
+  useEffect(() => {
+    //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
+    if (!token) {
+      navigate("/login");
+    }
+
+    //IF PROFILE ID IS ABSENT, IT MEANS THE USER THAT LOGIN WILL GET THE PROFILE DATA
+    if (profileId === undefined) {
+      axios
+        .get(`${baseURL}/profile/${adminUserId}/collection`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCollectionData(res.data);
+          setLoading(false);
+          setActiveCarousel(false);
+
+          //SETTING BACKGROUND FOR MY COLLECTION PAGE
+          setBackground({
+            backgroundColor: "#F5DECD",
+          });
+        })
+        .catch((err) => {
+          navigate("/login");
+        });
+    } else {
+      //IF PROFILE ID IS PRESENT, THE COLLECTION OF THE VISITED USERS WILL BE RETRIEVED
+      axios
+        .get(`${baseURL}/profile/${profileId}/collection`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setCollectionData(res.data);
+          setLoading(false);
+          setActiveCarousel(false);
+        })
+        .catch((err) => {
+          //IF USER COLLECTION FAILED TO BE RETRIEVE, RE-DIRECT TO SEARCH
+          navigate("/search");
+        });
+    }
+  }, [
+    mobileScreen,
+    profileId,
+    adminUserId,
+    baseURL,
+    navigate,
+    setBackground,
+    token,
+  ]);
+
+  // SCREEN SIZE INITIAL CAROUSEL USER COLLECTION DATA
   useEffect(
     () => {
-      //IF TOKEN ABSENT FROM SESSION STORAGE, RE-DIRECT TO LOGIN PAGE
-      console.log("is it render");
-      if (!token) {
-        navigate("/login");
-      }
-
-      if (profileId === undefined) {
-        axios
-          .get(`${baseURL}/profile/${adminUserId}/collection`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((res) => {
-            setCollectionData(res.data);
-            setLoading(false);
-            setActiveCarousel(false);
-          })
-          .catch((err) => {
-            console.log(err);
-            navigate("/login");
-          });
-      } else {
-        axios
-          .get(`${baseURL}/profile/${profileId}/collection`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((res) => {
-            setCollectionData(res.data);
-            setLoading(false);
-            setActiveCarousel(false);
-          })
-          .catch((err) => {
-            console.log(err);
-            navigate("/search");
-          });
-      }
-    },
-    [mobileScreen, profileId],
-    [adminUserId],
-    [collectionData],
-    [deleteBtn]
-  );
-
-  //MOBILE SCREEN USER EFFECT
-  useEffect(
-    () => {
-
-      //IF COLLECTION DATA EMPTY IT WILL TO PROCEED WITH ACTIVE ITEMS 
+      //IF COLLECTION DATA IS EMPTY IT WILL NO PROCEED WITH ACTIVE ITEMS
       if (collectionData.message) {
-        console.log("no items");
       } else {
-        //IF USER ONLY HAVE ONE ITEM IN COLLECTION
+        //IF USER ONLY HAVE ONE ITEM IN COLLECTION AND SCREEN SIZE IS LESS THAN 768, SET 1 ACTIVE ITEM
         if (mobileScreen) {
           if (collectionData.length <= 1) {
             setActiveItems(collectionData);
@@ -114,20 +122,17 @@ const MyCollection = ({ baseURL }) => {
             //INITIAL VALUE FOR CAROUSEL TO RUN
             if (!activeCarousel) {
               setActiveItems(collectionData.splice(0, 1));
-              console.log(activeItems);
             } else {
-              console.log(activeItems);
             }
           }
         } else {
+          //SCREEN SIZE IS OVER 768, 3 ITEMS WILL BE ACTIVE INSTEAD OF 1
           if (collectionData.length <= 3) {
             setActiveItems(collectionData);
           } else {
             if (!activeCarousel) {
               setActiveItems(collectionData.splice(0, 3));
-              console.log(activeItems);
             } else {
-              console.log(activeItems);
             }
           }
         }
@@ -138,21 +143,20 @@ const MyCollection = ({ baseURL }) => {
   );
 
   //ACTIVE ITEM CAROUSEL HANDLES
+  //HANDLES THAT TRANSFER ITEMS FROM COLLECTION DATA TO ACTIVE ITEMS AND PUT IT BACK, REPLACING ACTIVE ITEMS WITH NEW ONES IN A CYCLE
+
   // FORWARD
   const nextCarouselHandle = () => {
+    //MOBILE SCREEN
     if (mobileScreen) {
       setActiveCarousel(true);
       collectionData.push(activeItems[0]);
-      console.log(activeItems);
-      console.log(collectionData);
       setActiveItems(collectionData.splice(0, 1));
     } else {
-      //  TABLET SCREEN
+      //  TABLET SCREEN AND ABOVE
       if (activeItems.length >= 3) {
         setActiveCarousel(true);
         collectionData.push(activeItems[0], activeItems[1], activeItems[2]);
-        console.log(activeItems);
-        console.log(collectionData);
         setActiveItems(collectionData.splice(0, 3));
       }
     }
@@ -160,13 +164,13 @@ const MyCollection = ({ baseURL }) => {
 
   //BACKWARD
   const backCarouselHandle = () => {
+    //MOBILE SCREEN
     if (mobileScreen) {
       setActiveCarousel(true);
       collectionData.splice(0, 0, activeItems[0]);
-      console.log(activeItems);
       setActiveItems(collectionData.splice(-1, 1));
     } else {
-      console.log("Button inactive for tablet and desktop");
+      //BUTTON INACTIVE FOR TABLET AND ABOVE
     }
   };
 
@@ -179,7 +183,7 @@ const MyCollection = ({ baseURL }) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        //RE-RENDERING DATA AFTER DELETION
         axios
           .get(`${baseURL}/profile/${adminUserId}/collection`, {
             headers: {
@@ -191,11 +195,10 @@ const MyCollection = ({ baseURL }) => {
             setLoading(false);
           });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
+  //CONDITIONAL BUTTONS THAT WILL BE DISPLAY OR HIDE DEPENDING ON USER LOGIN
   useEffect(() => {
     if (profileId !== undefined) {
       setAddMoreBtn(hide);
@@ -211,28 +214,49 @@ const MyCollection = ({ baseURL }) => {
       setDeleteBtn(show);
       setTradeBtn(hide);
     }
-  }, [profileId]);
+  }, [profileId, adminUserId, hide, show]);
 
   //WHILE DATA IS NOT RENDERED
   if (isLoading) {
-    return <div>LOADING..</div>;
+    return (
+      <div>
+        <Header />
+        <div className="loading-page">
+          <p>LOADING...</p>
+          <LoadingButton loading={true} />
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   return (
     <>
+      {/* HEADER */}
       <Header />
       <main className="collection-page__main">
+        {/* IF NOT ITEMS IN COLLECTION, THIS DIV WILL BE DISPLAY */}
         {collectionData.message ? (
           <div className="collection-page__no-items-wrapper">
-            <p className="collection-page__no-items">YOU HAVE NO ITEMS IN YOUR COLLECTION</p>
+            <p className="collection-page__no-items">
+              YOU HAVE NO ITEMS IN YOUR COLLECTION
+            </p>
             <Link className="collection-page__btn" to="/additem">
-              <Button classVar={"collection-page__btn"} style={addMoreBtn} text="ADD MORE" />
+              <Button
+                classVar={"collection-page__btn"}
+                style={addMoreBtn}
+                text="ADD MORE"
+              />
             </Link>
           </div>
         ) : (
+          // IF COLLECTION IS NOT EMPTY THIS WILL RENDER:
           <section className="collection-page__container">
-            <h1 className="collection-page__title">{collectionData[0].user_name}'S COLLECTION</h1>
+            <h1 className="collection-page__title">
+              {collectionData[0].user_name}'S COLLECTION
+            </h1>
             <ul className="collection-page__item-container">
+              {/* BACK-ARROW IS DEACTIVATED FOR TABLET AND ABOVE */}
               {mobileScreen ? (
                 <ArrowBackIosIcon onClick={backCarouselHandle} />
               ) : (
@@ -254,6 +278,7 @@ const MyCollection = ({ baseURL }) => {
                   >
                     TRADE
                   </a>
+                  {/* DELETE BUTTON */}
                   <button
                     className="collection-page__btn-delete"
                     style={deleteBtn}
@@ -268,8 +293,13 @@ const MyCollection = ({ baseURL }) => {
               <ArrowForwardIosIcon onClick={nextCarouselHandle} />
             </ul>
 
+            {/* ADDITEM BUTTON */}
             <Link className="collection-page__btn" to="/additem">
-              <Button classVar={"collection-page__btn"} style={addMoreBtn} text="ADD MORE" />
+              <Button
+                classVar={"collection-page__btn"}
+                style={addMoreBtn}
+                text="ADD MORE"
+              />
             </Link>
           </section>
         )}
