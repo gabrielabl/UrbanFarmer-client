@@ -25,7 +25,7 @@ gh repo clone gabrielabl/UrbanFarmer-client
 2. Move to urbanfarmer-client folder
 
 ```bash
-cd UrbanFarmer-server
+cd urbanfarmer-client
 ```
 
 3. Install node modules
