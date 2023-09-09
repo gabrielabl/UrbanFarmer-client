@@ -1,9 +1,7 @@
 @use "./variables" as *;
 
 //RESPONSIVE DESIGN MIXINS
-
-// Media mixins
-
+// MEDIA MIXINS
 @mixin tablet {
   @media (min-width: $tablet) {
     @content;
@@ -16,17 +14,7 @@
   }
 }
 
-//START PAGE MIXINS
-
-//LINKS - TEXT DECORATION AND COLOUR
-
-@mixin start-page-default-link {
-  text-decoration: none;
-
-}
-
 //PADDING LAYOUT GENERAL
-
 @mixin page-padding-default {
   padding: 16px;
   @include tablet {
@@ -38,7 +26,6 @@
 }
 
 //AUTH PAGE LAYOUT DEFAULT
-
 @mixin auth-page-layout-default {
   display: flex;
   flex-direction: column;
@@ -46,8 +33,7 @@
 }
 
 //INPUT LAYOUT-STYLE DEFAULT
-
-@mixin input-default{
+@mixin input-default {
   outline: none;
   width: 90vw;
   @include tablet {
@@ -65,9 +51,10 @@
   &--error-state {
     border: solid 0.0625rem $ERROR-STATE;
   }
-};
+}
 
-@mixin input-colour-set-primary{
+//PRIMARY COLOUR INPUT DEFAULT
+@mixin input-colour-set-primary {
   background-color: $BACKGROUND_DARK;
   border: solid 0.125rem $PRIMARY_CTA;
   color: $SECONDARY_TEXT_COLOUR;
@@ -79,7 +66,8 @@
   }
 }
 
-@mixin input-colour-set-profile{
+//PROFILE COLOUR INPUT DEFAULT
+@mixin input-colour-set-profile {
   background-color: $BACKGROUND_LIGHT;
   border: solid 0.125rem $PRIMARY_CTA;
   color: $SECONDARY_CTA;
@@ -89,4 +77,4 @@
   &::placeholder {
     color: $SECONDARY_CTA;
   }
-};
+}

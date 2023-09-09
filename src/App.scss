@@ -1,5 +1,5 @@
 @use "./styles/partials/variables" as *;
-@use "./styles/partials/mixins" as *;;
+@use "./styles/partials/mixins" as *;
 @use "./styles/partials/typography";
 
 //GENERAL CONFIGURATION
@@ -13,7 +13,7 @@ html {
   box-sizing: inherit;
 }
 
-.App{
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,27 +23,37 @@ body {
   margin: 0;
 }
 
-main{
+main {
   height: 100%;
 }
 
-
 //LOGO
-.logo{
+.logo {
   height: 24px;
 }
 
 //BUTTONS
-.btn{
-  font-family: 'Roboto', sans-serif;
+.btn {
+  font-family: "Roboto", sans-serif;
   border: none;
-  padding: 8px;
+  padding: 0.5rem;
   width: 90vw;
   height: 3.125rem;
-  @include tablet{
+  @include tablet {
     width: 8.75rem;
   }
-  @include desktop{
+  @include desktop {
     width: 200px;
   }
+}
+
+//LOADING PAGE
+.loading-page {
+  @include page-padding-default;
+  display: flex;
+  height: 100vh;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  color: $SECONDARY_CTA;
 }

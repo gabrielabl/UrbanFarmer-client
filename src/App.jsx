@@ -10,7 +10,6 @@ import MyCollection from "./pages/MyCollection/MyCollection";
 import AddItem from "./components/AddItem/AddItem";
 import SearchItem from "./components/SearchItem/SearchItem";
 import NotFound from "./pages/NotFound/NotFound";
-import BackgroundPattern from './Assets/images/start-page-pattern.svg'
 
 function App() {
   //Variables
@@ -41,9 +40,9 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/profile" element={<ProfilePage baseURL={baseURL} setBackground={setBackground} />}></Route>
           <Route path="/signup" element={<SignUp setBackground={setBackground} signUpVar={signUpVar} setSignUpVar={setSignUpVar} baseURL={baseURL} />}></Route>
           <Route path="/login" element={<Login setBackground={setBackground} loginVar={loginVar} setLoginVar={setLoginVar} baseURL={baseURL}/>}></Route>
-          <Route path="/mycollection" element={<MyCollection  baseURL={baseURL}/>}></Route>
+          <Route path="/mycollection" element={<MyCollection setBackground={setBackground} baseURL={baseURL}/>}></Route>
           <Route path="/additem" element={<AddItem baseURL={baseURL}/>}></Route>
-          <Route path="/search" element={<SearchItem baseURL={baseURL}/>}></Route>
+          <Route path="/search" element={<SearchItem setBackground={setBackground} baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId" element={<ProfilePage baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId/collection" element={<MyCollection baseURL={baseURL}/>}></Route>
           <Route path="*" element={<NotFound setBackground={setBackground}  />}></Route>

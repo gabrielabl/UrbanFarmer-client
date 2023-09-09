@@ -19,6 +19,7 @@
       background-size: contain;
     }
   }
+  //404 STATUS
   &__code {
     @include tablet {
       font-size: 5rem;
@@ -27,6 +28,7 @@
       font-size: 10rem;
     }
   }
+  //OPS, PAGE NOT FOUND
   &__info {
     @include tablet {
       font-size: 2.5rem;

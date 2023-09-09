@@ -2,89 +2,88 @@
 @use "./variables" as *;
 
 //IMPORT FONTS
+@font-face {
+  font-family: "Roboto", sans-serif;
+  src: url("../../Assets/font/Roboto/Roboto-Bold.ttf") format("TrueType"),
+    url("../../Assets/font/Roboto/Roboto-BoldItalic.ttf") format("TrueType");
+  font-weight: 700;
+}
 
 @font-face {
-    font-family: 'Roboto', sans-serif;
-    src: url('../../Assets/font/Roboto/Roboto-Bold.ttf') format("TrueType"),
-      url('../../Assets/font/Roboto/Roboto-BoldItalic.ttf')
-        format("TrueType");
-    font-weight: 700;
-  };
+  font-family: "Arimo", sans-serif;
+  src: url("../../Assets/font/Arimo/static/Arimo-Regular.ttf")
+      format("TrueType"),
+    url("../../Assets/font/Arimo/Arimo-Italic-VariableFont_wght.ttf")
+      format("TrueType");
+  font-weight: 400;
+}
 
-  @font-face {
-    font-family: 'Arimo', sans-serif;
-    src: url('../../Assets/font/Arimo/static/Arimo-Regular.ttf') format("TrueType"),
-      url('../../Assets/font/Arimo/Arimo-Italic-VariableFont_wght.ttf')
-        format("TrueType");
-    font-weight: 400;
-  };
+@font-face {
+  font-family: "Arimo", sans-serif;
+  src: url("../../Assets/font/Arimo/static/Arimo-Medium.ttf") format("TrueType"),
+    url("../../Assets/font/Arimo/static/Arimo-MediumItalic.ttf")
+      format("TrueType");
+  font-weight: 500;
+}
 
-  @font-face {
-    font-family: 'Arimo', sans-serif;
-    src: url('../../Assets/font/Arimo/static/Arimo-Medium.ttf') format("TrueType"),
-      url('../../Assets/font/Arimo/static/Arimo-MediumItalic.ttf')
-        format("TrueType");
-    font-weight: 500;
-  };
+@font-face {
+  font-family: "Arimo", sans-serif;
+  src: url("../../Assets/font/Arimo/static/Arimo-SemiBold.ttf")
+      format("TrueType"),
+    url("../../Assets/font/Arimo/static/Arimo-MediumItalic.ttf")
+      format("TrueType");
+  font-weight: 600;
+}
 
+@font-face {
+  font-family: "Arimo", sans-serif;
+  src: url("../../Assets/font/Arimo/static/Arimo-Bold.ttf") format("TrueType"),
+    url("../../Assets/font/Arimo/static/Arimo-BoldItalic.ttf")
+      format("TrueType");
+  font-weight: 700;
+}
 
-  @font-face {
-    font-family: 'Arimo', sans-serif;
-    src: url('../../Assets/font/Arimo/static/Arimo-SemiBold.ttf') format("TrueType"),
-      url('../../Assets/font/Arimo/static/Arimo-MediumItalic.ttf')
-        format("TrueType");
-    font-weight: 600;
-  };
-
-  @font-face {
-    font-family: 'Arimo', sans-serif;
-    src: url('../../Assets/font/Arimo/static/Arimo-Bold.ttf') format("TrueType"),
-      url('../../Assets/font/Arimo/static/Arimo-BoldItalic.ttf')
-        format("TrueType");
-    font-weight: 700;
-  };
-
-  body{
-    font-family: 'Arimo', sans-serif;
-    p{
-      font-size: 0.75rem;
-      line-height: 1.625rem;
-      @include tablet{
-        font-size: 1rem;
-        line-height: 1.75rem;
-      };
-
-    }
-    h1{
-      font-size: 1.75rem;
-      line-height: 2.25rem;
-      @include tablet{
-        font-size: 2rem;
-        line-height: 2.5rem;
-      }
-    }
-    h2{
-      font-size: 1.25rem;
+// GENERAL TYPOGRAPHY
+body {
+  font-family: "Arimo", sans-serif;
+  p {
+    font-size: 0.75rem;
+    line-height: 1.625rem;
+    @include tablet {
+      font-size: 1rem;
       line-height: 1.75rem;
-      @include tablet{
-        font-size: 1.5rem;
-        line-height: 2rem;
-      }
-    }
-    h3{
-      font-size: 0.8125rem;
-      line-height: 1.25rem;
-      @include tablet{
-        font-size: 0.875rem;
-        line-height: 1.375rem;
-      }
-    }
-    input{
-        font-size: 0.8125rem;
-        line-height: 1.25rem;
-        @include tablet{
-          font-size: 0.875rem;
-          line-height: 1.375rem;
-        }
     }
   }
+  h1 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    @include tablet {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    @include tablet {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+  h3 {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+  input {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
+}

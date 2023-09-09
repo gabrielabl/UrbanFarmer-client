@@ -2,7 +2,6 @@
 @use "../../styles/partials/variables" as *;
 
 //HEADER
-
 .header {
   //HEADER WRAPPER
   &__container {
@@ -10,13 +9,14 @@
     flex-direction: column;
     align-items: center;
     color: $SECONDARY_CTA;
-    &--not-found{
+    // NOT FOUND PAGE STATE
+    &--not-found {
       color: $BACKGROUND_LIGHT;
-  }
+    }
     @include page-padding-default;
     @include tablet {
       flex-direction: row;
-      padding: 16px;
+      padding: 1rem;
       align-items: baseline;
       justify-content: space-around;
       width: 100%;
@@ -27,8 +27,7 @@
       padding-right: 5rem;
     }
   }
-
-  // ICON NAV WRAPPER
+  // ICON NAVIGATION WRAPPER INCLUDES ICON
   &__icon-nav-wrapper {
     display: flex;
     flex-direction: column;
@@ -38,25 +37,42 @@
       align-items: baseline;
     }
   }
-  //NAVIGATION
+  //NAVIGATION LINKS
   &__logo {
-    padding-top: 15px;
-    width: 180px;
+    padding-top: 0.9375rem;
+    width: 11.25rem;
     @include tablet {
-      padding-right: 10px;
+      padding-right: 0.625rem;
     }
   }
   &__nav-link {
-    @include start-page-default-link;
+    text-decoration: none;
     list-style: none;
     color: $SECONDARY_CTA;
     font-weight: 600;
-    &--not-found{
-        color: $BACKGROUND_LIGHT;
+    padding: 0.625rem;
+    &:hover {
+      background-color: $SECONDARY_CTA;
+      color: $SECONDARY_TEXT_COLOUR;
+    }
+    &:active {
+      background-color: $SECONDARY_TEXT_COLOUR;
+      color: $SECONDARY_CTA;
+    }
+    //NOT FOUND PAGE HEADER
+    &--not-found {
+      color: $BACKGROUND_LIGHT;
+      &:hover {
+        background-color: $SECONDARY_TEXT_COLOUR;
+        color: $SECONDARY_CTA;
+      }
+      &:active {
+        background-color: $SECONDARY_CTA;
+        color: $SECONDARY_TEXT_COLOUR;
+      }
     }
   }
-
-  //NAVIGATION WRAPPER
+  //NAVIGATION WRAPPER DOES NOT INCLUDE ICON
   &__nav {
     display: flex;
     gap: 3.125rem;
@@ -66,7 +82,6 @@
       gap: 0.625rem;
     }
   }
-
   //SEARCH AND SIGN OFF WRAPPER
   &__search-sign-off-wrapper {
     list-style: none;
@@ -80,16 +95,17 @@
       flex-direction: row;
     }
   }
-
   //SIGN OFF
   &__sign-off {
-    font-size: 12px;
+    font-size: 0.75rem;
+    &:hover {
+      color: $PRIMARY_CTA;
+    }
   }
-
   //SEARCH
   &__search-container {
     @include tablet {
-      padding-left: 10px;
+      padding-left: 0.625rem;
     }
   }
   &__search {
@@ -97,21 +113,30 @@
     background-color: $BACKGROUND_LIGHT;
     outline: none;
     color: $SECONDARY_CTA;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
     align-self: center;
-    &--not-found{
+    &::placeholder {
+      color: $SECONDARY_TEXT_COLOUR;
+    }
+    //NOT FOUND PAGE STATE
+    &--not-found {
       background-color: $SECONDARY_CTA;
       color: $SECONDARY_TEXT_COLOUR;
-  }
+      @include tablet {
+        &::placeholder {
+          color: $SECONDARY_TEXT_COLOUR;
+        }
+      }
+    }
     @include tablet {
       width: 80px;
+      &::placeholder {
+        color: $SECONDARY_CTA;
+        font-weight: 600;
+      }
     }
     @include desktop {
       width: 100px;
-    }
-    &::placeholder {
-      color: $SECONDARY_TEXT_COLOUR;
-      font-weight: 600;
     }
   }
 }

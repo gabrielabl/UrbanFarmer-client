@@ -10,23 +10,24 @@ const Login = ({ loginVar, setLoginVar, baseURL, setBackground }) => {
   //VARIABLES
   let navigate = useNavigate();
   const { emailLogin, passwordLogin } = loginVar;
+
+  //FORM PLACEHOLDER AND ERROR STATE
   const [placeholder, setPlaceholder] = useState({
     emailPlaceholder: "YOUR EMAIL",
-    passwordPlaceholder: "YOUR PASSWORD HERE",
+    passwordPlaceholder: "YOUR PASSWORD",
   });
-
   const { emailPlaceholder, passwordPlaceholder } = placeholder;
   const [errorStateForm, setErrorStateForm] = useState(false);
 
-  //BACKGROUND USE EFFECT
+  //BACKGROUND USE EFFECT TO CHANGE THE WHOLE PAGE BACKGROUND
   useEffect(() => {
     setBackground({
       backgroundImage: `url(${BackgroundPattern})`,
       backgroundSize: "40px",
     });
-  }, []);
+  }, [setBackground]);
 
-  //HANDLE ON CHANGE
+  //HANDLE ON CHANGE LOGIN
   const handleOnChangeLogin = (event) => {
     const value = event.target.value;
     const nameForm = event.target.name;
@@ -46,58 +47,56 @@ const Login = ({ loginVar, setLoginVar, baseURL, setBackground }) => {
     setErrorStateForm(true);
   };
 
-  //LOGIN UP HANDLE
+  //LOGIN HANDLE SUBMIT
   const loginHandleSubmit = (event) => {
     event.preventDefault();
 
     axios
       .post(`${baseURL}/login`, loginVar)
       .then((res) => {
-        console.log(res);
         sessionStorage.setItem("token", res.data.token);
         navigate("/profile");
       })
       .catch((err) => {
-        console.log(err);
-
         return failedRequest();
       });
   };
 
   return (
     <>
-    <AuthHeader navHeader={"HOME"} navUrl={"/"} />
-    <main className="login-page__main">
-      {/* LOGIN FORM */}
-      <form className="login-page__container" onSubmit={loginHandleSubmit}>
-        <h2>WELCOME</h2>
-        <input
-          className={`login-page__input ${
-            errorStateForm ? "login-page__input--error-state" : ""
-          }`}
-          id="emailLogin"
-          name="emailLogin"
-          type="text"
-          onChange={handleOnChangeLogin}
-          placeholder={emailPlaceholder}
-          value={emailLogin}
-        ></input>
+      {/* HEADER */}
+      <AuthHeader navHeader={"HOME"} navUrl={"/"} />
+      <main className="login-page__main">
+        {/* LOGIN FORM */}
+        <form className="login-page__container" onSubmit={loginHandleSubmit}>
+          <h2>WELCOME</h2>
+          <input
+            className={`login-page__input ${
+              errorStateForm ? "login-page__input--error-state" : ""
+            }`}
+            id="emailLogin"
+            name="emailLogin"
+            type="text"
+            onChange={handleOnChangeLogin}
+            placeholder={emailPlaceholder}
+            value={emailLogin}
+          ></input>
 
-        <input
-          className={`login-page__input ${
-            errorStateForm ? "login-page__input--error-state" : ""
-          }`}
-          id="passwordLogin"
-          name="passwordLogin"
-          type="password"
-          onChange={handleOnChangeLogin}
-          placeholder={passwordPlaceholder}
-          value={passwordLogin}
-        ></input>
+          <input
+            className={`login-page__input ${
+              errorStateForm ? "login-page__input--error-state" : ""
+            }`}
+            id="passwordLogin"
+            name="passwordLogin"
+            type="password"
+            onChange={handleOnChangeLogin}
+            placeholder={passwordPlaceholder}
+            value={passwordLogin}
+          ></input>
 
-        <ButtonAuth />
-      </form>
-    </main>
+          <ButtonAuth />
+        </form>
+      </main>
     </>
   );
 };
