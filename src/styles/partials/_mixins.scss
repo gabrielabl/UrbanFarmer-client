@@ -3,39 +3,30 @@
 //RESPONSIVE DESIGN MIXINS
 
 // Media mixins
-
 @mixin tablet {
   @media (min-width: $tablet) {
     @content;
-  }
-}
+  };
+};
 
 @mixin desktop {
   @media (min-width: $desktop) {
     @content;
-  }
-}
+  };
+};
 
 //START PAGE MIXINS
 
-//LINKS - TEXT DECORATION AND COLOUR
-
-@mixin start-page-default-link {
-  text-decoration: none;
-
-}
-
 //PADDING LAYOUT GENERAL
-
 @mixin page-padding-default {
   padding: 16px;
   @include tablet {
     padding: 32px;
-  }
+  };
   @include desktop {
     padding: auto;
-  }
-}
+  };
+};
 
 //AUTH PAGE LAYOUT DEFAULT
 

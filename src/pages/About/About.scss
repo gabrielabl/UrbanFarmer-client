@@ -1,44 +1,43 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.about{
-    //ABOUT WRAPPER
-    &__wrapper{
-        @include page-padding-default;
-        font-weight: 700;
-        color: $SECONDARY_TEXT_COLOUR;
-        text-transform: uppercase;
-        height: 100vh;
-        padding-top: 0;
-        @include tablet{
-          margin-top: -5rem;
-        };
-        @include desktop{
-            margin-top: -7.5rem;
-        }
-    };
-
-    //ABOUT CONTAINER
-    &__container{
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        text-align: justify;
-        gap: 1rem;
-        @include tablet{
-            flex-direction: row;
-            gap: 3.125rem;
-            align-items: center;
-            font-size: 1.875rem;
-        }
-        @include desktop{
-            width: 70vw;
-            font-size: 3.75rem;
-        }
-        //LOGO
-        .logo{
-            width: 80%;
-            align-self: center;
-        }
+.about {
+  //ABOUT WRAPPER
+  &__wrapper {
+    @include page-padding-default;
+    font-weight: 700;
+    color: $SECONDARY_TEXT_COLOUR;
+    text-transform: uppercase;
+    height: 100vh;
+    padding-top: 0;
+    @include tablet {
+      margin-top: -7rem;
     }
+    @include desktop {
+      margin-top: -12rem;
+    }
+  }
+  //ABOUT CONTAINER
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: justify;
+    gap: 1rem;
+    @include tablet {
+      flex-direction: row;
+      gap: 3.125rem;
+      align-items: center;
+      font-size: 1.875rem;
+    }
+    @include desktop {
+      width: 70vw;
+      font-size: 3.75rem;
+    }
+    //LOGO
+    .logo {
+      width: 80%;
+      align-self: center;
+    }
+  }
 }

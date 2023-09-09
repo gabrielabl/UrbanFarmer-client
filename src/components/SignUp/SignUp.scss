@@ -1,18 +1,17 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.signup-page{
+.signup-page {
   //PAGE WRAPPER
   &__main {
     height: 100vh;
     @include auth-page-layout-default;
     @include page-padding-default;
     color: $SECONDARY_TEXT_COLOUR;
-    @include tablet{
+    @include tablet {
       height: 100vh;
     }
   }
-
   //FORM CONTAINER
   &__container {
     @include auth-page-layout-default;
@@ -21,14 +20,11 @@
     }
     @include desktop {
       align-self: flex-end;
-
     }
-
   }
-
-  //INPUT 
+  //INPUT FIELDS
   &__input {
-  @include input-default;
-  @include input-colour-set-primary;
+    @include input-default;
+    @include input-colour-set-primary;
   }
 }

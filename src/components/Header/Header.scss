@@ -47,7 +47,7 @@
     }
   }
   &__nav-link {
-    @include start-page-default-link;
+    text-decoration: none;
     list-style: none;
     color: $SECONDARY_CTA;
     font-weight: 600;
