@@ -3,101 +3,111 @@
 
 //PROFILE PAGE DESCRIPTION
 
-.profile-page{
-    &__wrapper{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: $PRIMARY-CTA;
-       text-transform: uppercase;
-       @include tablet{
-        flex-direction: row;
-        gap:4.375rem;
-        height: 100vh;
-        align-items: flex-start
-       }
-       @include desktop{
-        padding-right: 6.25rem;
-        padding-left: 6.25rem;
-       }
-    };
-    //USER INFO
-    &__user{
-        font-weight: 600;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        //USER NAME
-        h1,p,li{
-            display:flex;
-       border-top: solid 0.125rem $SECONDARY_CTA;
-       width: 100%;
-       justify-content: center;
-       margin: 0;
-       padding-top: 0.125rem
-        }
-        @include tablet{
-            align-self: flex-start;
-            padding-top: 3.125rem;
-            flex-grow: 2
-        }
-    };
-    //INTERACTION WRAPPER
-    &__interaction{
-     color: $SECONDARY_CTA;
-     padding: 0;
-     width: 100%;
-     //ALL LIST CONTAINERS
-     & >ul {
-        padding: 0;
-        align-self: center;
-        width: 100%;
-        display: flex;
-     }
-     //TRADE LIST ITEM
-     >li {
-        list-style: none;
-     }
-     //LIKES AND VIEWS ITEMS
-     ul > li {
-        list-style: none;
-        align-items: center;  
-        justify-content: space-evenly;
-     }
+.profile-page {
+  //MAIN PROFILE WRAPPER
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $PRIMARY-CTA;
+    text-transform: uppercase;
+    @include tablet {
+      flex-direction: row;
+      gap: 4.375rem;
+      height: 100vh;
+      align-items: flex-start;
     }
-    //ABOUT INFO
-    &__about{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        @include tablet{
-            flex-grow: 1;
-        }
-        @include desktop{
-            width: 50vw;
-            align-items: flex-start;
-            align-self: start;
-        }
+    @include desktop {
+      padding-right: 6.25rem;
+      padding-left: 6.25rem;
     }
-    //COLLECTION BTN 
-    &__collection-link{
-        text-decoration: none;
+  }
+  //USER INFO CONTAINER
+  &__user {
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    //USER NAME /CITY/ PROVINCE
+    h1,
+    p,
+    li {
+      display: flex;
+      border-top: solid 0.125rem $SECONDARY_CTA;
+      width: 100%;
+      justify-content: center;
+      margin: 0;
+      padding-top: 0.125rem;
     }
-    &__collection-btn{
-        background-color: $SECONDARY_CTA;
-        color: $SECONDARY_TEXT_COLOUR;
-        font-weight: 600;
-        border: none;
-        padding: 0.625rem;
-        font-size: 1rem;
-        &:hover{
-            background-color: $SECONDARY_TEXT_COLOUR;
-            color: $SECONDARY_CTA;
-            border: solid 2px $SECONDARY_CTA;
-        }
-        @include tablet{
-            font-size: 1.25rem;
-        }
+    @include tablet {
+      align-self: flex-start;
+      padding-top: 3.125rem;
+      flex-grow: 2;
+    }
+    @include desktop {
+      width: 20vw;
+    }
+  }
 
+  //INTERACTION WRAPPER/ LIKES/ VIEWS/ TRADES
+  &__interaction {
+    color: $SECONDARY_CTA;
+    padding: 0;
+    width: 100%;
+    //ALL LIST CONTAINERS
+    & > ul {
+      padding: 0;
+      align-self: center;
+      width: 100%;
+      display: flex;
     }
+    //TRADE LIST ITEM
+    > li {
+      list-style: none;
+    }
+    //LIKES AND VIEWS ITEMS
+    ul > li {
+      list-style: none;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  }
+  //ABOUT INFO
+  &__about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+    @include tablet {
+      flex-grow: 1;
+      padding-top: 6.25rem;
+    }
+    @include desktop {
+      width: 50vw;
+      align-items: flex-start;
+      align-self: start;
+    }
+  }
+  // COLLECTION BTN
+  &__collection-btn {
+    background-color: $SECONDARY_CTA;
+    color: $SECONDARY_TEXT_COLOUR;
+    font-weight: 600;
+    border: none;
+    padding: 0.625rem;
+    font-size: 1rem;
+    &:hover {
+      background-color: $SECONDARY_TEXT_COLOUR;
+      color: $SECONDARY_CTA;
+      border: solid 2px $SECONDARY_CTA;
+    }
+    @include tablet {
+      font-size: 1.25rem;
+    }
+  }
+  //COLLECTION BTN LINK
+  &__collection-link {
+    text-decoration: none;
+  }
 }

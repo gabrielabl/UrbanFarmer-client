@@ -24,14 +24,13 @@ const ProfileDescription = ({
   profileId,
 }) => {
   // VARIABLES
-  const [editButton, setEditButton] = useState({ show });
   const adminUserId = sessionStorage.getItem("id");
+  //DYNAMIC BUTTONS
+  const [editButton, setEditButton] = useState({ show });
   const [seeCollectionBtn, setSeeCollectionBtn] = useState(hide);
-  
 
-  //IT DISABLES EDIT BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
-    //IT ENABLE SEE COLLECTION BUTTON IF PROFILE ACTIVE IS DIFFERENT AS THE USER THAT LOGIN
-
+  //IT DISABLES EDIT BUTTON IF PROFILE ACTIVE IS NOT FROM THE USER THAT LOGIN
+  //IT ENABLE SEE COLLECTION BUTTON IF PROFILE ACTIVE IS NOT FROM THE USER THAT LOGIN
   useEffect(() => {
     if (profileId !== undefined) {
       setEditButton(hide);
@@ -44,24 +43,32 @@ const ProfileDescription = ({
       setEditButton(show);
       setSeeCollectionBtn(hide);
     }
-  }, [profileId,adminUserId,hide,show]);
+  }, [profileId, adminUserId, hide, show]);
 
   return (
+    //CONTAINER WILL BE DEACTIVATED IF EDIT MODE IS FALSE
     <div className="profile-page__wrapper" style={!editMode ? show : hide}>
       {/* MAIN PROFILE DATA */}
       <section className="profile-page__user">
         <Avatar
-          avatar_source={avatar_photo.includes('placeholder')? avatar_photo :`${baseURL}/${avatar_photo}`}
+          avatar_source={
+            avatar_photo.includes("placeholder")
+              ? avatar_photo
+              : `${baseURL}/${avatar_photo}`
+          }
           avatar_alt={"avatar_photo"}
         />
         <h1>{user_name}</h1>
         <p>
           {city}/{province}
         </p>
+
+        {/* VIEWS AND LIKES */}
         <ul className="profile-page__interaction">
-          <ul >
+          <ul>
             <li>
-              <FavoriteOutlinedIcon />{likes}
+              <FavoriteOutlinedIcon />
+              {likes}
             </li>
             <li>
               <RemoveRedEyeOutlinedIcon />
@@ -70,7 +77,18 @@ const ProfileDescription = ({
           </ul>
           <li>TRADES {trades}</li>
         </ul>
-        <Link className="profile-page__collection-link"  to={`/profile/${profileId}/collection`}> <button className="profile-page__collection-btn" style={seeCollectionBtn}>SEE COLLECTION</button></Link>
+        <Link
+          className="profile-page__collection-link"
+          to={`/profile/${profileId}/collection`}
+        >
+          {" "}
+          <button
+            className="profile-page__collection-btn"
+            style={seeCollectionBtn}
+          >
+            SEE COLLECTION
+          </button>
+        </Link>
       </section>
 
       {/* ABOUT PROFILE SECTION */}
@@ -79,7 +97,12 @@ const ProfileDescription = ({
         <p>{about}</p>
 
         {/* BUTTON WILL HIDDEN WHEN EDIT MODE IS TRUE */}
-        <Button SVG={<EditOutlinedIcon />} text={"EDIT PROFILE"} style={editButton} onClick={editModeHandle} />
+        <Button
+          SVG={<EditOutlinedIcon />}
+          text={"EDIT PROFILE"}
+          style={editButton}
+          onClick={editModeHandle}
+        />
       </section>
     </div>
   );
