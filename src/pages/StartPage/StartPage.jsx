@@ -3,9 +3,9 @@ import "./StartPage.scss";
 import { Link } from "react-router-dom";
 import Logo from "../../Assets/logo/urban-farmer-logo-light.png";
 import { useEffect } from "react";
-import BackgroundPattern from '../../Assets/images/start-page-pattern.svg'
+import BackgroundPattern from "../../Assets/images/start-page-pattern.svg";
 
-const StartPage = ({setBackground}) => {
+const StartPage = ({ setBackground }) => {
   //HANDLE TO RE-DIRECT USER TO PROFILE IN CASE TOKEN IS IN SESSION STORAGE
   const enterHandle = () => {
     const token = sessionStorage.getItem("token");
@@ -16,33 +16,36 @@ const StartPage = ({setBackground}) => {
     }
   };
 
-  //BACKGROUND USE EFFECT
-  useEffect(()=>{
+  //BACKGROUND USE EFFECT- THIS WILL SET THE BACKGROUND FOR THE WHOLE CONTAINER
+  useEffect(() => {
     setBackground({
       backgroundImage: `url(${BackgroundPattern})`,
-      backgroundSize: '40px'
+      backgroundSize: "40px",
     });
-  
-  },[setBackground])
+  }, [setBackground]);
 
   return (
     <>
-    <AuthHeader navHeader={"ABOUT"} navUrl={"/about"} />
-    <main className="start-page__main">
+      {/* HEADER */}
+      <AuthHeader navHeader={"ABOUT"} navUrl={"/about"} />
 
-      <div className="start-page__container">
-        <img className="logo" src={Logo} alt="urban-farmer-logo"></img>
-        <section>
-          <Link className="start-page__enter" to={enterHandle()}>
-            <h2>ENTER</h2>
-          </Link>
-          <p>NEW TO THE COMMUNITY?</p>
-          <Link className="start-page__join" to={"/signup"}>
-            JOIN HERE.
-          </Link>
-        </section>
-      </div>
-    </main>
+      {/* MAIN */}
+      <main className="start-page__main">
+        <div className="start-page__container">
+          <img className="logo" src={Logo} alt="urban-farmer-logo"></img>
+
+          {/* NAVIGATION */}
+          <section>
+            <Link className="start-page__enter" to={enterHandle()}>
+              <h2>ENTER</h2>
+            </Link>
+            <p>NEW TO THE COMMUNITY?</p>
+            <Link className="start-page__join" to={"/signup"}>
+              JOIN HERE.
+            </Link>
+          </section>
+        </div>
+      </main>
     </>
   );
 };

@@ -9,7 +9,7 @@
     @include page-padding-default;
     color: $SECONDARY_TEXT_COLOUR;
     @include tablet{
-      height: 100%;
+      height: 100vh;
     }
   }
 
@@ -21,8 +21,9 @@
     }
     @include desktop {
       align-self: flex-end;
-      padding-right: 6.25rem;
+
     }
+
   }
 
   //INPUT 

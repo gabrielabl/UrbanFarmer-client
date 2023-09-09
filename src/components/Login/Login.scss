@@ -9,9 +9,6 @@
     @include auth-page-layout-default;
     @include page-padding-default;
     color: $SECONDARY_TEXT_COLOUR;
-    // @include tablet{
-    //   height: 100%;
-    // }
   }
 
   //FORM CONTAINER
@@ -22,13 +19,12 @@
     }
     @include desktop {
       align-self: flex-end;
-      padding-right: 6.25rem;
     }
   }
 
-  //INPUT 
+  //INPUT FIELDS
   &__input {
-  @include input-default;
-  @include input-colour-set-primary;
+    @include input-default;
+    @include input-colour-set-primary;
   }
 }

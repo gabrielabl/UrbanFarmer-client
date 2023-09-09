@@ -4,25 +4,24 @@ import { useNavigate } from "react-router-dom";
 import AuthHeader from "../AuthHeader/AuthHeader";
 import { useEffect, useState } from "react";
 import ButtonAuth from "../ButtonAuth/ButtonAuth";
-import BackgroundPattern from '../../Assets/images/start-page-pattern.svg'
-
+import BackgroundPattern from "../../Assets/images/start-page-pattern.svg";
 
 const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
   // VARIABLES
   let navigate = useNavigate();
   const { user_name, email, password } = signUpVar;
 
+  // VALIDATION
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [isEmailDB, setIsEmailDB] = useState("");
 
+  //FORM PLACEHOLDERS
   const [placeholder, setPlaceholder] = useState({
     namePlaceholder: "YOUR NAME",
     emailPlaceholder: "YOUR EMAIL",
     passwordPlaceholder: "PASSWORD WITH AT LEAST 8 CHAR",
     confirmPasswordPlaceholder: "TYPE PASSWORD AGAIN",
   });
-
   const {
     namePlaceholder,
     emailPlaceholder,
@@ -30,38 +29,37 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
     confirmPasswordPlaceholder,
   } = placeholder;
 
-    //BACKGROUND USE EFFECT
-    useEffect(()=>{
-      setBackground({
-        backgroundImage: `url(${BackgroundPattern})`,
-        backgroundSize: '40px'
-      });
-    
-    },[setBackground])
+  //BACKGROUND USE EFFECT - TO SET THE WHOLE BAACKGROUND PAGE
+  useEffect(() => {
+    setBackground({
+      backgroundImage: `url(${BackgroundPattern})`,
+      backgroundSize: "40px",
+    });
+  }, [setBackground]);
 
   //FORM VALIDATION ERROR STATE
+  const [errorStateForm, setErrorStateForm] = useState({
+    user_name: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
 
- const [errorStateForm, setErrorStateForm] = useState({
-   user_name: false,
-   email: false,
-   password: false,
-   confirmPassword: false
- });
-
+  //CHECKS IF EMAIL IS ALREADY IN THE DATABASE
   useEffect(() => {
-    //CHECK DB FOR EMAIL, TO KEEP DB CLEAN
     axios
       .post(`${baseURL}/emailcheck`, { email: email })
       .then((res) => {
         setIsEmailDB(res.status);
       })
       .catch((err) => {
-
         setIsEmailDB("");
       });
-  }, [email,baseURL]);
+  }, [email, baseURL]);
 
   //FORM VALIDATION
+
+  // EMPTY FIELDS
   const isFieldEmpty = () => {
     if (!user_name) {
       setPlaceholder({
@@ -69,44 +67,51 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
         namePlaceholder: "YOUR NAME IN THIS FIELD",
       });
       setErrorStateForm({
-        ...errorStateForm, user_name: true,
-      })
+        ...errorStateForm,
+        user_name: true,
+      });
       return false;
     }
+
     if (!email) {
       setPlaceholder({
         ...placeholder,
         emailPlaceholder: "YOUR EMAIL IN THIS FIELD",
       });
       setErrorStateForm({
-        ...errorStateForm, email: true,
-      })
+        ...errorStateForm,
+        email: true,
+      });
       return false;
     }
+
     if (!password) {
       setPlaceholder({
         ...placeholder,
         passwordPlaceholder: "YOUR PASSWORD IN THIS FIELD",
       });
       setErrorStateForm({
-        ...errorStateForm, password: true,
-      })
+        ...errorStateForm,
+        password: true,
+      });
       return false;
     }
+
     if (!confirmPassword) {
       setPlaceholder({
         ...placeholder,
-        confirmPasswordPlaceholder:
-          "YOUR PASSWORD IN THIS FIELD",
+        confirmPasswordPlaceholder: "ADD YOUR PASSWORD AGAIN",
       });
       setErrorStateForm({
-        ...errorStateForm, confirmPassword: true,
-      })
+        ...errorStateForm,
+        confirmPassword: true,
+      });
       return false;
     }
     return true;
   };
 
+  // EMAIL VALIDATION
   const isEmailValid = () => {
     if (!email.includes("@")) {
       setSignUpVar({ ...signUpVar, email: "" });
@@ -115,10 +120,13 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
         emailPlaceholder: "THIS EMAIL IS NOT VALID",
       });
       setErrorStateForm({
-        ...errorStateForm, email: true,
-      })
+        ...errorStateForm,
+        email: true,
+      });
       return false;
     }
+
+    // THE EMAIL THAT IS FOUND WILL RETURN ZERO LENGTH WHILE NOT FOUND WILL RETURN UNDEFINED
     if (isEmailDB.length === 0) {
       setSignUpVar({ ...signUpVar, email: "" });
       setPlaceholder({
@@ -126,13 +134,15 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
         emailPlaceholder: "THIS EMAIL IS ALREADY USED",
       });
       setErrorStateForm({
-        ...errorStateForm, email: true,
-      })
+        ...errorStateForm,
+        email: true,
+      });
       return false;
     }
     return true;
   };
 
+  //PASSWORD VALIDATION
   const passwordConfirm = () => {
     if (password !== confirmPassword) {
       setPlaceholder({
@@ -140,11 +150,14 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
         confirmPasswordPlaceholder: "PASSWORDS DON'T MATCH",
       });
       setErrorStateForm({
-        ...errorStateForm, password: true, confirmPassword:true,
-      })
+        ...errorStateForm,
+        password: true,
+        confirmPassword: true,
+      });
       setConfirmPassword("");
       return false;
     }
+
     if (password.length < 8) {
       setPlaceholder({
         ...placeholder,
@@ -152,13 +165,15 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
       });
       setSignUpVar({ ...SignUp, password: "" });
       setErrorStateForm({
-        ...errorStateForm, password: true,
-      })
+        ...errorStateForm,
+        password: true,
+      });
       return false;
     }
     return true;
   };
 
+  //FINAL FORM VALIDATION
   const isFormValid = () => {
     if (!isFieldEmpty()) {
       return false;
@@ -172,7 +187,7 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
     return true;
   };
 
-  //HANDLE CHANGE
+  //HANDLE CHANGE SIGN UP
   const handleOnChangeSignUp = (event) => {
     const { value, name } = event.target;
 
@@ -185,8 +200,9 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
       });
     }
     setErrorStateForm({
-      ...errorStateForm, [name]: false,
-    })
+      ...errorStateForm,
+      [name]: false,
+    });
   };
 
   //SIGN UP SUBMIT HANDLE
@@ -194,35 +210,34 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
     event.preventDefault();
 
     if (isFormValid()) {
-      console.log("yay");
       axios
         .post(`${baseURL}/signup`, signUpVar)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        .then((res) => {})
+        .catch((err) => {});
       navigate("/login");
     } else {
-      console.log("nope");
     }
   };
 
   return (
-  <>
-    <AuthHeader navHeader={"HOME"} navUrl={"/"} />
-    <main className="signup-page__main">
-      <form className="signup-page__container" onSubmit={signUpHandleSubmit}>
-        <h2>SIGN UP</h2>
+    <>
+      {/* HEADER */}
+      <AuthHeader navHeader={"HOME"} navUrl={"/"} />
 
-        {/* INPUT FIELDS */}
+      <main className="signup-page__main">
+        {/* FORM */}
+        <form className="signup-page__container" onSubmit={signUpHandleSubmit}>
+          <h2>SIGN UP</h2>
+
+          {/* INPUT FIELDS */}
           <input
             name="user_name"
             type="text"
             onChange={handleOnChangeSignUp}
             placeholder={namePlaceholder}
-            className={`signup-page__input ${errorStateForm.user_name? "signup-page__input--error-state": ""}` }
+            className={`signup-page__input ${
+              errorStateForm.user_name ? "signup-page__input--error-state" : ""
+            }`}
           ></input>
 
           <input
@@ -231,7 +246,9 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
             onChange={handleOnChangeSignUp}
             placeholder={emailPlaceholder}
             value={email}
-            className={`signup-page__input ${errorStateForm.email? "signup-page__input--error-state": ""}` }
+            className={`signup-page__input ${
+              errorStateForm.email ? "signup-page__input--error-state" : ""
+            }`}
           ></input>
 
           <input
@@ -240,7 +257,9 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
             onChange={handleOnChangeSignUp}
             placeholder={passwordPlaceholder}
             value={password}
-            className={`signup-page__input ${errorStateForm.password? "signup-page__input--error-state": ""}` }
+            className={`signup-page__input ${
+              errorStateForm.password ? "signup-page__input--error-state" : ""
+            }`}
           ></input>
 
           <input
@@ -249,12 +268,15 @@ const SignUp = ({ signUpVar, setSignUpVar, baseURL, setBackground }) => {
             onChange={handleOnChangeSignUp}
             placeholder={confirmPasswordPlaceholder}
             value={confirmPassword}
-            className={`signup-page__input ${errorStateForm.confirmPassword? "signup-page__input--error-state": ""}` }
+            className={`signup-page__input ${
+              errorStateForm.confirmPassword
+                ? "signup-page__input--error-state"
+                : ""
+            }`}
           ></input>
-
-   <ButtonAuth />
-      </form>
-    </main>
+          <ButtonAuth />
+        </form>
+      </main>
     </>
   );
 };
