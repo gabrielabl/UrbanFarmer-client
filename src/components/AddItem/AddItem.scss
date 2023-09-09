@@ -9,6 +9,9 @@
     background-color: $BACKGROUND_DARK;
     color: $SECONDARY_TEXT_COLOUR;
     text-transform: uppercase;
+    @include tablet{
+        height: 81vh;
+    }
   }
   //ADD ITEM FORM
   &__form {
