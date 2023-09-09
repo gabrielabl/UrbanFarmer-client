@@ -1,16 +1,8 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.search-item{
-    &__main{
-        @include page-padding-default;
-        height: 100%;
-    };
-    &__title{
-        color: $SECONDARY_CTA;
-        text-transform: uppercase;
-        font-size: 1.25rem;
-    };
+
+//KEYFRAME 
 
 @keyframes imageEffectSearch {
     0%{
@@ -27,12 +19,20 @@
     }
     100%{
         translate: 0 0%;
-    }
-    
+    } 
 }
 
-
-
+//SEARCH PAGE
+.search-item{
+    &__main{
+        @include page-padding-default;
+        height: 100%;
+    };
+    &__title{
+        color: $SECONDARY_CTA;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+    };
     //ITEM IMAGE
     &__image{
         width: 100%;

@@ -85,7 +85,11 @@
     //PARAGRAPH  DESCRIPTION
     p {
       @include tablet {
-        width: 50%;
+        width: 70%;
+        text-align: center;
+      }
+      @include desktop {
+        width: 70%;
         text-align: center;
       }
     }
