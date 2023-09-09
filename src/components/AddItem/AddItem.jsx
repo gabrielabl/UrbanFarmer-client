@@ -11,8 +11,12 @@ import Button from "../Button/Button";
 
 const AddItem = ({ baseURL }) => {
   //VARIABLES
+
+  //DATA ADDING
   const [newItem, setNewItem] = useState({});
   const formData = new FormData();
+
+  //PREVIEW AND PLACEHOLDERS
   const [previewItem, setPreviewItem] = useState(imgPlaceholder);
   const [placeholder, setPlaceholder] = useState({
     placeholderName: "include a name for your item",
@@ -26,7 +30,7 @@ const AddItem = ({ baseURL }) => {
   const idUser = sessionStorage.getItem("id");
   const user_name = sessionStorage.getItem("user_name");
 
-  //FOR REF FILE UPLOAD INPUT
+  //REF BUTTON FILE UPLOAD INPUT
   const hiddenUserPhotoInput = useRef(null);
   const hide = { display: "none" };
 
@@ -36,40 +40,45 @@ const AddItem = ({ baseURL }) => {
     hiddenUserPhotoInput.current.click();
   };
 
-   //FORM VALIDATION ERROR STATE
- const [errorStateForm, setErrorStateForm] = useState({
-  item_name: false,
-  description: false,
-});
+  //FORM VALIDATION ERROR STATE
+  const [errorStateForm, setErrorStateForm] = useState({
+    item_name: false,
+    description: false,
+  });
 
   //FORM VALIDATION
+
+  // EMPTY FIELDS
   const isFieldEmpty = () => {
-    //DESTRUCTURING
+    //DESTRUCTURING NEW ITEM OBJECT
     const { item_name, description, item_photo } = newItem;
 
     if (!item_name) {
       setPlaceholder({
         ...placeholder,
-        placeholderName: "No fields should be empty",
+        placeholderName: "NO FIELDS SHOULD BE EMPTY",
       });
-      setErrorStateForm({...errorStateForm, item_name: true})
+      setErrorStateForm({ ...errorStateForm, item_name: true });
       return false;
     }
+
     if (!description) {
       setPlaceholder({
         ...placeholder,
-        placeholderDescription: "No fields should be empty",
+        placeholderDescription: "NO FIELDS SHOULD BE EMPTY",
       });
-      setErrorStateForm({...errorStateForm, description: true})
+      setErrorStateForm({ ...errorStateForm, description: true });
       return false;
     }
+
     if (!item_photo) {
-      alert('PLEASE INCLUDE A  📸 FOR YOUR ITEM')
+      alert("PLEASE INCLUDE A  📸 FOR YOUR ITEM");
       return false;
     }
     return true;
   };
 
+  //FINAL FORM VALIDATION
   const isFormValid = () => {
     if (!isFieldEmpty()) {
       return false;
@@ -77,7 +86,7 @@ const AddItem = ({ baseURL }) => {
     return true;
   };
 
-  //HANDLE ONCHANGE
+  //HANDLE ON CHANGE NEW ITEM
   const handleOnChangeNewItem = (event) => {
     const { value, name } = event.target;
 
@@ -86,10 +95,10 @@ const AddItem = ({ baseURL }) => {
         ...newItem,
         [name]: event.target.files[0],
       });
-      //WILL NOT STORE IMAGE IF FILE IS UNDEFINED
-       if(event.target.files[0] !== undefined){
+      //WILL NOT STORE IMAGE TEMP URL IF FILE IS UNDEFINED
+      if (event.target.files[0] !== undefined) {
         setPreviewItem(URL.createObjectURL(event.target.files[0]));
-       }
+      }
     } else {
       setNewItem({
         ...newItem,
@@ -98,11 +107,11 @@ const AddItem = ({ baseURL }) => {
     }
   };
 
-  //HANDLE SUBMIT
+  //HANDLE SUBMIT ADD NEW ITEM
   const addNewItemHandleSubmit = (event) => {
     event.preventDefault();
 
-    //APPENDING NEW DATA FORMDATA
+    //APPENDING NEW DATA TO FORMDATA
     for (let key in newItem) {
       formData.append(key, newItem[key]);
     }
@@ -118,26 +127,24 @@ const AddItem = ({ baseURL }) => {
           },
         })
         .then((res) => {
-          console.log(res)
           navigate("/mycollection");
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
   };
   return (
     <>
+      {/* HEADER */}
       <Header />
       <main className="add-item__container">
         <h1>{user_name}'S COLLECTION</h1>
-        <form 
-        className="add-item__form"
-        onSubmit={addNewItemHandleSubmit}>
-          <div 
-          className="add-item__image">
+
+        {/* FORM */}
+        <form className="add-item__form" onSubmit={addNewItemHandleSubmit}>
+          {/* IMAGE CONTAINER */}
+          <div className="add-item__image">
             <img
-            className="add-item__preview"
+              className="add-item__preview"
               src={!previewItem ? imgPlaceholder : previewItem}
               alt="collectionItem-preview"
             ></img>
@@ -146,7 +153,6 @@ const AddItem = ({ baseURL }) => {
               SVG={<AddAPhotoOutlinedIcon />}
               text="ADD PICTURE"
             />
-
             <input
               filename={user_name}
               type="file"
@@ -158,12 +164,14 @@ const AddItem = ({ baseURL }) => {
             ></input>
           </div>
 
-          <div
-           className="add-item__text">
+          {/* TEXT CONTAINER */}
+          <div className="add-item__text">
             <label>
               ITEM NAME
               <input
-                className={`add-item__input ${errorStateForm.item_name? "add-item__input--error-state" : "" }`}
+                className={`add-item__input ${
+                  errorStateForm.item_name ? "add-item__input--error-state" : ""
+                }`}
                 name="item_name"
                 type="text"
                 value={newItem.item_name?.item_name}
@@ -174,7 +182,11 @@ const AddItem = ({ baseURL }) => {
             <label>
               DESCRIPTION
               <textarea
-                className={`add-item__input ${errorStateForm.description? "add-item__input--error-state" : "" } ${"add-item__description"}`}
+                className={`add-item__input ${
+                  errorStateForm.description
+                    ? "add-item__input--error-state"
+                    : ""
+                } ${"add-item__description"}`}
                 name="description"
                 type="text"
                 value={newItem.description?.description}
@@ -182,6 +194,8 @@ const AddItem = ({ baseURL }) => {
                 placeholder={placeholder.placeholderDescription}
               ></textarea>
             </label>
+
+            {/* SUBMIT BUTTON */}
             <Button text="SUBMIT" SVG={<PublishOutlinedIcon />} />
           </div>
         </form>
