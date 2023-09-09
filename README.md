@@ -22,7 +22,7 @@ DOTENV REACT-ROUTER-DOM SASS MATERIAL UI
 ```bash
 gh repo clone gabrielabl/UrbanFarmer-client
 ```
-2. Move to UrbanFarmer-server folder
+2. Move to urbanfarmer-client folder
 
 ```bash
 cd UrbanFarmer-server
