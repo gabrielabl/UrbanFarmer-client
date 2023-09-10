@@ -1,0 +1,13 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//NO ITEMS
+.collection-page {
+  //NO ITEMS CONDITIONAL STYLE
+  &__no-items-wrapper {
+    height: 100vh;
+  }
+  &__no-items {
+    color: $PRIMARY_CTA;
+  }
+}

@@ -1,3 +1,5 @@
+import CollectionItem from "../../components/CollectionItem/CollectionItem";
+import NoItems from "../../components/NoItems/NoItems";
 import { useEffect, useState } from "react";
 import "./MyCollection.scss";
 import axios from "axios";
@@ -5,11 +7,10 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Button from "../../components/Button/Button";
-import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
+import Loading from "../../components/Loading/Loading";
 import { Link, useParams } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import LoadingButton from "@mui/lab/LoadingButton";
 
 const MyCollection = ({ baseURL, setBackground }) => {
   // VARIABLES
@@ -218,16 +219,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
 
   //WHILE DATA IS NOT RENDERED
   if (isLoading) {
-    return (
-      <div>
-        <Header />
-        <div className="loading-page">
-          <p>LOADING...</p>
-          <LoadingButton loading={true} />
-        </div>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -237,18 +229,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
       <main className="collection-page__main">
         {/* IF NOT ITEMS IN COLLECTION, THIS DIV WILL BE DISPLAY */}
         {collectionData.message ? (
-          <div className="collection-page__no-items-wrapper">
-            <p className="collection-page__no-items">
-              YOU HAVE NO ITEMS IN YOUR COLLECTION
-            </p>
-            <Link className="collection-page__btn" to="/additem">
-              <Button
-                classVar={"collection-page__btn"}
-                style={addMoreBtn}
-                text="ADD MORE"
-              />
-            </Link>
-          </div>
+          <NoItems addMoreBtn={addMoreBtn} />
         ) : (
           // IF COLLECTION IS NOT EMPTY THIS WILL RENDER:
           <section className="collection-page__container">
@@ -263,32 +244,13 @@ const MyCollection = ({ baseURL, setBackground }) => {
                 ""
               )}
               {activeItems.map((item) => (
-                <li className="collection-page__list-item" key={item.id}>
-                  <img
-                    className="collection-page__image"
-                    src={`${baseURL}/${item.item_photo}`}
-                    alt={item.item_name}
-                  ></img>
-                  <h2>{item.item_name}</h2>
-                  <p>{item.description}</p>
-                  <a
-                    className="collection-page__trade-btn"
-                    style={tradeBtn}
-                    href={`mailto:${item.email}`}
-                  >
-                    TRADE
-                  </a>
-                  {/* DELETE BUTTON */}
-                  <button
-                    className="collection-page__btn-delete"
-                    style={deleteBtn}
-                    onClick={() => {
-                      deleteHandle(item.id);
-                    }}
-                  >
-                    <DeleteOutlineTwoToneIcon />
-                  </button>
-                </li>
+                <CollectionItem
+                  baseURL={baseURL}
+                  tradeBtn={tradeBtn}
+                  deleteBtn={deleteBtn}
+                  deleteHandle={deleteHandle}
+                  item={item}
+                />
               ))}
               <ArrowForwardIosIcon onClick={nextCarouselHandle} />
             </ul>
