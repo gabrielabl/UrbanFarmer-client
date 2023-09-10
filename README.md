@@ -47,7 +47,7 @@ mv .env.sample .env
 
 
 ```bash
-npm run
+npm start
 ```
 ## Functionality
 
