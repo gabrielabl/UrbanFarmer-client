@@ -1,3 +1,4 @@
+import Loading from "../../components/Loading/Loading";
 import "./ProfilePage.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,7 +7,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import ProfileDescription from "../../components/ProfileDescription/ProfileDescription";
 import EditProfile from "./../../components/EditProfile/EditProfile";
-import LoadingButton from "@mui/lab/LoadingButton";
+
 import ProfileAvatarPlaceholder from "../../Assets/images/avatar-placeholder.png";
 
 const ProfilePage = ({ baseURL, setBackground }) => {
@@ -100,16 +101,7 @@ const ProfilePage = ({ baseURL, setBackground }) => {
 
   //LOADING WHILE DATA IS NOT RETRIEVED FROM THE SERVER
   if (isLoading) {
-    return (
-      <div>
-        <Header />
-        <div className="loading-page">
-          <p>LOADING...</p>
-          <LoadingButton loading={true} />
-        </div>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
