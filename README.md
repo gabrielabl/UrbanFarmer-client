@@ -20,7 +20,7 @@ DOTENV REACT-ROUTER-DOM SASS MATERIAL UI
 1. Clone project to local machine
 
 ```bash
-gh repo clone gabrielabl/UrbanFarmer-client
+git clone git@github.com:gabrielabl/UrbanFarmer-client.git
 ```
 2. Move to urbanfarmer-client folder
 
