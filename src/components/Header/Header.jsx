@@ -77,7 +77,7 @@ const Header = ({ headerStyleSwitch }) => {
         <ul className="header__nav">
           {/* NAVIGATION  LIST*/}
           <NavLink
-          activeClassName="active"
+          activeclassname="active"
             className={`header__nav-link ${
               headerStyleSwitch ? "header__nav-link--not-found" : ""
             }`}
@@ -88,7 +88,7 @@ const Header = ({ headerStyleSwitch }) => {
             </li>
           </NavLink>
           <NavLink
-          activeClassName="active"
+          activeclassname="active"
             className={`header__nav-link ${
               headerStyleSwitch ? "header__nav-link--not-found" : ""
             }`}
@@ -103,7 +103,7 @@ const Header = ({ headerStyleSwitch }) => {
             </li>
           </NavLink>
           <NavLink
-          activeClassName="active"
+          activeclassname="active"
             className={`header__nav-link ${
               headerStyleSwitch ? "header__nav-link--not-found" : ""
             }`}
