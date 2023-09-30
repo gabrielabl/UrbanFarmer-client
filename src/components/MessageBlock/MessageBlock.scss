@@ -1,0 +1,47 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//MESSAGE BLOCK
+.message-block{
+    &__wrapper{
+        background-color: $SECONDARY_CTA;
+
+    };
+    //CONTAINER
+    &__container{
+       list-style: none;
+       display: flex;
+       flex-direction: column;
+       padding-left: 20px;
+       padding-right: 20px;
+    };
+    //USER NAME
+    &__user-name{
+        color: $PRIMARY_CTA;
+        text-transform: uppercase;
+    };
+    //MESSAGE
+    &__message{
+        color: $SECONDARY_TEXT_COLOUR;
+        word-wrap: break-word;
+        width: 100%
+    };
+    //TIMESTAMP
+    &__timestamp{
+        color: $PRIMARY_CTA;
+        text-align: end;
+    }
+    //MESSAGE INPUT FIELD
+    &__input{
+        @include input-default;
+        @include input-colour-set-profile;
+        width: 100%;
+        margin-bottom: 0;
+        font-family: "Arimo", sans-serif;
+    };
+    //SUBMIT BTN
+    &__btn{
+        width: 100%;
+    }
+
+}

@@ -90,7 +90,7 @@ const Messages = ({ baseURL, setBackground }) => {
     <>
       {/* HEADER */}
       <Header />
-      <main>
+      <main className="messages-page__container">
         {/* ACTIVE MESSAGE SELECTION */}
         <ActiveMessageList
           messageData={messageData}

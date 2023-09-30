@@ -79,17 +79,17 @@ const MessageBlock = ({
   };
 
   return (
-    <div>
+    <div className="message-block__wrapper">
       {/* FORMER MESSAGES */}
-      <ul>
+      <ul className="message-block__container">
         {activeMessages
           .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
           .map((message) => (
             <li key={message.message_id}>
-              <h3>{!message.sender_name ? user_name : message.sender_name}</h3>
+              <h3 className="message-block__user-name">{!message.sender_name ? user_name : message.sender_name}</h3>
               <div>
-                <p>{message.message}</p>
-                <p>{timeAgo.timeAgo(message.timestamp)}</p>
+                <p className="message-block__message">{message.message}</p>
+                <p className="message-block__timestamp">{timeAgo.timeAgo(message.timestamp)}</p>
               </div>
             </li>
           ))}
@@ -98,12 +98,14 @@ const MessageBlock = ({
       {/* NEW MESSAGE SUBMISSION   */}
       <form onSubmit={newMessageSubmitHandle}>
         <textarea
+        className="message-block__input"
           name="message_text"
           type="text"
           value={newMessage}
           onChange={newMessageOnChangeHandle}
+          placeholder="INSERT YOUR MESSAGE HERE"
         ></textarea>
-        <Button text="SUBMIT" SVG={<SendIcon />} />
+        <Button classVar={"message-block__btn"} text="SUBMIT" SVG={<SendIcon />} />
       </form>
     </div>
   );

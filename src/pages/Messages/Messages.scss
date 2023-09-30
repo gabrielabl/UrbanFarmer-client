@@ -1,0 +1,12 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+//MESSAGE PAGE
+
+.messages-page{
+    &__container{
+        @include page-padding-default;
+        display: flex;
+        flex-direction: column;
+    }
+}
