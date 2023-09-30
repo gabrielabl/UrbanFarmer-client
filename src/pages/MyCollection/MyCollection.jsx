@@ -317,6 +317,8 @@ const MyCollection = ({ baseURL, setBackground }) => {
           adminUserId={adminUserId}
           profileId={profileId}
           messagePrompt={messagePrompt}
+          hide={hide}
+          setMessagePrompt={setMessagePrompt}
         />
       </main>
       <Footer />

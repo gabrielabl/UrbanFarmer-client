@@ -1,9 +1,10 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.collection-page{
-      //PROMPT BOX TO SEND INITIAL MESSAGE TO USER
-  &__message{
+.collection-page {
+  //PROMPT BOX TO SEND INITIAL MESSAGE TO USER
+  &__message {
+    @include page-padding-default;
     position: absolute;
     background-color: $SECONDARY_CTA;
     left: 0;
@@ -12,6 +13,32 @@
     margin-left: auto;
     margin-right: auto;
     width: 80vw;
-    
+    flex-direction: column;
+    @include tablet {
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 40vw;
     }
+    @include desktop {
+      width: 30vw;
+    }
+    //CLOSE ICON
+    svg {
+      color: $SECONDARY_TEXT_COLOUR;
+    }
+  }
+  //MESSAGE INPUT
+  &__input {
+    @include input-default;
+    @include input-colour-set-profile;
+    width: 100%;
+    height: 20vh;
+    @include tablet {
+      width: 100%;
+    }
+  }
+  //SUBMIT BUTTON
+  &__btn-message {
+    width: 100%;
+  }
 }

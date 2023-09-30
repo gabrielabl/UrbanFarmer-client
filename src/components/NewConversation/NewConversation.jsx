@@ -4,6 +4,7 @@ import "./NewConversation.scss";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 const NewConversation = ({
   messagePrompt,
@@ -11,6 +12,8 @@ const NewConversation = ({
   profileId,
   token,
   baseURL,
+  hide,
+  setMessagePrompt
 }) => {
   //VARIABLES
   const [firstMessage, setFirstMessage] = useState([]);
@@ -49,19 +52,26 @@ const NewConversation = ({
     }
   };
 
+  //CLOSE HANDLE
+  const closeHandle=()=>{
+  setMessagePrompt(hide);
+  }
+
   return (
     <div style={messagePrompt} className="collection-page__message">
+      <CloseIcon onClick={closeHandle} />
       <form onSubmit={onSubmitHandle}>
-        <h2>{`INTERESTED IN ANY ITEM ON THIS COLLECTION?`}</h2>
-        <p>YOU CAN START A CONVERSATION BELOW</p>
+        <h2>{`INTERESTED IN ANY ITEM OF THIS COLLECTION?`}</h2>
+        <p>YOU CAN START A CONVERSATION BELOW:</p>
         <textarea
+          className="collection-page__input"
           onChange={messageHandleOnChange}
           name="message_text"
           type="text"
-          placeholder={`WHAT ITEM ON THIS COLLECTION WOULD YOU LIKE TO TRADE`}
+          placeholder={`WHICH ITEM ON THIS COLLECTION WOULD YOU LIKE TO TRADE?`}
           value={firstMessage}
         ></textarea>
-        <Button text="SEND" SVG={<SendIcon />} />
+        <Button classVar={"collection-page__btn-message"} text="SEND" SVG={<SendIcon />} />
       </form>
     </div>
   );

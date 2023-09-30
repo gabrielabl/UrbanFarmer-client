@@ -34,6 +34,10 @@ const Messages = ({ baseURL, setBackground }) => {
           },
         })
         .then((res) => {
+      //SETTING BACKGROUND FOR MESSAGE PAGE
+      setBackground({
+        backgroundColor: "#F5DECD",
+      });
           setMessageData(res.data);
           setLoading(false);
 
