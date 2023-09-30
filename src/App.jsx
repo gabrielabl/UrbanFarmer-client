@@ -10,6 +10,7 @@ import MyCollection from "./pages/MyCollection/MyCollection";
 import AddItem from "./components/AddItem/AddItem";
 import SearchItem from "./components/SearchItem/SearchItem";
 import NotFound from "./pages/NotFound/NotFound";
+import Messages from "./pages/Messages/Messages";
 
 function App() {
   //Variables
@@ -45,6 +46,7 @@ const [signUpVar, setSignUpVar] = useState({
           <Route path="/search" element={<SearchItem setBackground={setBackground} baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId" element={<ProfilePage baseURL={baseURL}/>}></Route>
           <Route path="/profile/:profileId/collection" element={<MyCollection baseURL={baseURL}/>}></Route>
+          <Route path="/messages" element={<Messages baseURL={baseURL} setBackground={setBackground} />}></Route>
           <Route path="*" element={<NotFound setBackground={setBackground}  />}></Route>
 
         </Routes>

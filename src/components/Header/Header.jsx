@@ -67,7 +67,7 @@ const Header = ({ headerStyleSwitch }) => {
     >
       {/* NAVIGATION LOGO*/}
       <nav className="header__icon-nav-wrapper">
-        <NavLink to="/">
+        <NavLink  to="/">
           <img
             className="header__logo"
             src={logo}
@@ -77,6 +77,7 @@ const Header = ({ headerStyleSwitch }) => {
         <ul className="header__nav">
           {/* NAVIGATION  LIST*/}
           <NavLink
+          activeclassname="active"
             className={`header__nav-link ${
               headerStyleSwitch ? "header__nav-link--not-found" : ""
             }`}
@@ -87,6 +88,7 @@ const Header = ({ headerStyleSwitch }) => {
             </li>
           </NavLink>
           <NavLink
+          activeclassname="active"
             className={`header__nav-link ${
               headerStyleSwitch ? "header__nav-link--not-found" : ""
             }`}
@@ -101,9 +103,11 @@ const Header = ({ headerStyleSwitch }) => {
             </li>
           </NavLink>
           <NavLink
+          activeclassname="active"
             className={`header__nav-link ${
               headerStyleSwitch ? "header__nav-link--not-found" : ""
             }`}
+            to="/messages"
           >
             <li>
               {mobileScreen ? <EmailIcon fontSize="large" /> : "MESSAGES"}
