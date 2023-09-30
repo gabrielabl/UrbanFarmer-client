@@ -2,54 +2,55 @@
 @use "../../styles/partials/variables" as *;
 
 //ACTIVE MESSAGE CONTAINER
-.active-message{
-    &__wrapper{
-        background-color: $BACKGROUND_DARK;
-        @include tablet{
-          width: 35vw;
-          margin-right: 20px;
-        }
+.active-message {
+  &__wrapper {
+    background-color: $BACKGROUND_DARK;
+    @include tablet {
+      width: 35vw;
+      margin-right: 1.25rem;
     }
-    //CONTAINER
-    &__container{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0;
-        //AVATAR
-        .avatar{
-        width: 100px;
-        height: 100px;
-        margin: 10px;
-        }
-  //USER NAME
-    h2{
-    text-align: center;
-    color: $SECONDARY_TEXT_COLOUR;
-    text-transform: uppercase;
-  };
-   //DELETE ICON
-   svg{
-    color:$SECONDARY_CTA;
-    text-align: center;
-   }
+    @include desktop {
+      width: 25vw;
     }
-    //MESSAGE TITLE
-  &__title{
+  }
+  //CONTAINER
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    //AVATAR
+    .avatar {
+      width: 6.25rem;
+      height: 6.25rem;
+      margin: 0.625rem;
+    }
+    //USER NAME
+    h2 {
+      text-align: center;
+      color: $SECONDARY_TEXT_COLOUR;
+      text-transform: uppercase;
+    }
+    //DELETE ICON
+    svg {
+      color: $SECONDARY_CTA;
+      text-align: center;
+    }
+  }
+  //MESSAGE TITLE
+  &__title {
     text-align: center;
     color: $SECONDARY_TEXT_COLOUR;
   }
 
-
-   //LIST ITEM
-   &__list-item{
+  //LIST ITEM
+  &__list-item {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-left: 10px;
-    margin-right: 10px
-   };
-
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+  }
 }

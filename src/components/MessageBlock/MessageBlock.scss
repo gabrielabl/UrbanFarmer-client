@@ -2,59 +2,75 @@
 @use "../../styles/partials/variables" as *;
 
 //MESSAGE BLOCK
-.message-block{
-    &__wrapper{
-        background-color: $SECONDARY_CTA;
-    };
-    //CONTAINER
-    &__container{
-       list-style: none;
-       display: flex;
-       flex-direction: column;
-       padding-left: 20px;
-       padding-right: 20px;
-    };
-    //USER NAME
-    &__user-name{
-        color: $PRIMARY_CTA;
-        text-transform: uppercase;
-    };
-    //MESSAGE
-    &__message{
-        color: $SECONDARY_TEXT_COLOUR;
-        word-wrap: break-word;
-        width: 100%
-    };
-    //TIMESTAMP
-    &__timestamp{
-        color: $PRIMARY_CTA;
-        text-align: end;
+.message-block {
+  &__wrapper {
+    background-color: $SECONDARY_CTA;
+    width: 100%;
+    @include tablet {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    //FORM CONTAINER
-    &__form{
-        @include tablet{
-            display: flex;
-            margin: 20px
-        }
+    @include desktop {
+      width: 50vw;
     }
-    //MESSAGE INPUT FIELD
-    &__input{
-        @include input-default;
-        @include input-colour-set-profile;
-        width: 100%;
-        margin-bottom: 0;
-        font-family: "Arimo", sans-serif;
-        @include tablet{
-            width: 100%
-        }
-    };
-    //SUBMIT BTN
-    &__btn{
-        width: 100%;
-        margin-bottom: 0;
-        @include tablet{
-            width: 20vw;
-        }
+  }
+  //CONTAINER
+  &__container {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    @include tablet {
+      height: auto;
     }
-
+  }
+  //USER NAME
+  &__user-name {
+    color: $PRIMARY_CTA;
+    text-transform: uppercase;
+  }
+  //MESSAGE
+  &__message {
+    color: $SECONDARY_TEXT_COLOUR;
+    word-wrap: break-word;
+    width: 100%;
+  }
+  //TIMESTAMP
+  &__timestamp {
+    color: $PRIMARY_CTA;
+    text-align: end;
+  }
+  //FORM CONTAINER
+  &__form {
+    @include tablet {
+      display: flex;
+      margin: 1.25rem;
+    }
+  }
+  //MESSAGE INPUT FIELD
+  &__input {
+    @include input-default;
+    @include input-colour-set-profile;
+    width: 100%;
+    margin-bottom: 0;
+    font-family: "Arimo", sans-serif;
+    @include tablet {
+      width: 100%;
+    }
+  }
+  //SUBMIT BTN
+  &__btn {
+    width: 100%;
+    margin-bottom: 0;
+    @include tablet {
+      width: 20vw;
+    }
+    @include desktop {
+      margin-left: 1.25rem;
+      width: 10vw;
+    }
+  }
 }

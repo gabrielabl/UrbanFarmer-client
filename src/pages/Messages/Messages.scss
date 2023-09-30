@@ -5,6 +5,7 @@
 
 .messages-page{
     &__container{
+        // height: 100vh;
         @include page-padding-default;
         display: flex;
         flex-direction: column;
