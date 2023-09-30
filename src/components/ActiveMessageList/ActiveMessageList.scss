@@ -5,9 +5,11 @@
 .active-message {
   &__wrapper {
     background-color: $BACKGROUND_DARK;
+    margin-bottom: 10px;
     @include tablet {
       width: 35vw;
       margin-right: 1.25rem;
+      margin-bottom: 0;
     }
     @include desktop {
       width: 25vw;
