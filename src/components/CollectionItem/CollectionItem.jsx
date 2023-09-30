@@ -7,6 +7,7 @@ const CollectionItem = ({
   deleteBtn,
   deleteHandle,
   item,
+  tradeHandle
 }) => {
   return (
     <li className="collection-page__list-item" key={item.id}>
@@ -18,9 +19,9 @@ const CollectionItem = ({
       <h2>{item.item_name}</h2>
       <p>{item.description}</p>
       <a
+        onClick={tradeHandle}
         className="collection-page__trade-btn"
         style={tradeBtn}
-        href={`mailto:${item.email}`}
       >
         TRADE
       </a>

@@ -11,6 +11,7 @@ import Loading from "../../components/Loading/Loading";
 import { Link, useParams } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import NewConversation from "../../components/NewConversation/NewConversation";
 
 const MyCollection = ({ baseURL, setBackground }) => {
   // VARIABLES
@@ -43,6 +44,9 @@ const MyCollection = ({ baseURL, setBackground }) => {
   //SHOW/HIDE BUTTONS THAT WILL BE ENABLE ONLY FOR LOGIN USER/ DELETE AND ADD MORE BUTTONS
   const [show] = useState({ display: "flex" });
   const [hide] = useState({ display: "none" });
+
+  //MESSAGE PROMPT STATE
+  const [messagePrompt, setMessagePrompt] = useState(hide);
 
   // BUTTONS
   const [deleteBtn, setDeleteBtn] = useState(show);
@@ -217,6 +221,47 @@ const MyCollection = ({ baseURL, setBackground }) => {
     }
   }, [profileId, adminUserId, hide, show]);
 
+  //TRADE BUTTON HANDLE
+  const tradeHandle = () => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      axios
+        .get(`${baseURL}/messages/${adminUserId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          //CHECK IF THERE IS AN EXISTING CONVERSATION WITH THE OTHER USER
+          const checkConversation = () => {
+            let checkUsers = false;
+            res.data.map((element) => {
+              element.messages.map((messageInfo) => {
+                if (messageInfo.sender_id === profileId) {
+                  checkUsers = true;
+                } else if (messageInfo.receiver_id === profileId) {
+                  checkUsers = true;
+                }
+              });
+            });
+            return checkUsers;
+          };
+          //IF THERE IS EXISTING CONVERSATION WITH USER IT WILL DIRECT TO MESSAGES
+          if (checkConversation() === true) {
+            navigate("/messages");
+          } else {
+            setMessagePrompt(show);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          //IF USER HAS NO MESSAGES AT ALL SHOW MESSAGE PROMPT
+          setMessagePrompt(show);
+        });
+    }
+  };
+
   //WHILE DATA IS NOT RENDERED
   if (isLoading) {
     return <Loading />;
@@ -247,6 +292,7 @@ const MyCollection = ({ baseURL, setBackground }) => {
                 <CollectionItem
                   baseURL={baseURL}
                   tradeBtn={tradeBtn}
+                  tradeHandle={tradeHandle}
                   deleteBtn={deleteBtn}
                   deleteHandle={deleteHandle}
                   item={item}
@@ -265,6 +311,15 @@ const MyCollection = ({ baseURL, setBackground }) => {
             </Link>
           </section>
         )}
+        <NewConversation
+          token={token}
+          baseURL={baseURL}
+          adminUserId={adminUserId}
+          profileId={profileId}
+          messagePrompt={messagePrompt}
+          hide={hide}
+          setMessagePrompt={setMessagePrompt}
+        />
       </main>
       <Footer />
     </>

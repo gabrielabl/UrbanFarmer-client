@@ -55,7 +55,7 @@
       background-color: $SECONDARY_CTA;
       color: $SECONDARY_TEXT_COLOUR;
     }
-    &:active {
+    &:active{
       background-color: $SECONDARY_TEXT_COLOUR;
       color: $SECONDARY_CTA;
     }
@@ -139,4 +139,11 @@
       width: 100px;
     }
   }
+};
+
+//NAVILINK ACTIVE PAGE HIGHLIGHT
+.active{
+  background-color: $SECONDARY_CTA;
+  color: $SECONDARY_TEXT_COLOUR;
 }
+
