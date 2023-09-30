@@ -5,6 +5,10 @@
 .active-message{
     &__wrapper{
         background-color: $BACKGROUND_DARK;
+        @include tablet{
+          width: 35vw;
+          margin-right: 20px;
+        }
     }
     //CONTAINER
     &__container{

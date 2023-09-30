@@ -5,7 +5,6 @@
 .message-block{
     &__wrapper{
         background-color: $SECONDARY_CTA;
-
     };
     //CONTAINER
     &__container{
@@ -31,6 +30,13 @@
         color: $PRIMARY_CTA;
         text-align: end;
     }
+    //FORM CONTAINER
+    &__form{
+        @include tablet{
+            display: flex;
+            margin: 20px
+        }
+    }
     //MESSAGE INPUT FIELD
     &__input{
         @include input-default;
@@ -38,10 +44,17 @@
         width: 100%;
         margin-bottom: 0;
         font-family: "Arimo", sans-serif;
+        @include tablet{
+            width: 100%
+        }
     };
     //SUBMIT BTN
     &__btn{
         width: 100%;
+        margin-bottom: 0;
+        @include tablet{
+            width: 20vw;
+        }
     }
 
 }

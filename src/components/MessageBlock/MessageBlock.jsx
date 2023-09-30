@@ -96,7 +96,7 @@ const MessageBlock = ({
       </ul>
 
       {/* NEW MESSAGE SUBMISSION   */}
-      <form onSubmit={newMessageSubmitHandle}>
+      <form className="message-block__form" onSubmit={newMessageSubmitHandle}>
         <textarea
         className="message-block__input"
           name="message_text"
