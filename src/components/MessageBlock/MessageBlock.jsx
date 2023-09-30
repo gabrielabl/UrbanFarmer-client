@@ -67,13 +67,11 @@ const MessageBlock = ({
               setNewMessage([]);
             })
             .catch((err) => {
-              console.log(err);
               //IF USER MESSAGES FAILED TO BE RETRIEVE, RE-DIRECT TO PROFILE
               navigate("/profile");
             });
         })
         .catch((err) => {
-          console.log(err);
         });
     }
   };

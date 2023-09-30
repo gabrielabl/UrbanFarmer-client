@@ -53,7 +53,6 @@ const Messages = ({ baseURL, setBackground }) => {
           }
         })
         .catch((err) => {
-          console.log(err);
           //IF USER MESSAGES FAILED TO BE RETRIEVE, RE-DIRECT TO PROFILE
           navigate("/profile");
         });
@@ -72,8 +71,6 @@ const Messages = ({ baseURL, setBackground }) => {
   //ACTIVE MESSAGE HANDLE
   const activeMessageHandle = (id) => {
     const filteredMessages = messageData.filter((element) => element.id === id);
-
-    console.log(filteredMessages[0].messages.sort((a,b)=> a.timestamp - b.timestamp))
     
     setActiveConversationId(filteredMessages[0].id);
     setActiveMessages(filteredMessages[0].messages);
