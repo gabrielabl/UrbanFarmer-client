@@ -26,6 +26,10 @@
       width: 6.25rem;
       height: 6.25rem;
       margin: 0.625rem;
+      @include tablet{
+        width: 8.75rem;
+        height: 8.75rem;
+      }
     }
     //USER NAME
     h2 {
