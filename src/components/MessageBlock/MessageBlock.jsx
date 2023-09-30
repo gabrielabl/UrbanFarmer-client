@@ -85,7 +85,7 @@ const MessageBlock = ({
         {activeMessages
           .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
           .map((message) => (
-            <li>
+            <li key={message.message_id}>
               <h3>{!message.sender_name ? user_name : message.sender_name}</h3>
               <div>
                 <p>{message.message}</p>

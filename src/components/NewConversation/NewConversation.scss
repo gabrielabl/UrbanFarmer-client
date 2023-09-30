@@ -1,0 +1,17 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.collection-page{
+      //PROMPT BOX TO SEND INITIAL MESSAGE TO USER
+  &__message{
+    position: absolute;
+    background-color: $SECONDARY_CTA;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
+    
+    }
+}
