@@ -11,7 +11,6 @@ A user-friendly app for connecting city residents passionate about urban farming
 
 This app requires https://github.com/gabrielabl/UrbanFarmer-server installed and running.
 
-
 ## Packages
 AXIOS
 DOTENV REACT-ROUTER-DOM SASS MATERIAL UI
@@ -20,12 +19,12 @@ DOTENV REACT-ROUTER-DOM SASS MATERIAL UI
 1. Clone project to local machine
 
 ```bash
-gh repo clone gabrielabl/UrbanFarmer-client
+git clone git@github.com:gabrielabl/UrbanFarmer-client.git
 ```
-2. Move to UrbanFarmer-server folder
+2. Move to urbanfarmer-client folder
 
 ```bash
-cd UrbanFarmer-server
+cd urbanfarmer-client
 ```
 
 3. Install node modules
@@ -47,7 +46,7 @@ mv .env.sample .env
 
 
 ```bash
-npm run
+npm start
 ```
 ## Functionality
 
