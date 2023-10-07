@@ -9,8 +9,7 @@ A user-friendly app for connecting city residents passionate about urban farming
 
 ## Requirements
 
-This app requires UrbanFarmer-server installed and running: https://github.com/gabrielabl/UrbanFarmer-server
-
+This app requires https://github.com/gabrielabl/UrbanFarmer-server installed and running.
 
 ## Packages
 AXIOS
