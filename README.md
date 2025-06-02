@@ -1,7 +1,4 @@
 
-![Logo](https://urbanfarmer.netlify.app/static/media/urban-farmer-logo.747fb3c3338aabdcd514.png)
-
-
 # UrbanFarmer-Client
 
 A user-friendly app for connecting city residents passionate about urban farming and craft food production. Streamlined item listing for trade and facilitated community connections for food enthusiasts.
