@@ -72,11 +72,6 @@ npm start
 
 - Views: Implementing a view counter that will be updated every time another user visualizes the user’s profile. 
 
-## Deployed version
-
-https://urbanfarmer.netlify.app/
-
-
 
 ## Author
 
